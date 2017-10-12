@@ -1,0 +1,3 @@
+http://ssd.sscc.ru/sites/default/files/content/attach/424/64-ia-32-architectures-optimization-manual_09_2014.pdf
+
+525 страница, ctrl+F по addsd
