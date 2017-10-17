@@ -1,0 +1,15 @@
+push 5
+push 10
++
+push 15
+-
+sqrt
+push 100
+/
+push 300
+*
+print
+push 5
+print
+pop
+exit

@@ -1,0 +1,191 @@
+#define _CRT_SECURE_NO_WARNINGS
+#define HOW_MANY_HASHES 10
+#define SPEC_SYMBOLS_COUNT 1000
+
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct _Student
+{
+    char *key;
+    char *name;
+    char *num;
+    int hash;
+} Student;
+
+typedef struct _Node{
+    char *last_name; // Фамилия - ключ
+    Student *pStudent; // Адрес структуры с данными
+    struct _Node *next;
+} Node;
+
+char* memcpyplus(char* ver, int x, int y){
+    char* mass = NULL;
+    size_t n = sizeof(char) * (x - y);
+    mass = malloc(n);
+
+    memcpy(mass, ver + y + 1, n);
+
+    mass[n - 1] = '\0';
+    return mass;
+}
+
+void push(Node ** head, char *last_name, struct _Student *student) {
+    Node *tmp = calloc(1, sizeof(Node));
+    tmp->last_name = last_name;
+    tmp->pStudent = student;
+    tmp->next = (*head);
+    (*head) = tmp;
+}
+
+
+char* READ(FILE* file, size_t* charInFile){
+    fseek(file, 0, SEEK_END);
+    long size = ftell(file);
+    *charInFile = size / sizeof(char);
+    char *result = (char*)calloc(*charInFile, sizeof(char));
+    fseek(file, 0, SEEK_SET);
+    fread(result, sizeof(char), *charInFile, file);
+    return result;
+}
+
+int hashing(char* lastname, int hashes_quantity){
+    int len = strlen(lastname);
+    int sum = 0;
+    int hash = 0;
+
+    for(int e = 0; e < len; e++){
+        sum = sum + lastname[e];
+    }
+    hash = sum % hashes_quantity;
+}
+
+int main(int argc, char *argv[])
+{
+    if (argc != 2){
+        printf("ERROR 1");
+        return 0;
+    }
+
+    FILE* fileik;
+    fileik = fopen(argv[1], "rb");
+
+    if (fileik == NULL){
+        printf("ERROR 2");
+        return 0;
+    }
+
+    int l = 0, i = 0;
+    size_t charInFile;
+    char* ver = READ(fileik, &charInFile);
+
+    fclose(fileik);
+    int a[SPEC_SYMBOLS_COUNT];
+
+    for (i = 0; i < SPEC_SYMBOLS_COUNT; i++){
+        a[i] = -1;
+    }
+    int countTAB = 0;
+    for (i = 0; i < charInFile; i++)//записывает в a[i] номера спец символов
+    {
+        if (ver[i] == '\t' || ver[i] == '\r' || ver[i] == '\n'){
+            for (l = 1; l < SPEC_SYMBOLS_COUNT - 1; l++){
+                if (a[l] == -1){
+                    a[l] = i;
+                    break;
+                }
+            }
+            if(ver[i] == '\t'){//считает количество табов
+                countTAB++;
+            }
+        }
+    }
+    int k = 0;
+    i = 0;
+    int how_many_students = countTAB/2;
+    Student students[how_many_students];
+    for (i = 1; a[i] != -1;)//заполняет структуры студентов, причем, в поле хэш лежит хэш студента
+    {
+        students[k].key = memcpyplus(ver, a[i], a[i - 1]);
+        i++;
+
+        students[k].name = memcpyplus(ver, a[i], a[i - 1]);
+        i++;
+
+        students[k].num = memcpyplus(ver, a[i], a[i - 1]);
+        i++;
+
+        students[k].hash = hashing(students[k].key, HOW_MANY_HASHES);
+
+        k++;
+    }
+
+    free(ver);
+
+    //Хеширование конец
+
+    Node *heads[HOW_MANY_HASHES];
+    for (int counter = 0; counter < HOW_MANY_HASHES; counter++) {
+        heads[counter] = NULL;
+    }
+
+    for (i = 0; i < HOW_MANY_HASHES; i++) {
+        push(&heads[hashing(students[i].key, HOW_MANY_HASHES)], students[i].key, &students[i]);
+    }
+
+    char *input = malloc( sizeof(char) * 15);
+    int len_input = 0;
+    int hash_input = 0;
+    int prehash_input = 0;
+
+    Node * temp_head = NULL;
+    Student *tmp_student;
+    int o;
+
+    while (1){
+
+        prehash_input = 0; o = 0; i = 0;
+
+        do{                                 //реализуем выход по двойному интеру и записываем введеную фамилию в строку инпут
+            scanf("%c", input + i);
+            o++; i++;
+        } while (input[i - 1] != '\n');
+        if (o == 1 && input[0] == '\n'){
+            i = 0;
+            do{
+                scanf("%c", input + i);
+                o++; i++;
+            } while (input[i - 1] != '\n');
+        }
+
+        if (o == 2 && input[0] == '\n')
+            break;
+        else
+        {
+            input[i - 1] = '\0';
+        }
+
+        len_input = strlen(input);
+
+        int serch_hash = hashing(input, HOW_MANY_HASHES);
+
+        Node *temp_head = &heads[hash_input];
+        while (temp_head)
+        {
+            if (!strcmp(input, temp_head->last_name))
+            {
+                tmp_student = temp_head->pStudent;
+                printf("%s\n%s\n%s\n%d\n", tmp_student->key, tmp_student->name, tmp_student->num, tmp_student->hash);
+                break;
+            }
+            temp_head = temp_head->next;
+        }
+
+    }
+
+    free(input);
+    free(*heads);
+    return 0;
+}

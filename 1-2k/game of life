@@ -1,0 +1,330 @@
+//Game of life!!!
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+int countLines(char *arr) {
+	int len = 0;
+	do {
+		(*arr == '\n') ? len++ : 0;
+	} while (*arr++);
+	return ++len;
+}
+
+int countCols(char *arr) {
+	int cols = 0;
+	while (*arr++ != '\n')
+		cols++;
+	return cols;
+}
+
+int countAlives(char **field, int x, int y, int cols, int lines) {
+	int alives = 0, i, j;
+
+	// x+1, y+1
+	if ((y + 1 == cols) && (x + 1 == lines)) {
+		j = 0;
+		i = 0;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if ((x + 1 == lines) && (y + 1 < cols)) {
+		i = 0;
+		j = y + 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if ((x + 1 < lines) && (y + 1 == cols)) {
+		i = x + 1;
+		j = 0;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if ((x + 1 < lines) && (y + 1 < cols)) {
+		i = x + 1;
+		j = y + 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+
+	// x-1, y-1
+	if ((x - 1 < 0) && (y - 1 < 0)) {
+		i = lines - 1;
+		j = cols - 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if ((x - 1 >= 0) && (y - 1 >= 0)) {
+		i = x - 1;
+		j = y - 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if ((x - 1 < 0) && (y - 1 >= 0)) {
+		i = lines - 1;
+		j = y - 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if ((x - 1 >= 0) && (y - 1 < 0)) {
+		i = x - 1;
+		j = cols - 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+
+	// x, y+1
+	if (y + 1 == cols) {
+		j = 0;
+		i = x;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if (y + 1 < cols) {
+		i = x;
+		j = y + 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+
+	// x-1, y+1
+	if ((y + 1 == cols) && (x - 1 < 0)) {
+		j = 0;
+		i = lines - 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if ((x - 1 < 0) && (y + 1 < cols)) {
+		i = lines - 1;
+		j = y + 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if ((x - 1 >= 0) && (y + 1 == cols)) {
+		i = x - 1;
+		j = 0;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if ((x - 1 >= 0) && (y + 1 < cols)) {
+		i = x - 1;
+		j = y + 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+
+	// x-1, y
+	if (x - 1 >= 0) {
+		j = y;
+		i = x - 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if (x - 1 < 0) {
+		i = lines - 1;
+		j = y;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+
+	// x+1, y
+	if (x + 1 == lines) {
+		j = y;
+		i = 0;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if (x + 1 < lines) {
+		i = x + 1;
+		j = y;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+
+	// x+1, y-1
+	if ((x + 1 == lines) && (y - 1 < 0)) {
+		i = 0;
+		j = cols - 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if ((x + 1 < lines) && (y - 1 < 0)) {
+		i = x + 1;
+		j = cols - 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if ((x + 1 == lines) && (y - 1 >= 0)) {
+		i = 0;
+		j = y - 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if ((x + 1 < lines) && (y - 1 >= 0)) {
+		i = x + 1;
+		j = y - 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+
+	// x, y-1
+	if (y - 1 < 0) {
+		j = cols - 1;
+		i = x;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+	if (y - 1 >= 0) {
+		i = x;
+		j = y - 1;
+		if (field[i][j] == '+') {
+			alives++;
+		}
+	}
+
+	return alives;
+}
+
+void changeState(char **field, int** states, int x, int y, int cols, int lines) {
+	if (states[x][y]) {
+		if (field[x][y] == '+')
+			field[x][y] = '-';
+		else
+			field[x][y] = '+';
+	}
+}
+
+void main()//p-print;e-exit;s-save;
+{
+	int razmer_faila, cols, lines;
+	char *mass;
+	FILE *myfile;
+	FILE* save;
+
+	myfile = fopen("data.txt", "r");
+
+	// определяем количество символов в файле
+	fseek(myfile, 0, SEEK_END);
+	razmer_faila = ftell(myfile);
+	rewind(myfile);
+
+	// выделяем память под одномерный массив исходя из количества символов в файле
+	mass = (int*)calloc(razmer_faila, sizeof(int));
+
+	// заполняем массив символами из файла
+	fread(mass, 1, razmer_faila, myfile);
+	fclose(myfile);
+
+	// считаем количество строк и столбцов
+	cols = countCols(mass);
+	lines = countLines(mass);
+
+	// выделяем память для матрицы
+	char **mat = (char**)calloc(lines, sizeof(char*));
+	for (int k = 0; k < lines; k++)
+		mat[k] = (char*)calloc(cols, sizeof(char));
+
+	// таблица состояний на следующий шаг
+	int **states = (int**)calloc(lines, sizeof(int*));
+	for (int k = 0; k < lines; k++)
+		states[k] = (int*)calloc(cols, sizeof(int));
+
+	// заполняем матрицу из одномерного массива. создаём поле.
+	// j-номер элемента строки
+	// i-номер строки
+	for (int x = 0, i = 0, j = 0; mass[x]; x++)
+	{
+		char l = mass[x];
+		if (mass[x] == '+' || mass[x] == '-')
+		{
+			mat[i][j] = mass[x];
+			j++;
+		}
+		if (mass[x] == '\n')
+		{
+			j = 0;
+			i++;
+		}
+	}
+	char *stop;
+	stop = (char*)calloc(10, sizeof(char));
+	while (1) {
+		// проблема с getchar
+		scanf("%s", stop);
+
+		if (stop[0] == 'e')
+			break;
+		else if (stop[0] == 'p') {
+			// заполняем таблицу состояния на следующий шаг
+			int numCol = 0;
+			for (int i = 0; i < lines; i++) {
+				for (int alives = 0; numCol < cols; numCol++) {
+					alives = countAlives(mat, i, numCol, cols, lines);
+
+					if ((mat[i][numCol] == '+') && ((alives > 3) || (alives < 2)))
+						states[i][numCol] = 1;
+					if ((mat[i][numCol] == '-') && (alives == 3))
+						states[i][numCol] = 1;
+				}
+				numCol = 0;
+			}
+
+			// меняем поле и выводим результат
+			for (int i = 0, j = 0; i < lines; i++) {
+				for (; j < cols; j++) {
+					changeState(mat, states, i, j, cols, lines);
+					printf("%c", mat[i][j]);
+				}
+				j = 0;
+				printf("\n");
+			}
+
+			for (int i = 0, k = 0; i < lines; i++) {
+				for (; k < cols; k++) {
+					states[i][k] = 0;
+				}
+				k = 0;
+			}
+		}
+		 if (stop[0] == 's') {
+			char filename[100];
+			printf("Введите имя файла");
+			scanf("%s",filename);
+			save = fopen(filename, "w");
+
+			for (int i = 0, j = 0; i < lines; i++) {
+				for (; j < cols; j++) {
+					fprintf(save, "%c", mat[i][j]);
+				}
+				j = 0;
+				fprintf(save, "\n");
+			}
+
+			fclose(save);
+		}
+	}
+	free(stop);
+}

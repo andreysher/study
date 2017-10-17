@@ -1,0 +1,417 @@
+//stroki
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+#include <stdlib.h>
+#define N 200
+
+int probely_mem(unsigned char*str){
+	int dlina = strlen(str);
+	int i = 0, d_mem = 0;
+	for (i; i <= dlina; i++){
+		if ((str[i] == ' ') && (str[i + 1] == ' ')){
+			d_mem = d_mem - 1;
+		}
+
+		if (((str[i] == ',') || (str[i] == ';') || (str[i] == '.') || (str[i] == '!') || (str[i] == '?')) && ((str[i - 1] == ' '))){
+			d_mem = d_mem - 1;
+		}
+		if (((str[i] == ',') || (str[i] == ';') || (str[i] == '.') || (str[i] == '!') || (str[i] == '?')) && ((str[i + 1] != ' ')) && (str[i + 1] != '\0')){
+			d_mem = d_mem + 1;
+		}
+	}
+	return d_mem;
+}
+
+void probely(unsigned char *str, unsigned char *rez){
+	int i = 0, g = 0;
+	
+	while(str[i] != '\0'){
+		rez[i]=str[i];
+		i++;
+	}
+	rez[i]='\0';
+
+	for (i=0; i <= strlen(str); i++){
+		if (rez[i] == ' '){
+			while ((rez[i + 1] == ' ')){
+				g = i;
+				for (g; g <= strlen(str); g++){
+					rez[g] = rez[g + 1];
+				}
+			}
+		}
+	}
+	i = 0;
+	for (i; i <= strlen(rez); i++){
+		if (((rez[i] == ',') || (rez[i] == ';') || (rez[i] == '.') || (rez[i] == '!') || (rez[i] == '?')) && ((rez[i - 1] == ' '))){
+			g = i;
+			for (g; g <= strlen(rez); g++){
+				rez[g - 1] = rez[g];
+			}
+		}
+	}
+	i = 0;
+	for (i; rez[i]!='\0'; i++){
+		if (((rez[i] == ',') || (rez[i] == ';') || (rez[i] == '.') || (rez[i] == '!') || (rez[i] == '?')) && ((rez[i + 1] != ' ')) && (rez[i+1]!='\0')){
+			g = strlen(rez)+1;
+			rez[strlen(rez) + 2] = '\0';
+			for (g; g > i; g--){
+				rez[g] = rez[g-1];
+			}
+			rez[i + 1] = ' ';
+
+		}
+	}
+	
+}
+void kapital(unsigned char *str, unsigned char *rez){
+	int i=0, j=0;
+	while(str[i] != '\0'){
+		rez[i]=str[i];
+		i++;
+	}
+	rez[i]='\0';
+
+	i=0;
+	
+
+	while(rez[i] != '\0'){
+		while(!		(((rez[i] >= 97) && (rez[i] <= 122)) || ((rez[i] >= 192) && (rez[i] <= 255)) || ((rez[i] >= 65) && (rez[i] <= 90)))	){
+			i++;
+			if(rez[i]== '\0') break;
+		}
+		if(((rez[i] >= 97) && (rez[i] <= 122)) || ((rez[i] >= 224) && (rez[i] <= 255))){
+		rez[i] = rez[i] - 32;
+		}
+		if (rez[i] == 184) {
+			rez[i] = 168;
+		}
+		i++;
+		if(rez[i]== '\0') break;
+		while (!((rez[i] == '.') || (rez[i] == '!') || (rez[i] == '?'))){ 
+			i++;
+			if(rez[i]== '\0') break;
+		}	
+	}
+}
+int zamena_mem(unsigned char *str, unsigned char *chto, unsigned char *na_chto){
+	int i, j, mesto=0, sum = 0,d_mem=0;
+	for (i = 0; str[i] != '\0'; i++) {
+		if (str[i] == chto[0]) {
+			sum = sum + 1;
+			mesto = i;
+			for (j = i + 1; j < i + strlen(chto); j++) {
+				if (str[j] == chto[j - i]) {
+					sum = sum + 1;
+				}
+				else {
+					sum = 0;
+					break;
+				}
+			}
+		}
+		if (sum == strlen(chto)) {
+			if (strlen(chto) > strlen(na_chto)) {
+				d_mem = d_mem - (strlen(chto) - strlen(na_chto));
+				i = i + strlen(chto) - 1;
+			}
+			if (strlen(chto) < strlen(na_chto)) {
+				d_mem = d_mem + (strlen(na_chto) - strlen(chto));
+			}
+			sum = 0;
+		}
+	}
+	return d_mem;
+}
+void zamena(unsigned char*str, unsigned char*chto, unsigned char*na_chto, unsigned char*rez) {
+	int i=0;
+	while(str[i] != '\0'){
+		rez[i]=str[i];
+		i++;
+	}
+	rez[i]='\0';
+	int dlina_str=strlen(rez);
+	int dlina_podstr1=strlen(chto);
+	int dlina_podstr2=strlen(na_chto);
+	int j, nachalo, raznost, shet, summa = 0;
+	for (i = 0; i < dlina_str - dlina_podstr1 + 1; ++i) {
+		if (rez[i] == chto[0]) {
+			++summa;
+			nachalo = i;
+			for (j = i + 1; j < i + dlina_podstr1; ++j) {
+				if (rez[j] == chto[j-i]) {
+					++summa;
+				}
+				else {
+					summa = 0;
+					break;
+				}
+			}
+		}
+		if (summa == dlina_podstr1) {
+			if (dlina_podstr1 > dlina_podstr2) {
+				raznost = dlina_podstr1 - dlina_podstr2;
+				for (shet = nachalo + dlina_podstr1; shet <= dlina_str; ++shet) {
+					rez[shet - raznost] = rez[shet];
+				}
+
+				for (shet = nachalo; shet < nachalo + dlina_podstr2; ++shet) {
+					rez[shet] = na_chto[shet - nachalo];
+				}
+				rez[dlina_str - raznost] = '\0';
+				dlina_str -= raznost;
+			}
+			if (dlina_podstr1 < dlina_podstr2) {
+				raznost = dlina_podstr2 - dlina_podstr1;
+				for (shet = dlina_str - 1; shet > nachalo; --shet) {
+					rez[shet + raznost] = rez[shet];
+				}
+				for (shet = nachalo; shet < nachalo + dlina_podstr2; ++shet) {
+					rez[shet] = na_chto[shet - nachalo];
+				}
+				rez[dlina_str + raznost] = '\0';
+				dlina_str += raznost;
+			}
+			if (dlina_podstr1 == dlina_podstr2) {
+				for (shet = nachalo; shet < nachalo + dlina_podstr2; ++shet) {
+					rez[shet] = na_chto[shet - nachalo];
+				}
+			}
+			summa = 0;
+		}
+	}
+}
+
+unsigned char eng_one[] = { "abvgdezijklmnoprstufxABVGDEZIJKLMNOPRSTUFX``" };
+unsigned char rus_one[] = { "абвгдезийклмнопрстуфхАБВГДЕЗИЙКЛМНОПРСТУФХьЬ" };
+unsigned char eng_two[] = { "yozhczchsh``y`e`yuyaYOZHCZCHSH``Y`E`YUYA" };
+unsigned char rus_two[] = { "ёжцчшъыэюяЁЖЦЧШЪЫЭЮЯ" };
+
+
+int trans_mem(unsigned char*str){
+	int dlina = strlen(str);
+	int i, j, d_mem=0;
+	for (i = 0; i < dlina; i++){
+		if ((str[i] == 249) || (str[i] == 217)){
+			d_mem = d_mem + 2; 
+		}
+		for (j = 0; j < 20; j++) {
+			if (str[i] == rus_two[j]) {
+				d_mem = d_mem + 1; 
+			}
+		}
+	}
+	return d_mem;
+}
+
+void translit(unsigned char *str, unsigned char *rez) {
+	int M[256];
+	int M_2[256];
+	int M_3[256];
+	int i;
+
+	for (i = 0; i < 256; ++i) {
+		M[i] = i;
+	}
+	M[168] = '\0';
+	M[192] = 'A';	M[193] = 'B'; 	M[194] = 'V';	M[195] = 'G'; 	M[196] = 'D';	M[197] = 'E'; 
+	M[198] = '\0';	M[199] = 'Z';	M[200] = 'I';	M[201] = 'J';	M[202] = 'K';	M[203] = 'L';
+	M[204] = 'M';	M[205] = 'N';	M[206] = 'O';	M[207] = 'P';	M[208] = 'R';	M[209] = 'S';
+	M[210] = 'T'; 	M[211] = 'U'; 	M[212] = 'F'; 	M[213] = 'X'; 	M[214] = '\0';	M[215] = '\0'; 
+	M[216] = '\0'; 	M[217] = '\0'; 	M[218] = '\0'; 	M[219] = '\0'; 	M[220] = '`';	M[221] = '\0'; 
+	M[211] = 'U'; 	M[212] = 'F'; 	M[213] = 'X'; 	M[214] = '\0'; 	M[215] = '\0'; 	M[216] = '\0'; 
+	M[217] = '\0'; 	M[218] = '\0'; 	M[219] = '\0'; 	M[220] = '`'; 	M[222] = '\0'; 	M[223] = '\0';
+
+	M[224] = 'a'; 	M[225] = 'b'; 	M[226] = 'v'; 	M[227] = 'g'; 	M[228] = 'd'; 	M[229] = 'e'; 
+	M[184] = '\0';	M[230] = '\0'; 	M[231] = 'z'; 	M[232] = 'i'; 	M[233] = 'j'; 	M[234] = 'k'; 	
+	M[235] = 'l'; 	M[236] = 'm'; 	M[237] = 'n'; 	M[238] = 'o'; 	M[239] = 'p';	M[240] = 'r'; 
+	M[241] = 's'; 	M[242] = 't'; 	M[243] = 'u'; 	M[244] = 'f'; 	M[245] = 'x';	M[246] = '\0'; 
+	M[247] = '\0'; 	M[248] = '\0'; 	M[249] = '\0';	M[250] = '\0';	M[251] = '\0';	M[252] = '`';
+	M[253] = '\0';	M[254] = '\0';	M[255] = '\0'; 
+
+	M_2[168] = 'YO';	M_2[198] = 'ZH'; 	M_2[214] = 'CZ';	M_2[215] = 'CH'; 	M_2[216] = 'SH'; 
+	M_2[218] = '``'; 	M_2[219] = 'Y`'; 	M_2[221] = 'E`'; 	M_2[222] = 'YU'; 	M_2[223] = 'YA';
+
+	M_2[184] = 'yo'; 	M_2[230] = 'zh'; 	M_2[246] = 'cz'; 	M_2[247] = 'ch'; 	M_2[248] = 'sh'; 
+	M_2[250] = '``'; 	M_2[251] = 'y`'; 	M_2[253] = 'e`'; 	M_2[254] = 'yu';	M_2[255] = 'ya';	
+	M_2[217] = '\0'; 	M_2[249] = '\0';
+
+	M_3[217] = 'SHH';	M_3[249] = 'shh';
+
+
+	int j=0;
+	i=0;
+	while (str[j] != '\0') {
+		if ((str[j] == 217) || (str[j] == 249)) {
+			rez[i] = M_3[str[j]] >> 16;
+			rez[i + 1] = (M_3[str[j]] >> 8) & 0xff;
+			rez[i + 2] = M_3[str[j]] & 0xff;
+			i += 2;
+		}
+		else{
+			if (M[str[j]] == '\0') {
+				rez[i] = M_2[str[j]] >> 8;
+				rez[i + 1] = M_2[str[j]] & 0xff;
+				++i;
+			}
+			else{
+				rez[i] = M[str[j]];
+			}
+			
+		}
+		++i;
+		++j;
+	}
+	rez[i]='\0';
+}
+
+void re_translit(unsigned char *str, unsigned char *rez) {
+	int i=0;
+	while(str[i] != '\0'){
+		rez[i]= str[i];
+		i++;
+	}
+	rez[i]='\0';
+	int j;
+	int lenx = strlen(rez);
+	int sh;
+	for (i = 0; i < lenx - 2; ++i) {
+		if ((rez[i] == 's') && (rez[i + 1] == 'h') && (rez[i + 2] == 'h')) {
+			for (j = i + 3; j < lenx; ++j) {
+				rez[j - 2] = rez[j];
+			}
+			rez[lenx - 2] = '\0';
+			rez[i] = 249;
+			lenx -= 2;
+		}
+		if ((rez[i] == 'S') && (rez[i + 1] == 'H') && (rez[i + 2] == 'H')) {
+			for (j = i + 3; j < lenx; ++j) {
+				rez[j - 2] = rez[j];
+			}
+			rez[lenx - 2] = '\0';
+			rez[i] = 217;
+			lenx -= 2;
+		}
+	}
+	for (i = 0; i < lenx; ++i) {
+		for (j = 0; j < 41; j += 2) {
+			if ((rez[i] == eng_two[j]) && (rez[i + 1] == eng_two[j + 1])) {
+				for (sh = i + 1; sh < lenx; ++sh) {
+					rez[sh] = rez[sh + 1];
+				}
+				rez[lenx - 1] = '\0';
+				--lenx;
+				rez[i] = rus_two[j/2];
+				break;
+			}
+		}
+	}
+	for (i = 0; i < lenx; ++i) {
+		for (j = 0; j < 45; ++j) {
+			if (rez[i] == eng_one[j]) {
+				rez[i] = rus_one[j];
+			}
+		}
+	}
+}
+
+int main() {
+
+	setlocale(0, "rus");
+
+	int i = 0, dlina_bitov = 2, d_mem;
+	int dlina;
+	unsigned char c;
+	unsigned char *str = malloc(2);
+	unsigned char *podstr1 = malloc(2);
+	unsigned char *podstr2 = malloc(2);	
+	printf ("\nВведите строку\n");
+	while ((c = getchar()) != '\n'){
+		str[i] = c;
+		str = realloc(str, dlina_bitov+i);
+		i++;
+	}
+	str[i] = '\0';
+
+	dlina_bitov = dlina_bitov + i;
+	d_mem = probely_mem(str);
+
+	unsigned char *posle_probelov = malloc(dlina_bitov);
+	if (d_mem > 0){
+		posle_probelov = realloc(posle_probelov, dlina_bitov + d_mem);
+		probely(str, posle_probelov);
+		dlina_bitov += d_mem;
+	}
+	else{
+		probely(str, posle_probelov);
+		posle_probelov = realloc(posle_probelov, dlina_bitov - d_mem);
+		dlina_bitov -= d_mem;
+	}
+	printf("\nСтрока после нормализации пробелов:\n%s\n\n", posle_probelov);
+
+
+	unsigned char *posle_kapital = malloc(dlina_bitov);
+	kapital(str, posle_kapital);
+	printf("Строка после капитализации:\n%s\n\n", posle_kapital);
+
+
+	
+	printf ("Введите то, что нужно заменить\n");
+	i = 0;
+	while ((c = getchar()) != '\n'){
+		podstr1[i] = c;
+		podstr1 = realloc(podstr1, 2 + i);
+		i++;
+	}
+	podstr1[i] = '\0';
+	printf ("\nВведите то, на что нужно заменить\n");
+	i = 0;
+	while ((c = getchar()) != '\n'){
+		podstr2[i] = c;
+		podstr2 = realloc(podstr2, 2 + i);
+		i++;
+	}
+	podstr2[i] = '\0';
+	d_mem = zamena_mem(posle_kapital, podstr1, podstr2);
+	
+	unsigned char *posle_zamenu = malloc(dlina_bitov);
+	if (d_mem > 0){
+		posle_zamenu = realloc(posle_zamenu, dlina_bitov + d_mem);
+		zamena(posle_kapital, podstr1, podstr2, posle_zamenu);
+		dlina_bitov += d_mem;
+	}
+	else{
+		zamena(posle_kapital, podstr1, podstr2, posle_zamenu);
+		posle_zamenu = realloc(posle_zamenu, dlina_bitov - d_mem);
+		dlina_bitov -= d_mem;
+	}
+	printf("\nСтрока после замены:\n%s\n", posle_zamenu);
+
+	unsigned char *posle_translita= malloc(dlina_bitov);
+	d_mem=trans_mem(posle_zamenu);
+	printf("\n%i\n\n", d_mem);
+	posle_translita = realloc(posle_translita, dlina_bitov + d_mem);
+	printf("\nPosle translita\n%s\n\n", posle_translita);
+	translit(posle_zamenu, posle_translita);
+	printf("\nPosle translita\n%s\n\n", posle_translita);
+	unsigned char *posle_re_translita= malloc(dlina_bitov);
+	re_translit(posle_translita, posle_re_translita);
+	printf("\nPosle re translita\n%s\n\n", posle_re_translita);
+	
+	translit(posle_zamenu, posle_translita);
+	printf("\nСрока после транслита:\n%s\n\n", posle_translita);
+	re_translit(posle_translita, posle_re_translita);
+	printf("Строка после ретранслита:\n%s\n\n", posle_re_translita);
+	
+
+
+	free(str);
+	free(posle_probelov);
+	free(posle_kapital);
+	free(podstr2);
+	free(podstr1);
+	free(posle_zamenu);
+	
+	return 0;
+}

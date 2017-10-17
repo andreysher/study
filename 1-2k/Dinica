@@ -1,0 +1,132 @@
+#include "graph_lib.h"
+
+typedef struct shlak{
+	int pick;
+	struct shlak* next;
+}spisok;
+
+typedef struct shlak_three{
+	int from;
+	int to;
+	int weigth;	
+}arc;
+
+int main(int argc, char** argv){
+	FILE* f = fopen(argv[1], "r");
+	Graph grp = Download_from_file(f);
+	int s, t, max_flow = 0, flow = 0;
+	while(1){
+		scanf("%i %i", &s, &t);
+		if((s == 0)||(t == 0)){
+			return 0;
+		}
+		while(flow != -1){
+			flow = dinitsa(grp, s, t);
+			max_flow = max_flow + flow;
+		}
+		printf("%i\n", max_flow);
+	}
+}
+
+int* shirina(Graph gr, int from, int to){
+	int size = Give_Size(gr);
+	int i, j = 1, k = 0, u = to , q = 0, tmp, c;
+	int* obrabotan = calloc(size, sizeof(int));
+	spisok* ochered = calloc(1, sizeof(spisok));
+	spisok* go_ochered = ochered;
+	go_ochered->pick = from;
+	spisok* add_ochered = ochered;
+	int* path = calloc(size, sizeof(int));
+	int* early = calloc(size, sizeof(int));
+		while(obrabotan[to] != 1){
+			for(i = 0; i < size; i++){
+				if(chek(gr, go_ochered->pick, i, Give_Weigth_connection(gr, go_ochered->pick, i)) == 1){
+					add_ochered->next = calloc(1, sizeof(spisok));
+					add_ochered = add_ochered->next;
+					add_ochered->pick = i;
+					early[i] = go_ochered->pick;
+				}
+			}
+			obrabotan[go_ochered->pick] = 1;
+			go_ochered = go_ochered->next;
+		}
+		path[0] = to;
+		while(u != from){
+				path[j] = early[u];
+				j++;
+				u = early[u];
+		}
+		j++;
+		path[j] = from;
+		while(path[q] != 0){
+			q++;
+		}
+		q--;
+		c = 0;
+		while(c != q){
+			tmp = path[c];
+			path[c] = path[q - c];
+			path[q - c] = tmp;
+			c++;
+		}
+		for(q = 0; q < size; q++){
+			printf("%i\n", path[q]);
+		}
+		free()
+	return path;
+}
+
+int dinitsa(Graph grp, int from, int to){
+	puts("sss");
+	int* path = shirina(grp, from, to);
+	puts("hhh");
+	int size = Give_Size(grp), length = 0, current_wt = 0, index = -1, wt, naiden = 0, flow = 0;
+	int i = 0, j = 0;
+	for(i = 0; i < size; i++){
+		if(path[i] == to){
+			naiden = 1;
+			puts("fff");
+		}
+	}
+	if(naiden != 1){
+		return -1;
+	}
+ 	int min = 10000;
+ 	i = 0;
+	while(path[i+1] != 0){
+		if(Give_Weigth_connection(grp, path[i], path[i+1]) < min){
+			min = Give_Weigth_connection(grp, path[i], path[i+1]);
+		}
+		i++;
+	}
+	i = 0;
+	while(path[i+1] != 0){
+		wt = Give_Weigth_connection(grp, path[i], path[i+1]);
+		if((wt - min) == 0){
+			delete_connection(grp, path[i], path[i+1], min);
+			j = Give_Weigth_connection(grp, path[i+1], path[i]);
+			if(chek(grp, path[i+1], path[i], j) == 1){
+				delete_connection(grp, path[i+1], path[i], j);
+				add_connection(grp, path[i+1], path[i], j+min);
+			}
+			else{
+				add_connection(grp, path[i+1], path[i], min);
+			}
+		}
+		else{
+			j = Give_Weigth_connection(grp, path[i+1], path[i]);
+			delete_connection(grp, path[i], path[i+1], j);
+			add_connection(grp, path[i], path[i+1], j-min);
+			if(chek(grp, path[i+1], path[i], Give_Weigth_connection(grp, path[i+1], path[i])) == 1){
+				delete_connection(grp, path[i+1], path[i], Give_Weigth_connection(grp, path[i+1], path[i]));
+				add_connection(grp, path[i+1], path[i], min + Give_Weigth_connection(grp, path[i+1], path[i]));
+			}
+			else{
+				add_connection(grp, path[i+1], path[i], min);
+			}
+		}
+		i++;
+	}
+	printf("%i\n", min);
+	return min;
+}

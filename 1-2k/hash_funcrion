@@ -1,0 +1,12 @@
+int hash(char* lastname, int hashes_quantity){
+    int len = strlen(lastname);
+    int sum = 0;
+    int hash = 0;
+    
+    for(int e = 0; e < len; e++){
+        sum = sum + lastname[e];
+    }
+    hash = sum % hashes_quantity;
+    return hash;
+}
+// количество возможных значений хеша передется в функцию, мы можем его задать
