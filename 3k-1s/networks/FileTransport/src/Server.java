@@ -14,7 +14,7 @@ public class Server {
                 dir.mkdir();
             }
 
-            // TODO: addShutdownHook
+            // TODO: addShutdownHook(done in class serverThread!)
 
             while (true){
                 try {

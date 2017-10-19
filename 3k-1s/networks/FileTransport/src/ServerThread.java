@@ -4,14 +4,20 @@ import java.util.Date;
 
 public class ServerThread implements Runnable {
     private Socket socket = null;
-    public static final int BUFFERSIZE = 1024;
+    public static final int BUFFERSIZE = 4096;
     public static final int EXIST = 2;
     public static final int SUCCESS = 0;
-    public static final int QUANT = 1000;
+    public static final int QUANT = 4000;
     public static final int FAIL = 1;
 
     public ServerThread(Socket sock){
         socket = sock;
+    }
+
+    public double getCurrentTime(){
+        Date moment = new Date();
+        double result = (double)moment.getTime();
+        return result;
     }
 
     public void run(){
@@ -19,7 +25,6 @@ public class ServerThread implements Runnable {
             System.out.println("Server thread started");
             String name;
             long size;
-            boolean flag = false;
             InputStream input = socket.getInputStream();
             OutputStream out = socket.getOutputStream();
 
@@ -48,42 +53,34 @@ public class ServerThread implements Runnable {
                 } else {
                     out.write(SUCCESS);
                     out.flush();
-
+                    //NEW!!!
+                    Runtime.getRuntime().addShutdownHook(new ShutdownHook(out, recvFile));
                     FileOutputStream fileOutput = new FileOutputStream(recvFile);
-
                     byte[] buffer = new byte[BUFFERSIZE];
-                    Date dateStart = new Date();
-                    long start = dateStart.getTime();
-                    long tempstart = start;
-                    long tempsize = 0;
-                    long sz = 0;
+                    double startSession = getCurrentTime();
+                    double quantSize = 0;
+                    double quantTime = 0;
+                    double startOfQuant = getCurrentTime();
                     for (int i = 0; i < size; ) {
                         int read = input.read(buffer);
-                        if(read == -1){
-                            System.out.println("error while read data");
-                            out.write(FAIL);
-                            out.flush();
-                            socket.close();
-                            break;
-                        }
-                        tempsize += read;
-                        sz += tempsize;
-                        Date moment = new Date();
-                        long lasting = moment.getTime() - tempstart;
-                        if (lasting >= QUANT) {
-                            System.out.println("current speed is " + (tempsize / (lasting)) + "B/s");
-                            Date moment1 = new Date();
-                            System.out.println("middle speed is " + ((sz / (moment1.getTime() - start))/60) + "B/s");
-                            tempstart = moment1.getTime();
-                            tempsize = 0;
-                        }
-
-
                         i += read;
-
+                        quantSize += read;
                         fileOutput.write(buffer, 0, read);
-                        flag = (boolean) (i == size);
-                        if (flag){
+                        quantTime = getCurrentTime() - startOfQuant;
+                        if(quantTime >= QUANT){
+                            System.out.println(socket.getRemoteSocketAddress() + " middle speed is " +
+                                    (i/((getCurrentTime() - startSession)/1000)) + "B/s");
+                            System.out.println(socket.getRemoteSocketAddress() + " current speed is " +
+                                    (quantSize/(quantTime/1000)) + "B/s");
+                            startOfQuant = getCurrentTime();
+                            quantTime = 0;
+                            quantSize = 0;
+                        }
+                        if (i == size){
+                            System.out.println(socket.getRemoteSocketAddress() + " middle speed is " +
+                                    (i/((getCurrentTime() - startSession)/1000)) + "B/s");
+                            System.out.println(socket.getRemoteSocketAddress() + " current speed is " +
+                                    (quantSize/(quantTime/1000)) + "B/s");
                             break;
                         }
                     }

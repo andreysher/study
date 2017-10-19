@@ -32,18 +32,8 @@ public class Client {
                     int read = fileInput.read(buffer);
                     output.write(buffer, 0, read);
                     output.flush();
-                    int readErr = input.read(err);
-                    //обработка ошибок
-                    if(readErr == 1){
-                        if((int)err[1] == ServerThread.FAIL){
-                            System.out.println("server is dead");
-                            socket.close();
-                            break;
-                        }
-                    }
                 }
                 output.flush();
-                System.out.println(input.read());
                 if(input.read() == ServerThread.SUCCESS){
                     System.out.println("SUCCESS");
                 }
