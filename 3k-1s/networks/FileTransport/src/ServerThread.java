@@ -54,7 +54,7 @@ public class ServerThread implements Runnable {
                     out.write(SUCCESS);
                     out.flush();
                     //NEW!!!
-                    Runtime.getRuntime().addShutdownHook(new ShutdownHook(out, recvFile));
+                    Runtime.getRuntime().addShutdownHook(new ShutdownHook(out, recvFile, size));
                     FileOutputStream fileOutput = new FileOutputStream(recvFile);
                     byte[] buffer = new byte[BUFFERSIZE];
                     double startSession = getCurrentTime();
@@ -81,13 +81,15 @@ public class ServerThread implements Runnable {
                                     (i/((getCurrentTime() - startSession)/1000)) + "B/s");
                             System.out.println(socket.getRemoteSocketAddress() + " current speed is " +
                                     (quantSize/(quantTime/1000)) + "B/s");
+                            System.out.println(socket.getRemoteSocketAddress() + "file transport success");
+                            out.write(SUCCESS);
+                            out.flush();
+                            socket.close();
                             break;
                         }
                     }
                 }
-                    out.write(SUCCESS);
-                    out.flush();
-                    socket.close();
+
             }
         }
         catch(IOException e) {

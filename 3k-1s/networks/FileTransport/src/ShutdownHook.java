@@ -2,12 +2,15 @@ import java.io.*;
 
 public class ShutdownHook extends Thread {
     private File f;
-    public ShutdownHook(OutputStream out, File file){
+    private int fileSize;
+    public ShutdownHook(OutputStream out, File file, long size){
         f = file;
     }
 
     public void run(){
         System.out.println("Server shouting down");
-        f.delete();
+        if(f.length() < fileSize) {
+            f.delete();
+        }
     }
 }
