@@ -3,11 +3,7 @@ import java.net.*;
 import java.util.*;
 
 public class Receiver extends Thread {
-<<<<<<< HEAD
     public static final int MAX_MASSAGE_LEN = 1000;
-=======
-    public static final int MAX_MASSAGE_LEN = 100;
->>>>>>> 9976413696d8404afd779153b3c777cf3501007b
     public DatagramPacket pack;
     public Node me;
 
@@ -29,7 +25,6 @@ public class Receiver extends Thread {
         return rez;
     }
 
-<<<<<<< HEAD
     public static void send(Node me, DatagramPacket pack, InetSocketAddress target){
         DatagramPacket pkg = new DatagramPacket(pack.getData(), 0, pack.getData().length, target);
         UUID uid = UUID.randomUUID();
@@ -46,26 +41,16 @@ public class Receiver extends Thread {
         }
     }
 
-=======
->>>>>>> 9976413696d8404afd779153b3c777cf3501007b
     public void run() {
         Random rnd = new Random();
         byte[] b;
         int type;
         while (true){
             try {
-<<<<<<< HEAD
-
-                if(me.missing > rnd.nextInt(99)){}
-=======
-                if(me.missing < rnd.nextInt(99)){}
->>>>>>> 9976413696d8404afd779153b3c777cf3501007b
-                else {
-                    b = new byte[MAX_MASSAGE_LEN];
-                    pack = new DatagramPacket(b, b.length);
-                    me.mySock.receive(pack);
-                    String massage = (new String(pack.getData())).substring(0, pack.getLength());
-<<<<<<< HEAD
+                b = new byte[MAX_MASSAGE_LEN];
+                pack = new DatagramPacket(b, b.length);
+                me.mySock.receive(pack);
+                String massage = (new String(pack.getData())).substring(0, pack.getLength());
                     type = Integer.parseInt(getField(massage, 0));
                     String uuid = getField(massage, 1);
                     InetSocketAddress sender = new InetSocketAddress(pack.getAddress(), pack.getPort());
@@ -77,7 +62,8 @@ public class Receiver extends Thread {
                     DatagramPacket ack = new DatagramPacket(a, 0,  a.length, sender);
                     UUID uid = UUID.fromString(uuid);
 
-                    if(!me.massages.containsKey(uid)) {
+                    if(me.missing <= rnd.nextInt(99)) {
+                    if ((!me.massages.containsKey(uid))) {
                         switch (type) {
                             case Node.CONNECT:
                                 System.out.println("connect");
@@ -85,41 +71,21 @@ public class Receiver extends Thread {
                                 me.massages.put(uid, pack);//чтобы больше не принимать
                                 me.children.put(sender, 0);
                                 Node.counterIncrement(me.children, sender);
-=======
-//                    System.out.println("geting" + massage);
-                    type = Integer.parseInt(getField(massage, 0));
-                    String uuid = getField(massage, 1);
-
-                    InetSocketAddress sender = new InetSocketAddress(pack.getAddress(), pack.getPort());
-                    String ac = Integer.toString(Node.ACK) + ';' + uuid + ";";
-                    byte[] a = ac.getBytes();
-                    DatagramPacket ack = new DatagramPacket(a, 0,  a.length, sender);
-                    UUID uid = UUID.fromString(getField(massage, 1));
-                    if(!me.massages.containsKey(uid)) {
-                        switch (type) {
-                            case Node.CONNECT:
-                                //игнорить то что есть в massages
-                                me.massages.put(uid, pack);
-                                me.children.add(sender);
-                                System.out.println("sending ack");
->>>>>>> 9976413696d8404afd779153b3c777cf3501007b
                                 me.mySock.send(ack);
                                 break;
 
                             case Node.TEXT:
-<<<<<<< HEAD
-//                                System.out.println("text");
                                 me.massages.put(uid, pack);
                                 System.out.println(getField(massage, 2) + " : " +
                                         getField(massage, 3));
                                 System.out.flush();
-                                if ((!me.isRoot) && (!sender.equals(me.parentSock))){
+                                if ((!me.isRoot) && (!sender.equals(me.parentSock))) {
                                     send(me, pack, me.parentSock);
                                 }
                                 for (Map.Entry tmp : me.children.entrySet()) {
                                     InetSocketAddress tmpAddr = (InetSocketAddress) tmp.getKey();
-                                    if(!sender.equals(tmpAddr)){
-                                        send(me,pack,tmpAddr);
+                                    if (!sender.equals(tmpAddr)) {
+                                        send(me, pack, tmpAddr);
                                     }
                                 }
                                 me.mySock.send(ack);
@@ -127,13 +93,13 @@ public class Receiver extends Thread {
 
                             case Node.ACK:
                                 System.out.println("ack");
-                                if(me.massages.containsKey(uid)){
+                                if (me.massages.containsKey(uid)) {
                                     me.massages.remove(uid);
                                 }
-                                if(me.sendingMassages.contains(uid)){
+                                if (me.sendingMassages.contains(uid)) {
                                     me.sendingMassages.remove(uid);
                                 }
-                                if(me.massangeSendingTime.containsKey(uid)){
+                                if (me.massangeSendingTime.containsKey(uid)) {
                                     me.massangeSendingTime.remove(uid);
                                 }
                                 break;
@@ -146,40 +112,11 @@ public class Receiver extends Thread {
                                     Map.Entry tmp = (Map.Entry) iter.next();
                                     InetSocketAddress tmpAddr = (InetSocketAddress) tmp.getKey();
                                     if (tmpAddr == pack.getSocketAddress()) {
-=======
-                                me.massages.put(UUID.fromString(getField(massage, 1)), pack);
-                                System.out.println(getField(massage, 2) + " : " +
-                                        getField(massage, 3));
-                                if (!me.isRoot) {
-                                    me.sendingMassages.put(UUID.fromString(getField(massage, 1)),
-                                            me.parentSock);
-                                }
-                                for (InetSocketAddress tmp : me.children) {
-                                    DatagramPacket childPack = new DatagramPacket(massage.getBytes(), 0,
-                                            massage.length(), tmp);
-                                    me.sendingMassages.put(UUID.fromString(getField(massage, 1)), tmp);
-                                    me.mySock.send(childPack);
-                                }
-                                me.mySock.send(ack);
-                                break;
-                            case Node.ACK:
-                                me.massages.put(UUID.fromString(getField(massage, 1)), pack);
-                                me.sendingMassages.remove(UUID.fromString(getField(massage, 1)));
-                                break;
-                            case Node.DISCONNECT:
-                                System.out.println("disconnect");
-                                me.massages.put(UUID.fromString(getField(massage, 1)), pack);
-                                Iterator iter = me.children.iterator();
-                                while (iter.hasNext()) {
-                                    InetSocketAddress tmp = (InetSocketAddress) iter.next();
-                                    if ((tmp == pack.getSocketAddress())) {
->>>>>>> 9976413696d8404afd779153b3c777cf3501007b
                                         iter.remove();
                                     }
                                 }
                                 me.mySock.send(ack);
                                 break;
-<<<<<<< HEAD
 
                             case Node.NEW_PARENT:
                                 try {
@@ -200,27 +137,10 @@ public class Receiver extends Thread {
                                     me.mySock.send(connPack);
                                     me.mySock.send(ack);
                                     break;
-                                }
-                                catch (UnknownHostException e){
+                                } catch (UnknownHostException e) {
                                     e.printStackTrace();
                                 }
 
-=======
-                            case Node.NEW_PARENT:
-                                System.out.println("new parent");
-                                me.massages.put(UUID.fromString(getField(massage, 1)), pack);
-                                me.parentSock = new InetSocketAddress(InetAddress.getByName(getField(massage, 2))
-                                        , Integer.parseInt(getField(massage, 3)));
-                                UUID cid = UUID.randomUUID();
-                                String connect = Integer.toString(Node.CONNECT) + ";" + cid + ";";
-                                byte[] conb = connect.getBytes();
-                                DatagramPacket connPack = new DatagramPacket(conb, conb.length);
-                                me.sendingMassages.put(cid, me.parentSock);
-                                me.massages.put(cid, connPack);
-                                me.mySock.send(connPack);
-                                me.mySock.send(ack);
-                                break;
->>>>>>> 9976413696d8404afd779153b3c777cf3501007b
                             case Node.NEW_ROOT:
                                 System.out.println("new root");
                                 me.massages.put(UUID.fromString(getField(massage, 1)), pack);
@@ -229,14 +149,16 @@ public class Receiver extends Thread {
                                 me.mySock.send(ack);
                                 break;
                         }
-                    }
-<<<<<<< HEAD
-                    else {
+                    } else {
                         //send ack on "uid" если шлем ack постоянно, то постоянно его обрабатываем... и входим в цикл
-                        if(!(type == Node.ACK)) {
-//                            System.out.println(type);
+                        if (!(type == Node.ACK)) {
                             me.mySock.send(ack);
                         }
+                    }
+                }
+                    //NEW
+                    if(Thread.currentThread().isInterrupted()){
+                        return;
                     }
                     Iterator itr = me.massangeSendingTime.entrySet().iterator();
                     while(itr.hasNext()){
@@ -252,27 +174,15 @@ public class Receiver extends Thread {
                             me.massages.remove(tmp.getKey());
                         }
                     }
-=======
-//                    Iterator itr = me.massangeSendingTime.entrySet().iterator();
-//                    while(itr.hasNext()){
-//                        Map.Entry tmp = (Map.Entry) itr.next();
-//                        if(((System.currentTimeMillis() - (long)tmp.getValue()) >= Node.MASSAGE_SENDING_TIME)
-//                            &&(me.sendingMassages.containsKey(tmp.getKey()))){
-//                            DatagramSocket sendSock = new DatagramSocket(me.sendingMassages.get(tmp.getKey()));
-//                            sendSock.send(me.massages.get(tmp.getKey()));
-//                        }
-//                        if((System.currentTimeMillis() - (long)tmp.getValue()) >= Node.MASSAGE_LIVE_TIME){
-//                            itr.remove();
-//                            me.sendingMassages.remove(tmp.getKey());
-//                            me.massages.remove(tmp.getKey());
-//                        }
-//                    }
->>>>>>> 9976413696d8404afd779153b3c777cf3501007b
+                } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Iterator it = me.children.entrySet().iterator();
+            while(it.hasNext()){
+                Map.Entry ent = (Map.Entry) it.next();
+                if((Integer)ent.getValue() >= Node.MAX_WITHOUT_ACK){
+                    it.remove();
                 }
-            } catch (SocketException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
