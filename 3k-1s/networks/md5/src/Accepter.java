@@ -10,25 +10,27 @@ public class Accepter extends Thread
     private int length;
     List<String> results;
     List<int[]> tasks;
+    private List<ControlledTask> executingTasks;
 
-    Accepter(ServerSocket socket, String hashString, List<int[]> tasks, List<String> results)
+    Accepter(ServerSocket socket, String hashString, List<int[]> tasks,
+             List<String> results, List<ControlledTask>  executingTasks)
     {
         this.socket = socket;
         this.hashString = hashString;
         this.results = results;
         this.tasks = tasks;
+        this.executingTasks = executingTasks;
     }
 
     @Override
     public void run()
     {
-        int i = 0;
-
+        //дает handlerу готовый сокет для общения с клиентом
         while (!this.isInterrupted())
         {
             try
             {
-                new ClientHandler(socket.accept(), hashString, tasks, results, i).start();
+                new ClientHandler(socket.accept(), hashString, tasks, results, executingTasks).start();
             }
             catch (SocketException e)
             {
@@ -37,8 +39,6 @@ public class Accepter extends Thread
             {
                 e.printStackTrace();
             }
-
-            i++;
         }
     }
 }
