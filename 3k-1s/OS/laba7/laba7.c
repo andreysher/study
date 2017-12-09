@@ -19,6 +19,7 @@ void *start_routine(void* param) {
     if(i > num_steps){
         return;
     }
+    printf("%d\n", i);
     for (i; i < num_steps; i += threadsQuantity) {
          pi += 1.0/(i*4.0 + 1.0);
          pi -= 1.0/(i*4.0 + 3.0);
@@ -37,10 +38,6 @@ int main(int argc, char** argv) {
  	double PI = 0;
 
  	threadsQuantity = atol(argv[1]);
-    printf("%lu\n", threadsQuantity);
-    if(threadsQuantity >= sizeof(size_t)){
-        return;
-    }
  	param = malloc(threadsQuantity * sizeof(union params));
  	threads = malloc(threadsQuantity * sizeof(pthread_t));
  	for (i = 0; i < threadsQuantity; ++i){
