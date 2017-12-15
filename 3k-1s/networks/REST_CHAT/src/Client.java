@@ -146,7 +146,7 @@ public class Client {
         }
     }
 
-    private void logout() throws IOException {
+    public void logout() throws IOException {
         String logoutURL = "http://" + this.adr.getHostAddress() + ":" + this.port + "/logout";
         HttpURLConnection con = (HttpURLConnection) new URL(logoutURL).openConnection();
         con.setReadTimeout(WAIT_ANSWER);
@@ -173,7 +173,7 @@ public class Client {
         }
     }
 
-    public void showUsers() throws IOException {
+    public JsonArray showUsers() throws IOException {
         String usersURL = "http://" + this.adr.getHostAddress() + ":" + this.port + "/users";
         HttpURLConnection con = (HttpURLConnection) new URL(usersURL).openConnection();
         con.setReadTimeout(WAIT_ANSWER);
@@ -183,14 +183,15 @@ public class Client {
         con.setRequestMethod("GET");
         con.setRequestProperty("Authorization", String.valueOf(this.tocken));
         con.connect();
-        System.out.println("sended");
+//        System.out.println("sended");
         int responseCode = con.getResponseCode();
         if(responseCode == HTTP_OK){
             InputStreamReader response = new InputStreamReader(con.getInputStream());
             JsonParser parser = new JsonParser();
             JsonArray ans = (JsonArray) parser.parse(response);
             response.close();
-            System.out.println(ans.toString());
+//            System.out.println(ans.toString());
+            return ans;
         }
         if(responseCode == HTTP_BAD_METHOD){
             System.out.println("Invalid method");
@@ -198,6 +199,7 @@ public class Client {
         if(responseCode == HTTP_BAD_REQUEST){
             System.out.println("bad request");
         }
+        return null;
     }
 
     public void showUser() throws IOException {
@@ -231,16 +233,18 @@ public class Client {
     }
 
     public static void main(String[] args) {
-        System.out.println("hello! How are you? Where's Sam?");
         Client me = null;
         try {
             me = new Client(InetAddress.getByName(args[0]), Integer.parseInt(args[1]));
             me.tocken = me.login();
-            if(me.tocken == -1){
+            Updater u = new Updater(me);
+            u.start();
+            while(me.tocken == -1){
                 System.out.println("login fail");
+                me.tocken = me.login();
             }
-            else {
-                BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            Runtime.getRuntime().addShutdownHook(new ClientShutdownHook(me));
+            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
                 while(true){
                     switch (in.readLine()){
                         case "p m"://post message
@@ -254,17 +258,14 @@ public class Client {
                             me.logout();
                             continue;
                         case "users":
-                            me.showUsers();
+                            System.out.println(me.showUsers().toString());
                             continue;
                         case "user":
                             me.showUser();
                     }
                 }
-            }
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e1) {
+            e1.printStackTrace();
         }
     }
 }

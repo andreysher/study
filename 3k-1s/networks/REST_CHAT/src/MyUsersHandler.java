@@ -5,7 +5,6 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Iterator;
 
@@ -30,15 +29,23 @@ public class MyUsersHandler implements HttpHandler {
                 JsonArray arr = new JsonArray();
                 while (itr.hasNext()){
                     MyClient cl = (MyClient) itr.next();
-                    boolean online = false;
+                    String online = "";
                     if((System.currentTimeMillis() - cl.online) < Server.USER_ACTIVE_TIME){
-                        online = true;
-                        JsonObject obj = new JsonObject();
-                        obj.addProperty("id", cl.id);
-                        obj.addProperty("username", cl.username);
-                        obj.addProperty("online", online);
-                        arr.add(obj);
+                        online = "true";
                     }
+                    else {
+                        if(cl.online == 0){
+                            online = "false";
+                        }
+                        else {
+                            online = "timeout";
+                        }
+                    }
+                    JsonObject obj = new JsonObject();
+                    obj.addProperty("id", cl.id);
+                    obj.addProperty("username", cl.username);
+                    obj.addProperty("online", online);
+                    arr.add(obj);
                 }
                 OutputStreamWriter out = new OutputStreamWriter(httpExchange.getResponseBody());
                 out.write(arr.toString());

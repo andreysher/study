@@ -14,7 +14,7 @@ public class Server implements Runnable {
     public int lastGivenID;
     public int lastMessageID;
     public LinkedList<MyMessage> messanges;
-    public static final long USER_ACTIVE_TIME = 600000;//10 минут(для теста)
+    public static final long USER_ACTIVE_TIME = 6000;//10 минут(для теста)
 
     public Server(String addr, int port){
         try {
@@ -29,7 +29,7 @@ public class Server implements Runnable {
             logoutCont.setAuthenticator(new Auth(this));
             usersCont.setAuthenticator(new Auth(this));
             massagesCont.setAuthenticator(new Auth(this));
-            lastGivenID = 0;
+            lastGivenID = 1;
             lastMessageID = -1;
         } catch (UnknownHostException e) {
             e.printStackTrace();
