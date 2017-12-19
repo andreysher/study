@@ -1,0 +1,97 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: BULL 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/tools/environments/BULL $
+# For license details see COPYING in the package base directory
+#####################################################################
+
+#BENCHIT_RUN_MAX_MEMORY
+#BENCHIT_NUM_PROCESSES
+#BENCHIT_NUM_CPUS
+#BENCHIT_RUN_COREDUMPLIMIT
+#BENCHIT_RUN_REDIRECT_CONSOLE
+#BENCHIT_RUN_CLEAN
+#BENCHIT_RUN_TEST
+#BENCHIT_RUN_QUEUETIMELIMIT
+#BENCHIT_RUN_USE_MPI
+#BENCHIT_RUN_USE_OPENMP
+#BENCHIT_RUN_EMAIL_ADDRESS
+
+###
+# ToDo
+###
+#
+#Alles in ein Script packen und auf fmd2 oder ?hnlich - ausf?hren
+#
+
+partition="-p PPOOL"
+if [ "${BENCHIT_NUM_THREADS_PER_PROCESS}" == "" ]
+then
+	nr_of_cpus_per_process=""
+else
+	nr_of_cpus_per_process="-c ${BENCHIT_NUM_THREADS_PER_PROCESS}"
+fi
+
+nr_of_procs="-n ${BENCHIT_NUM_CPUS}"
+
+if [ "${BENCHIT_NUM_NODES}" == "" ]
+then
+	nr_of_nodes=""
+else
+	nr_of_nodes="-N ${BENCHIT_NUM_NODES}"
+fi
+
+#base_node_id="-B2"
+output_tag="-l \"%t-%g--\" "
+out="-o ${BENCHIT_KERNELBINARY}.out.%"
+err="-e ${BENCHIT_KERNELBINARY}.err.%"
+
+prun_opts=" -s ${partition} ${nr_of_cpus_per_process} ${nr_of_procs} ${nr_of_nodes} ${out} ${err} ${output_tag}"
+
+if [ "${BENCHIT_NUM_CPUS}" == "1" ]
+then
+	mode="single"
+else
+	mode="parallel"
+fi
+
+########################################################################
+# FIRST PART: ASSEMBLE COMMAND
+########################################################################
+
+if [ "${mode}" == "single" ]
+then
+    execute_cmd="nohup rmsexec ${partition} ${BENCHIT_KERNELBINARY} ${BENCHIT_KERNELBINARY_ARGS} &"
+else
+    execute_cmd="nohup prun ${prun_opts} ${BENCHIT_KERNELBINARY} ${BENCHIT_KERNELBINARY_ARGS} &"
+fi
+
+echo $execute_cmd
+#if [ -n "${BENCHIT_RUN_REDIRECT_CONSOLE}" ]; then
+#	execute_cmd="`${execute_cmd} > ${BENCHIT_RUN_REDIRECT_CONSOLE} 2> &1`"
+#fi
+
+########################################################################
+# SECOND PART: SAVE ENVIRONMENT IF NECESSARY
+########################################################################
+
+########################################################################
+# THIRD PART: EXECUTE AND CLEANUP
+########################################################################
+
+if [ "${BENCHIT_RUN_TEST}" != "1" ]; then
+	cd ${BENCHITROOT}
+	${execute_cmd}
+	if [ "${BENCHIT_RUN_CLEAN}" = "1" ]; then
+		rm -f ${BENCHIT_KERNELBINARY}
+	fi
+else
+	printf "${execute_cmd}\n"
+	if [ "${BENCHIT_RUN_CLEAN}" = "1" ]; then
+		printf "rm -f ${BENCHIT_KERNELBINARY}\n"
+	fi
+fi
+

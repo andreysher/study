@@ -1,0 +1,46 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/numerical/jacobi/Java/0/0/threaded/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: Jacobi algorithm measuring FLOPS (ij, ji) for change of
+#         number of threads or for change of dimension
+#####################################################################
+
+ # Iterate over problem size from BENCHIT_KERNEL_PROBLEMSIZE_MIN
+ # to BENCHIT_KERNEL_PROBLEMSIZE_MAX, incrementing by
+ # BENCHIT_KERNEL_PROBLEMSIZE_INCREMENT with each step.
+# default for iterate over matrix dimension
+ BENCHIT_KERNEL_PROBLEMSIZE_MIN=1
+ BENCHIT_KERNEL_PROBLEMSIZE_MAX=200
+ BENCHIT_KERNEL_PROBLEMSIZE_INCREMENT=1
+# default for iterate over number of threads
+# BENCHIT_KERNEL_PROBLEMSIZE_MIN=1
+# BENCHIT_KERNEL_PROBLEMSIZE_MAX=10
+# BENCHIT_KERNEL_PROBLEMSIZE_INCREMENT=1
+ 
+ # JMAXN == 0  ->  iterate over matrix dimension
+ # JMAXN != 0  ->  iterate over number of threads;
+ #                 fixed matrix dimension:
+ #                    BENCHIT_JACOBI_JAVA_JMAXN+2
+# default for iterate over matrix dimension
+ BENCHIT_KERNEL_JACOBI_JMAXN=0
+# default for iterate over number of threads
+# BENCHIT_KERNEL_JACOBI_JMAXN=100
+ 
+ # JMAXN == 0  ->  use fixed number of threads: JNXY*JNXY
+ # JMAXN != 0  ->  BENCHIT_JACOBI_JAVA_JNXY must be 0:
+ #                    number of threads is PROBLEMSIZE*PROBLEMSIZE
+# default for iterate over matrix dimension
+ BENCHIT_KERNEL_JACOBI_JNXY=1
+# default for iterate over number of threads
+# BENCHIT_KERNEL_JACOBI_JNXY=0
+ 
+ # JMITS is the maximum number of iterations in the jacobi poisson diff. eq. solver
+ # to get a given accuracy (diffnorm of 1.3e-3)
+ BENCHIT_KERNEL_JACOBI_JMITS=500
+

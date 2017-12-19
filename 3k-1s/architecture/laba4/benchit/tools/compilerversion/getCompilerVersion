@@ -1,0 +1,81 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: getCompilerVersion 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/tools/compilerversion/getCompilerVersion $
+# For license details see COPYING in the package base directory
+#####################################################################
+# This is a shell script for those compilers (mostly fortran)
+# from which the version cannot be determined while compiling.
+# It adds a function getCompilerVersion <Arg1>
+# Arg1 is the compilername
+# This file must be maintained, so if it does not work for your
+# compiler, add it (see the commented lines within the function)
+# It sets the environment variable "BENCHIT_COMPILER_VERSION"
+#####################################################################
+
+
+function getCompilerVersion()
+{
+	BENCHIT_COMPILER_VERSION="unknown"
+	if [ $# -ne 1 ]
+	then
+		echo "wrong usage of getCompilerVersion."
+		echo "One argument has to be passed, which is the compiler name."
+		return -1
+	fi
+	# test if compiler is available
+	$1 2>/dev/null >/dev/null
+	if [ $? -eq 127 ]
+	then
+		echo "$1: command not found."
+		return 127
+	fi
+	case $1
+	in
+		# for e.g. ifort and gfortran: use only first number, then exit
+		ifort)		BENCHIT_COMPILER_VERSION=`${1} --version | awk '{print $3, " build ", $4;exit}'`;;
+		icc)		BENCHIT_COMPILER_VERSION=`${1} --version | awk '{print $3, " build ", $4;exit}'`;;
+		icpc)		BENCHIT_COMPILER_VERSION=`${1} --version | awk '{print $3, " build ", $4;exit}'`;;
+
+		gfortran)	BENCHIT_COMPILER_VERSION=`${1} --version | awk '{print;exit}'`;;
+		gcc)		BENCHIT_COMPILER_VERSION=`${1} --version | awk '{print;exit}'`;;
+		g++)		BENCHIT_COMPILER_VERSION=`${1} --version | awk '{print;exit}'`;;
+		g77)		BENCHIT_COMPILER_VERSION=`${1} --version | awk '{print;exit}'`;;
+
+		# for sxf90 use the line AFTER the line containing "f?? compiler for ???", also it prints to stderr
+		sxf90)		BENCHIT_COMPILER_VERSION=`${1} -V 2>&1 | awk '/f.* compiler for.*/ { getline; print ; exit}'`;;
+		sxcc)		BENCHIT_COMPILER_VERSION=`${1} -V 2>&1 | awk '/C.*ompiler.*Rev.*/ { print ; exit}'
+		
+		
+		pgcc)		BENCHIT_COMPILER_VERSION=`${1} -V | awk '/pgcc.*/ { print ; exit}'`;;
+		pgf77)		BENCHIT_COMPILER_VERSION=`${1} -V | awk '/pgf77.*/ { print ; exit}'`;;
+		pgf90)		BENCHIT_COMPILER_VERSION=`${1} -V | awk '/pgf90.*/ { print ; exit}'`;;
+		
+		
+		pathcc)		BENCHIT_COMPILER_VERSION=`${1} -v -version | awk '/.*Compiler Suite: Version.*/ { print $($NF+2); exit}'`;;
+		pathf90)	BENCHIT_COMPILER_VERSION=`${1} -v -version | awk '/.*Compiler Suite: Version.*/ { print $($NF+2); exit}'`;;
+		pathf95)	BENCHIT_COMPILER_VERSION=`${1} -v -version | awk '/.*Compiler Suite: Version.*/ { print $($NF+2); exit}'`;;
+		####
+		# add your compiler below the others :)
+		####
+		*)			echo "The Compiler \"${1}\" is unknown, no version could be identified.";
+		   			echo "add it to <benchit-path>/tools/compilerversion/getCompilerVersion to make this work.";
+		   			return -1;;
+	esac
+	if [ ${?} -ne 0 ]
+	then
+		BENCHIT_COMPILER_VERSION="unknown"
+		return -1
+	fi
+	if [ "${BENCHIT_COMPILER_VERSION}" == "" ]
+	then
+		echo "error when getting version for $1, check <benchit-path>/tools/compilerversion/getCompilerVersion"
+		return -1
+	else
+		return 0
+	fi
+}
+

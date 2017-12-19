@@ -1,0 +1,76 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: IOPROF 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/tools/environments/IOPROF $
+# For license details see COPYING in the package base directory
+#####################################################################
+
+#BENCHIT_RUN_MAX_MEMORY
+#BENCHIT_NUM_PROCESSES
+#BENCHIT_NUM_CPUS
+#BENCHIT_RUN_COREDUMPLIMIT
+#BENCHIT_RUN_REDIRECT_CONSOLE
+#BENCHIT_RUN_CLEAN
+#BENCHIT_RUN_TEST
+#BENCHIT_RUN_QUEUETIMELIMIT
+#BENCHIT_RUN_USE_MPI
+#BENCHIT_RUN_USE_OPENMP
+#BENCHIT_RUN_EMAIL_ADDRESS
+
+########################################################################
+# FIRST PART: ASSEMBLE COMMAND
+########################################################################
+
+execute_cmd="${BENCHIT_KERNELBINARY} ${BENCHIT_KERNELBINARY_ARGS}"
+
+#moved to actual execution as assembling this into the command string
+#confuses the shell (passes redirection as argument to the kernel)
+#if [ -n "${BENCHIT_RUN_REDIRECT_CONSOLE}" ]; then
+#	execute_cmd="${execute_cmd} > ${BENCHIT_RUN_REDIRECT_CONSOLE} 2>&1"
+#fi
+
+########################################################################
+# SECOND PART: SAVE ENVIRONMENT IF NECESSARY
+########################################################################
+
+########################################################################
+# THIRD PART: EXECUTE AND CLEANUP
+########################################################################
+
+if [ "${BENCHIT_RUN_TEST}" != "1" ]; then
+	timestamp=`date +%F-%H-%M-%S`
+	logfiledir="${IOPROF_LOGDIR}/${timestamp}"
+	mkdir -p ${logfiledir}
+	sldir="${logfiledir}/${IOPROF_SLDIR}"
+	mkdir -p ${sldir}
+	cd ${BENCHITROOT}
+	BinName=`basename ${BENCHIT_KERNELBINARY}`
+	export IOPROF_LOGFILE=${logfiledir}/${BinName}
+	export IOPROF_SL_DIR=sl 
+	printf "BenchIT: IOprof-Logfile: ${IOPROF_LOGFILE}\n"
+	#export IOPROF_VERBOSE=0
+	#printf "BenchIT: IOprof-Verbose: ${IOPROF_VERBOSE}\n"
+	export LD_PRELOAD=${IOPROF_LIB}
+	if [ -n "${BENCHIT_RUN_REDIRECT_CONSOLE}" ]; then
+		${execute_cmd} > ${BENCHIT_RUN_REDIRECT_CONSOLE} 2>&1
+	else	
+		${execute_cmd}
+	fi
+	unset LD_PRELOAD
+	if [ "${BENCHIT_RUN_CLEAN}" = "1" ]; then
+		rm -f ${BENCHIT_KERNELBINARY}
+	fi
+else
+	printf "${execute_cmd}"
+        if [ -n "${BENCHIT_RUN_REDIRECT_CONSOLE}" ]; then
+		printf " > ${BENCHIT_RUN_REDIRECT_CONSOLE} 2>&1"
+	fi
+	printf "\n"
+	if [ "${BENCHIT_RUN_CLEAN}" = "1" ]; then
+		printf "rm -f ${BENCHIT_KERNELBINARY}\n"
+	fi
+fi
+

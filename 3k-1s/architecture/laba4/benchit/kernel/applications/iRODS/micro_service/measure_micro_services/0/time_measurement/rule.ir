@@ -1,0 +1,3 @@
+benchit||msi_start_measurement##assign(*rodsPath,/$rodsZoneClient/home/$userNameClient/*rodsName)##msi_inside_measurement(assign)##msiDataObjPut(*rodsPath,*source,*local,*out)##msi_inside_measurement(put)##msiDataObjUnlink(*rodsPath,*out)##msi_end_measurement(unlink)|nop##nop
+*rodsName=text20.txt%*source=server1resc%*local=/tmp/bbbmmm
+ruleExecOut

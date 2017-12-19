@@ -1,0 +1,76 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: benchit@zih.tu-dresden.de
+#
+#####################################################################
+
+ # Maximum time a kernel may run, in seconds
+ # 0 means no timelimit, and the kernel will run until all measurements have
+ # completed  
+ BENCHIT_RUN_TIMELIMIT=0
+ 
+ # iRODS rescource
+ # BENCHIT_IRODS_RESC="" means default resource
+ BENCHIT_IRODS_RESC=""
+ 
+ # iRODS data transfer protocol
+ # 0 -> TCP; 1 -> RBUDP (iRODS version 2++)
+ BENCHIT_IRODS_PROT=0
+ 
+ # Number of threads used for data transfer
+ # -1 -> automatically
+ #  0 -> no threading
+ # >0 -> number of threads
+ BENCHIT_IRODS_THREADS=-1
+ 
+ # Unit of the total time shown in the plot 
+ # 0 -> seconds; 1 -> rate (e.g. Byte/s)
+ BENCHIT_RESULT_VIEW=0
+
+ # Path of temporary saved files (attention to enough space)
+ # $KERNELDIR -> path of this Kernel
+ BENCHIT_KERNEL_PATH_TEMP=$KERNELDIR
+
+ # Number of files to transfer
+ BENCHIT_KERNEL_NUMBER_FILES=10
+ 
+ # Size of one file
+ # BENCHIT_KERNEL_FILE_UNIT: "" -> Byte;"K" -> KByte;"M" -> MByte;"G"=GByte
+ # BENCHIT_KERNEL_FILE_SIZE_BLOCK   -> size of on Block
+ # BENCHIT_KERNEL_FILE_NUMBER_BLOCK -> number of blocks
+ # Example:
+ # BENCHIT_KERNEL_FILE_UNIT="M",BENCHIT_KERNEL_FILE_SIZE_BLOCK=5,
+ # BENCHIT_KERNEL_FILE_NUMBER_BLOCK=10 means that one file is 50 MByte
+ # 
+ # Attention: If the file should be above 1 GByte, use a higher block number.
+ # (e.g. file size 10GB -> BENCHIT_KERNEL_FILE_UNIT="G"
+ #                         BENCHIT_KERNEL_FILE_BLOCK_SIZE=1
+ #                         BENCHIT_KERNEL_FILE_BLOCK_NUMBER=10)
+ BENCHIT_KERNEL_FILE_UNIT="K"
+ BENCHIT_KERNEL_FILE_BLOCK_SIZE=10
+ BENCHIT_KERNEL_FILE_BLOCK_NUMBER=1
+ 
+ # Number of runs per measurement
+ BENCHIT_KERNEL_NUMBER_RUNS=3
+ 
+ # Remove temporary saved files
+ # 0 -> remove files after every run
+ # 1 -> remove files after the last run of a measurement
+ BENCHIT_REMOVE_TEMP=0
+ 
+ # Additional filename string 
+ BENCHIT_FILENAME_COMMENT="iRODS"
+ 
+
+ # Don't change the following parameter
+ 
+ BENCHIT_RESULT_NAME="benchit_result_`date "+%d_%m_%Y_%H_%M_%S"`"
+ BENCHIT_SPEZIAL_RESULT="$BENCHIT_KERNEL_PATH_TEMP/$BENCHIT_RESULT_NAME"
+ BENCHIT_SPEZIAL_SCRIPT="$KERNELDIR/start.sh"
+
+#####################################################################
+# Log-History
+#
+#
+#####################################################################

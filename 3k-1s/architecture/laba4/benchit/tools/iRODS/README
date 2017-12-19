@@ -1,0 +1,102 @@
+
+
+0. Introduction
+
+The iRODS Kernels are designed to measure an iRODS environment. 
+Therefor the Kernels are devided in three parts.
+
+1. iCommands
+2. Micro-Services
+3. Stress test
+
+The Kernels of these three parts are described in the following. 
+
+1. iCommands
+
+The Kernels in this part use the icommands iput, iget and imeta. 
+
+1.1 Detail 
+
+This Kernel measures the time of the stages
+-Buildung environment
+-Connection
+-Logon
+-File transfer
+-Total Time
+of a file transfer done by iput or iget. Each file will be transfered 
+with one process. All processes are started simultaneously.
+To use this kernel it is necessary to replace 
+the files iput.c and iget.c of your iRODS installation. Therefor 
+use the scripts in the subdirectory iRODS_utilities/version* of BenchIT 
+and follow the instructions of the README file.
+
+1.2 Directory_file_number
+
+Transfers a directory with a given number of files in it. The time 
+needed for this transfer is measured. You can specify how many files 
+will be transfered with a minimum and maximum file number. 
+The directory will be transfered by iput and iget.
+
+1.3 Parallel_file_number
+
+In contrast to 1.2 the files will be transfered with one process and 
+simultaneously and not as part of a directory.
+The files will be transfered by iput and iget.
+
+1.4 Parallel_directory_number
+
+This Kernel measures the time for simultaneously transfered directories. 
+The number of files the user specifies will be evenly distributed to the 
+directories. The directories will be transfered by iput or iget. 
+
+1.5 Parallel_file_size
+
+This Kernel measure the transfer time needed for different file sizes.
+The files will be transfered by iput and iget.
+
+1.6 Parallel_metadata_number
+
+Writes simultaneously a specified number of metadata to the iRODS environment. 
+Every metadatum is written by one imeta call. 
+
+1.7 File_metadata_number
+
+In contrast to 1.6 the metadata are collected in file and then written by 
+one imeta call to the iRODS environment.
+
+2. Micro-Services
+
+2.1 Parallel_file_number and Parallel_file_size
+
+These Kernels doing the same like 1.3 and 1.4 with one exception. 
+They use a Micro-Service for the file transfer. The used Micro-Service is 
+defined in the file rule.ir of each kernel. The rule will be executed with irule.
+
+2.2 Measure_micro_services
+
+This Kernel measures given Micro-Services. The Micro-Services can be measured 
+in the following way.
+
+At first you have to install the module benchit (to find in the subdirectory iRODS_utilities/module) 
+on the iRODS server. After this you have to define your Micro-Services in the file 
+rule.ir (e.g.benchit||msi_start_measurement##User-MS1##msi_inside_measurement(MS1)##User-MS2
+##msi_inside_measurement(MS2)##...##User-MSn##msi_end_measurement(MSn)|nop##nop). 
+
+3. Stress_test
+
+3.1 Fill_resource
+
+Transfers a directory with a certain number of files. You can set the number of repetitions 
+to increase the overhead of the iRODS environment. so it is possible to increase the number 
+of metadata the iCAT server has to manage.
+
+3.2 Parallel_request
+
+This Kernel starts a certain number of processes simultaneously to get the point where 
+iRODS can't handle the requests without loss of time. The requests will be done by imeta. 
+
+
+
+
+
+

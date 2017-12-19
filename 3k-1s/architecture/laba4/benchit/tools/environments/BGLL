@@ -1,0 +1,132 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: BGLL 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/tools/environments/BGLL $
+# For license details see COPYING in the package base directory
+#####################################################################
+
+# BGLL needs an email address
+if [ -z "${BENCHIT_RUN_EMAIL_ADDRESS}" ]; then
+	printf "Please set BENCHIT_RUN_EMAIL_ADDRESS to your email address.\n"
+	printf "Otherwise the job cannot be submitted to LoadLeveler.\n"
+	printf "Kernel execution aborted.\n"
+	exit 1
+fi
+
+########################################################################
+# FIRST PART: ASSEMBLE COMMAND
+########################################################################
+
+execute_cmd="${BENCHIT_KERNELBINARY} ${BENCHIT_KERNELBINARY_ARGS}"
+
+########################################################################
+# SECOND PART: SAVE ENVIRONMENT IF NECESSARY
+########################################################################
+
+env | grep BENCHIT | sed -e 's/^\([^=]*\)=\(.*\)$/export \1=\"\2\"/g'> ${BENCHITROOT}/${BENCHIT_KERNELNAME}_env
+
+########################################################################
+# THIRD PART: EXECUTE AND CLEANUP
+########################################################################
+
+batch_cmd="llsubmit"
+
+script="${BENCHITROOT}/temp_script_file_${BENCHIT_KERNELNAME}"
+# Remove old script if one exists
+rm -f ${script}
+
+# Assemble script for submission to the batch system
+
+echo "# @notify_user = ${BENCHIT_RUN_EMAIL_ADDRESS}" >>${script}
+
+#BGL-Specific options
+# use the bluegene
+echo "# @job_type = bluegene" >> ${script}
+# the number of nodes beeing used - 2 CPUs per Node
+if [ "${BENCHIT_NUM_CPUS}" = "1" ]; then
+	echo "# @bg_size = 1" >> ${script}
+else
+	echo "# @bg_size = $((${BENCHIT_NUM_CPUS}/2))" >> ${script}
+fi
+# connection type (MESH or TORUS) - prefer torus
+echo "# @bg_connection = PREFER_TORUS" >> ${script}
+ 
+if [ -n "${BENCHIT_RUN_QUEUETIMELIMIT}" ]; then
+	qtimelimit=$((${BENCHIT_RUN_QUEUETIMELIMIT}))
+else
+	# Extend BenchIT timelimit by 10% for queueing
+	qtimelimit=$((${BENCHIT_RUN_TIMELIMIT} * 11 / 10))
+fi
+
+# Convert the Seconds to HH:MM:SS format
+secs=qtimelimit
+hrs=$((secs / 3600))
+secs=$((secs % 3600))
+mins=$((secs / 60))
+secs=$((secs % 60))
+
+#leading zero if secs,etc<10
+if [ "${secs}" -lt "10" ] 
+then
+secs="0${secs}"
+fi
+
+if [ "${mins}" -lt "10" ] 
+then
+mins="0${mins}"
+fi
+
+if [ "${hrs}" -lt "10" ] 
+then
+hrs="0${hrs}"
+fi
+
+echo "# @wall_clock_limit = ${hrs}:${mins}:${secs}" >> ${script}
+
+
+if [ -n "${BENCHIT_RUN_REDIRECT_CONSOLE}" ]; then
+	echo "# @output = ${BENCHIT_RUN_REDIRECT_CONSOLE}" >>${script}
+	echo "# @error = ${BENCHIT_RUN_REDIRECT_CONSOLE}.err" >>${script}
+else
+	echo "# @output = ${BENCHIT_KERNELNAME}.out" >>${script}
+	echo "# @error = ${BENCHIT_KERNELNAME}.err" >>${script}
+fi
+
+
+echo "# @queue" >>${script}
+#echo "export MP_SHARED_MEMORY=yes" >>${script}
+# next part is just for TurboMPI
+if [ "${BENCHIT_RUN_USE_MPI}" = "1" ]; then
+execute_cmd="${BENCHIT_MPIRUN} ${execute_cmd}"	
+fi
+# set # of threads for openmp
+#if [ "${BENCHIT_RUN_USE_OPENMP}" = "1" ]; then
+#	echo "export OMP_NUM_THREADS=${OMP_NUM_THREADS}" >>${script}
+#fi
+
+echo "cd ${BENCHITROOT}" >> ${script}
+echo ". ./${BENCHIT_KERNELNAME}_env" >> ${script}
+echo "${execute_cmd}" >> ${script}
+
+#if [ "${BENCHIT_RUN_CLEAN}" = "1" ]; then
+#	echo "rm -f ${BENCHIT_KERNELBINARY}" >> ${script}
+#	echo "rm ${script}" >> ${script}
+#fi
+
+chmod +x ${script}
+
+# Submit job to the batch system
+batch_cmd="${batch_cmd} ${script}"
+if [ "$BENCHIT_RUN_TEST" != "1" ]; then
+	${batch_cmd}
+else
+	echo ${batch_cmd}
+	echo "---------------------------------------------------------"
+	echo "cat BGLL temporary script:"
+	cat ${script}
+	echo "---------------------------------------------------------"
+fi
+

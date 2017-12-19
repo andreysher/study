@@ -1,0 +1,15 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/sort/quicksort/C/OpenMP/0/simple/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+
+ # ATTENTION: this kernel needs OpenMP Version 3.0 or higher
+ 
+ # problem sizes
+ BENCHIT_KERNEL_PROBLEMLIST="1-10000/11"
+

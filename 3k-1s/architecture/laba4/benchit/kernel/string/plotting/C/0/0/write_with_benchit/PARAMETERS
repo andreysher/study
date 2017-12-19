@@ -1,0 +1,37 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/string/plotting/C/0/0/write_with_benchit/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: writing with BenchIT
+#####################################################################
+
+ # allowed character for plotting:
+ #     A, B, C, ... , Z
+ #     0, 1, 2, ... , 9
+ #     " ", ".", "!", "?", "*", "+", "-", "=", "/", "\", "^"
+ # character for new line:
+ #     "_"
+ # character to specify the end of the string:
+ #     ";"
+ #
+ # Attention: after run, set "fill points..." and "show lines..." in the config of the result
+
+# PLOTTING_STRING="HELLO_WORLD!;"
+# NUMBER_LETTERS=13
+
+ PLOTTING_STRING=" BEST WISHES FOR _    CHRISTMAS   _AND THE NEW YEAR!;"
+ NUMBER_LETTERS=53
+
+# PLOTTING_STRING="ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789 .!?*+-=/\^;"
+# NUMBER_LETTERS=48
+
+### don't change ###
+ BENCHIT_RUN_LINEAR=1
+ BENCHIT_RUN_ACCURACY=0
+####################
+

@@ -1,0 +1,44 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/applications/MGV/F95/OpenMP/0/recursive/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: <description>
+#####################################################################
+ 
+ #-- !!! --
+ # WARNING Nr. 1: don't use to big values for BENCHIT_KERNEL_PROBLEMLIST, it is the value for the level
+ #                and the matrix size is than (2^level+1)^2 x (2^level+1)^2
+ #                example: level=7 --> 16641x16641 matrix
+ #-- !!! --
+
+ # some compiler needs fortran 2003 standard support to compile, i.e.
+ #    ifort: -std03
+ #    sxf90: -f2003
+
+ # omp hint:
+ #    BENCHIT_CC_C_FLAGS_OMP:  icc:   -openmp
+ #                             sxcc:  -P openmp (optional: -pvctl vwork=static)
+ #    BENCHIT_F95_C_FLAGS_OMP: ifort: -openmp (optional:  -heap-arrays 0)
+ #                             sxf90: -P openmp (optional: -Wf'-pvctl vwork=static')
+ 
+ # Kernel iterates over PROBLEMLIST (associate with dim of a squared matrix, size in one dim: (2^problemsize+1)^2)
+ #BENCHIT_KERNEL_PROBLEMLIST="1,3,6,7,9, 10-100, 100-1000/100, 1000-10000/1000"
+ BENCHIT_KERNEL_PROBLEMLIST="1-6/1"
+ # (the values min=1, max=6, incr=1 are reasonable for single-cores)
+ 
+ # BENCHIT_KERNEL_OUTPUT define the mode of output
+ # 0 = FLOPS for the MGV function
+ # 1 = time for the MGV function
+ BENCHIT_KERNEL_OUTPUT=1
+ 
+ # BENCHIT_KERNEL_OUTPUTFORM define if there will be generated a gnuplotfile to display the solution
+ # 0 = no output of a gnuplotfile
+ # 1 = generate gnuplotfile
+ BENCHIT_KERNEL_OUTPUTFORM=0
+ 
+

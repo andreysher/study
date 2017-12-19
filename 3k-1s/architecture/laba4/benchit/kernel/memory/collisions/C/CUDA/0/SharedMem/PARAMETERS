@@ -1,0 +1,16 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# For license details see COPYING in the package base directory
+#####################################################################
+
+#Stride
+BENCHIT_KERNEL_PROBLEMLIST="0-16/1"
+#Kernel # in Power of 2
+BENCHIT_KERNEL_MINTHREADS="0"
+BENCHIT_KERNEL_MAXTHREADS="5"
+
+BENCHIT_KERNEL_ARRAYLENGTH="512"
+BENCHIT_KERNEL_ITERATIONS="2"

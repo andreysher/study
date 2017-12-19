@@ -1,0 +1,44 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/io/write/C/PThread/0/iowrite_c_pthreads/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+
+ #########################
+ # number of IO-Channels #
+ #########################
+ export BENCHIT_KERNEL_NUMCHANNELS="1"
+
+ #######################################
+ # path for files that will be written #
+ #######################################
+ export BENCHIT_KERNEL_DISKPATH="/var/tmp/"
+
+ ######################################################
+ # diskspace for files that will be written (in byte) #
+ ######################################################
+# export BENCHIT_KERNEL_DISKSPACE="104857600.0"  # 100Mb
+ export BENCHIT_KERNEL_DISKSPACE="524288000.0"  # 500Mb
+
+ ###################################################
+ # RAM that is installed on the computer (in byte) #
+ ###################################################
+ #export BENCHIT_KERNEL_RAMSIZE="134217728.0"   #128Mb
+
+ #######################
+ # threads per channel #
+ #######################
+ export BENCHIT_KERNEL_CHANNELFACTOR="1"
+
+ #########################################
+ # size in Bytes (one file)		 #
+ # - has to be at least 1048576.0 = 1 Mb #
+ # - should be a multiple of 1048576.0	 #
+ #########################################
+ export BENCHIT_KERNEL_FILESIZE="5242880.0"   #5Mb
+
+

@@ -1,0 +1,22 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/numerical/dotproduct/C/PThread/0/double/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: Core for dot product of two vectors with posix threads
+#####################################################################
+
+ # Kernel iterates over PROBLEMLIST, for this kernel the vector length
+ BENCHIT_KERNEL_PROBLEMLIST="1-64000/1001,64000-300000/2001"
+ 
+ # this is the minimum number of threads
+ BENCHIT_KERNEL_PTHREAD_THREADS_COUNT_START=1
+ 
+ # this number defines how often the number of threads is doubled
+ # e.g. start=4, count=3 -> #threads: 4, 8, 16, 32
+ BENCHIT_KERNEL_PTHREAD_THREADS_COUNT_DOUBLE=3
+

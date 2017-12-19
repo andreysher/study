@@ -1,0 +1,9 @@
+# Blacklist
+#
+# This file lists all items that should NOT be copied to a remote folder during creation.
+# Every line contains a file or folder relative to the benchit folder. Wildcards (*,?)
+# are allowed. Please use / to separate folders, e.g. folder/subfolder.
+#
+tools/kernel-gen*
+jbi/jni/libjbi.so
+

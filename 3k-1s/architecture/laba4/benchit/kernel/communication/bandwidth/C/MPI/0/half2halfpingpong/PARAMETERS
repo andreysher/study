@@ -1,0 +1,46 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/communication/bandwidth/C/MPI/0/half2halfpingpong/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: pairwise Send/Recv between two MPI-Prozesses>
+#         this file holds all the functions needed by the 
+#         benchit-interface
+#####################################################################
+
+ # Kernel iterates over PROBLEMLIST (number of bytes in the sendarray)
+ # example: 1048576 (1MB) - 52428800 (50MB), stepsize 524288 (0.5MB)
+ #BENCHIT_KERNEL_PROBLEMLIST="1024-1048576/1024"
+ BENCHIT_KERNEL_PROBLEMLIST="1024-2097152/2048"
+
+ # how many times should the pingponng be repeated per problemsize
+ # usefull with small messages to reduce impact of overhead
+ # usually to be left at 1 => only one pingpong
+ BENCHIT_KERNEL_REPETITIONS=1
+ 
+ # 1 .. average bandwith for every pair will be presented
+ # 0 .. no curve for pair-bandwith
+ BENCHIT_KERNEL_SHOW_PAIR_BANDWITH=1
+ 
+ # 1 .. 	aggregated Bandwith of all pairs will be shown
+ # 0 .. 	total bandwith will not be shown
+ BENCHIT_KERNEL_SHOW_TOTAL_BANDWITH=1
+ 
+ # commaseparated list of MPI_Comm_rank numbers
+ # number of senders must equal number of receivers
+ # number of senders+receivers must equal the number of MPI-processes 
+ # first entry in sender will build a pair with first entry in receiver
+ # second with second and so on
+ # if lists are empty:
+ #                first half of COMM_WORLD => sender
+ #                second half => receiver
+ # DON'T use a number twice or other character than digits and comma
+ BENCHIT_KERNEL_SENDERLIST="1,2"
+ BENCHIT_KERNEL_RECEIVERLIST="0,3"
+ #BENCHIT_KERNEL_SENDERLIST=""
+ #BENCHIT_KERNEL_RECEIVERLIST=""
+

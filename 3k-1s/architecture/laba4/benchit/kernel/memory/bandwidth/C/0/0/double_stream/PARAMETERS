@@ -1,0 +1,35 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/memory/bandwidth/C/0/0/double_stream/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: measure Bandwidth inspired by STREAM benchmark (C-version)
+#
+#         according to the rules, reffer this Benchmark as:
+#         "BenchIT kernel based on a variant of the STREAM benchmark code"
+#         when publishing results.
+#####################################################################
+
+ # BENCHIT_KERNEL_MIN_ACCESS_LENGTH is the minimum length of the double fields
+ BENCHIT_KERNEL_MIN_ACCESS_LENGTH=100
+
+ # BENCHIT_KERNEL_MAX_ACCESS_LENGTH is the maximum length of the double fields
+ BENCHIT_KERNEL_MAX_ACCESS_LENGTH=10000000
+
+ # BENCHIT_KERNEL_ACCESS_STEPS is the number of measurement points
+ BENCHIT_KERNEL_ACCESS_STEPS=500
+ 
+ # BENCHIT_KERNEL_INTERNAL_NUM_MEASUREMENT defines how often the kernel is
+ # repeated internally (must be >=1) this is multiplied with BENCHIT_ACCURACY
+ # represents "NTIMES" from original STREAM
+ BENCHIT_KERNEL_INTERNAL_NUM_MEASUREMENT=10
+ 
+ # BENCHIT_KERNEL_OFFSET defines the offset(an additional length of the vectors)
+ # represents "OFFSET" from original STREAM
+ BENCHIT_KERNEL_OFFSET=0
+ 
+

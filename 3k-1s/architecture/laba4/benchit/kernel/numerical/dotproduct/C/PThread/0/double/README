@@ -1,0 +1,77 @@
+###########################################################
+README file for benchit kernel
+"dotproduct_pthreads"
+
+This file is part of the benchit project of the Center for
+High Performance Computing at the Dresden University of
+Technology.
+
+Author: Michael Kluge - kluge@zhr.tu-dresden.de
+###########################################################
+
+
+/****h* kernel/dotproduct_pthreads
+* SYNOPSIS
+* to be added 
+* short introduction of the kernel 
+* and of the persons concerned with the kernel
+* SEE ALSO
+* if you want to referenz anything else - here is your chance
+* DESCRIPTION
+* -----------------------------------------------------------
+* Content
+* 1) What the kernel does
+* 2) Environment variables
+* 3) Compilation errors
+* -----------------------------------------------------------
+* 
+* 1) This kernel calculates the dot product of two vectors.
+*    The kernel is parallelized using pthreads. The initial
+*    vectors are splitted into N parts, where N is the number
+*    of pthreads. The number of pthreads are tuneable via
+*    two environment variables.
+* 
+*    The length of the vectors is used as the problemsize for
+*    this kernel. Every problem size (vector length) can be
+*    tested with different numbers of threads. You can set
+*    the initial used thread count and you are able to set
+*    the number, how often this initial count should be
+*    multiplied by 2. For instance, if you use 4 as initial
+*    count and say, that you want this 3 times multiplied by
+*    2, you will get the following battery:
+* 
+*    first vector size : test with  4 threads
+*    first vector size : test with  8 threads
+*    first vector size : test with 16 threads
+*    first vector size : test with 32 threads
+*    second vector size: test with  4 threads
+*    second vector size: test with  8 threads
+*    second vector size: test with 16 threads
+*    ...
+* 
+*    The diagram of the kernel shows the vector size at the
+*    x-axis, the execution time for the
+*    threads at the y-axis. The different thread counts are
+*    displayed with different colours and symbols.
+* 
+* -----------------------------------------------------------
+* 
+* 2) PTHREAD_THREADS_COUNT_START - the initial thread count
+*    -> the default value is 16
+* 
+*    PTHREAD_THREADS_COUNT_DOUBLE - how often the thread
+*    count should be doubled
+*    -> the default value is 3
+* 
+* -----------------------------------------------------------
+* 
+* 3) If the compilation fails, try to check the content of
+*    the PTHREADLIB environment variable. This variable ought
+*    to hold the linker flag to include the pthread library.
+*    The variable is usually set in the ARCHDEFS or in your
+*    LOCALDEFS script and should contain something like
+*    "-lpthread".
+* 
+* -----------------------------------------------------------
+***
+*/

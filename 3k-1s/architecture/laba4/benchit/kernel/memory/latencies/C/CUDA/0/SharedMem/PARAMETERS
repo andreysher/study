@@ -1,0 +1,15 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# For license details see COPYING in the package base directory
+#####################################################################
+
+#ATTENTION: Kernel is incomplete and need review
+
+#Number of accesses
+BENCHIT_KERNEL_ACCESSCOUNT="1-32/1"
+#32*32=1024 --> All accesses to same bank
+BENCHIT_KERNEL_ARRAYLENGTH="1024"
+BENCHIT_KERNEL_ITERATIONS="5"

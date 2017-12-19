@@ -1,0 +1,38 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/numerical/matmul/F77/MPI/0/MPI_C/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+
+######################################################################
+# the following lines are for the benchit-shell B-CARE		
+#
+#!BENCHIT_VARIABLE BENCHIT_MATMUL_F77_DOUBLE_MPI_MPIC_START 1
+#!BENCHIT_VARIABLE BENCHIT_MATMUL_F77_DOUBLE_MPI_MPIC_INCREMENT 1
+#!BENCHIT_VARIABLE BENCHIT_MATMUL_F77_DOUBLE_MPI_MPIC_STEPS 600
+#!BENCHIT_VARIABLE BENCHIT_MATMUL_F77_DOUBLE_MPI_MPIC_NUM_PROC 32
+#!BENCHIT_VARIABLE BENCHIT_MATMUL_F77_DOUBLE_MPI_MPIC_PRECISION 1
+######################################################################
+
+ #############################################
+ # BEGINOF MATMUL_F77_DOUBLE_MPI_MPIC/PARAMETERS #
+ #############################################
+ BENCHIT_MATMUL_F77_DOUBLE_MPI_MPIC_START=10
+ BENCHIT_MATMUL_F77_DOUBLE_MPI_MPIC_INCREMENT=2
+ BENCHIT_MATMUL_F77_DOUBLE_MPI_MPIC_STEPS=600
+
+ # not to be used right now!!!
+ #BENCHIT_MATMUL_F77_DOUBLE_MPI_MPIC_PRECISION=1
+ 
+ #############################
+ # number of processors used #
+ #############################
+ BENCHIT_MATMUL_F77_DOUBLE_MPI_MPIC_NUM_PROC=1
+  
+ ###########################################
+ # ENDOF MATMUL_F77_DOUBLE_MPI_MPIC/PARAMETERS #
+ ###########################################

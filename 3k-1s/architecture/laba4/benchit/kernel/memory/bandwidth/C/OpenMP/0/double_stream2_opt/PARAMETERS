@@ -1,0 +1,97 @@
+#!/bin/sh
+ # BENCHIT_KERNEL_MIN_ACCESS_LENGTH is the minimum used memory size in kByte
+ # 1 kByte = 1000 Byte
+ # should be a multiple of (number-of-open-mp-threads)*8*6 but will be rounded
+ # internally.
+ # this is the total memory size, not per-thread!
+ BENCHIT_KERNEL_MIN_ACCESS_LENGTH=10
+
+ # BENCHIT_KERNEL_MAX_ACCESS_LENGTH is the maximum used memory size in kByte
+ # 1 kByte = 1000 Byte
+ # should be a multiple of (number-of-open-mp-threads)*8*6 but will be rounded
+ # internally.
+ # this is the total memory size, not per-thread!
+ BENCHIT_KERNEL_MAX_ACCESS_LENGTH=10000
+
+ # BENCHIT_KERNEL_ACCESS_STEPS is the number of measurement points
+ BENCHIT_KERNEL_ACCESS_STEPS=200
+ 
+ # BENCHIT_KERNEL_INTERNAL_NUM_MEASUREMENT defines how often the kernel is
+ # repeated internally (must be >=1) this is multiplied with BENCHIT_ACCURACY
+ # represents "NTIMES" from original STREAM
+ BENCHIT_KERNEL_INTERNAL_NUM_MEASUREMENT=1
+ 
+ # BENCHIT_KERNEL_OFFSET defines the offset in byte
+ # and should be a multiple of 8
+ # represents "OFFSET" from original STREAM
+ BENCHIT_KERNEL_OFFSET=0
+ 
+ # BENCHIT_KERNEL_OFFSET the alignment for data structure in bytes
+ # the offset will be added afterwards
+ # if you want an misalignment, align the arrays, but use an offset
+ BENCHIT_KERNEL_ALIGNMENT_BORDER=128
+ 
+ # BENCHIT_KERNEL_MIN_TIME_FOR_ONE_MEASUREMENT
+ # minimal time for one measurement in microseconds
+ # increase to gain more exact results
+ # Note for scala processors that there will be !!! at least !!!
+ # ($BENCHIT_ACCURACY+1)*($BENCHIT_KERNEL_INTERNAL_NUM_MEASUREMENT) measurements
+ # so keep the BENCHIT_KERNEL_INTERNAL_NUM_MEASUREMENT low
+ # On the other hand: if running on a vector processor the functions run really
+ # fast, but keep the time low too otherwise the influence might be too high.
+ BENCHIT_KERNEL_MIN_TIME_FOR_ONE_MEASUREMENT=1000
+ 
+ # BENCHIT_KERNEL_LOCAL_ALLOC
+ # If set to zero, all threads will share the double arrays used for computing
+ # The arrays will be allocated by the master thread.
+ # This may leed to bad performance on NUMA systems but is a more STREAM-like
+ # behaviour.
+ # If it is set to one, every thread will handle its own double array.
+ # The creation of the own arrays as well as the computation on it will be done
+ # by every thread.
+ BENCHIT_KERNEL_LOCAL_ALLOC=1
+ 
+ # BENCHIT_KERNEL_ENABLE_NONTEMPORAL_STORES
+ # 1=enabled, 0=disabled
+ # Enable this before compiling, not before running the kernel
+ # enables the pragma to use nontemporal stores.
+ # nontemporal stores go to the memory directly, bypassing the cache
+ # afaik, this is only supported by Intel compilers by now
+ BENCHIT_KERNEL_ENABLE_NONTEMPORAL_STORES=0
+ 
+ # BENCHIT_KERNEL_ENABLE_ALIGNED_ACCESS
+ # 1=enabled, 0=disabled
+ # Enable this before compiling, not before running the kernel
+ # enables the pragma to use aligned access
+ # only use this, if the alignment is a multiple of 16 and the offset is 0
+ # otherwise, the execution will fail
+ # afaik, this is only supported by Intel compilers by now
+ BENCHIT_KERNEL_ENABLE_ALIGNED_ACCESS=1
+ 
+ 
+ # BENCHIT_KERNEL_PIN_THREADS_TO_CORES
+ # 1=enabled, 0=disabled
+ # enables the pinning of threads to cores
+ # thread N will always run on core N
+ # the process has to be allowed to run on core 1 to N, otherwise the
+ # execution might fail, this is important for batch systems
+ # if the pinning is enabled, it is most likely that local memory
+ # (in this case memory of the same node) will be used while measuring
+ BENCHIT_KERNEL_COMPILE_FOR_PIN_THREADS_TO_CORES=1
+ BENCHIT_KERNEL_PIN_THREADS_TO_CORES=1
+ 
+ # Parameters for run_benchit; uncomment and change the ones you need
+ # maximum memory for processes in kB
+ #BENCHIT_RUN_MEMORY=1024
+ # number of processors
+ # BENCHIT_NUM_CPUS=1
+ # set core file size limit in kB
+ #BENCHIT_RUN_CORESIZE=1024
+ # print all output to file
+ #BENCHIT_RUN_OUTPUTFILE=output.txt
+ # remove executable after run, if 1
+ #BENCHIT_RUN_CLEAN=0
+ # do not execute anything, just print out comments
+ #BENCHIT_RUN_TEST="1"
+ # timelimit used for enqueueing the job; this is NOT BENCHIT_TOTAL_TIMELIMIT
+ #BENCHIT_RUN_QUEUETIMELIMIT=

@@ -1,0 +1,94 @@
+###########################################################
+README file for benchit kernel
+"patricia_c"
+
+This file is part of the benchit project of the Center for
+High Performance Computing at the Dresden University of
+Technology.
+
+Author: Sebastian Koelling - koelling@zhr.tu-dresden.de
+###########################################################
+
+
+/****h* kernel/patricia_c
+* SYNOPSIS
+* Practical Algorithm To Retrieve Information Coded In Alphanumeric
+* Author: Sebastian Koelling - koelling@zhr.tu-dresden.de
+* SEE ALSO
+* no references
+* DESCRIPTION
+* -------------------------------------------------------------------
+* Content
+* 1) What the kernel does
+* 2) Environment variables
+* 3) How to create a list
+* 4) Hints
+* --------------------------------------------------------------------
+* 
+* 1) What the kernel does
+* 
+* The kernel performs an algorithm called "patricia"
+* (Practical Algorithm To Retrieve Information Coded In Alphanumeric).
+* Therefor the number of keys defined in "lists.h"is created
+* (for more informations on lists refer to section 3).
+* All keys have the same size defined by KEYLENGTH in "patricia.h".
+* Two times are measured. At first a patricia-trie is intialized, i.e.
+* all keys are inserted and the time therefor is taken.
+* The time is appearing with the label "Insertion" in the diagramm.
+* Afterwards all created keys are searched in the patricia-trie (if they are
+* not found a warning will occure) and the same number of
+* perchancely created keys is searched. These keys will usually
+* not exists and so the search fails. 
+* The time for this whole procedure is taken and appears with the
+* label "Searching" in the diagramm.
+* 
+* 
+* 2) Environment variables
+* 
+* The following variables can be used to configure the kernel. They
+* can be found in "patricia.h".
+* 
+* KEYLENGTH: Defines the length of the used keys in byte.
+* 
+* (the number of keys can just be defined by a list refer to section
+* 3 please)
+* 
+* 
+* 3) How to create a list
+* 
+* Lists should be defined in "lists.h". They tell the kernel for which
+* values the kernel should make a measurement.
+* For defining a list use: "#define MEASUREPOINTS ..." and insert the
+* list to "...".
+* There are 3 possibilities for transferring values.
+* First one is the specification of a single value.
+* So "#define MEASUREPOINTS 100" will make a measurement with
+* 100 elements.
+* Second one is the specification of a range by using a minus. The
+* list "define MEASUREPOINTS 100-200" will make a measurement
+* for every single number of elements beginning with 100 and ending
+* up with 200.
+* The third one is a range with a step size different from one by
+* using minus and slash. A "define MEASUREPOINTS 100-200/2"
+* will make a measurement on every even number from 100 to 200.
+* Of course it is possible to combine those specifications. Something
+* like "define MEASUREPOINTS 100-200/2, 300, 450-500" will work.
+* 
+* 
+* 4) Hints
+* 
+* 1. Notice the only the last (not commented out) list defined in
+*    "lists.h" will be taken for the measurement.
+* 2. Notice that the number of keys that is searched is twice as big
+*    as the number of keys that is inserted. And about the half of
+*    the searched keys are not in the trie and so the search fails
+*    for them.
+* 3. Take regard to the fact that that the programming of the kernel
+*    guarantees that KEYNUMBER/2 over 2 keys are different from each
+*    other. For more keys this is usually true too but its not
+*    guaranteed anymore.
+* 4. The kernel will usually not work if the creation of the keys
+*    needs more (main) memory than available on the machine.
+*
+***
+*/

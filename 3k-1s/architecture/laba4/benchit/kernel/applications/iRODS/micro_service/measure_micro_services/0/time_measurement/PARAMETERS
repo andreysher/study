@@ -1,0 +1,29 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: benchit@zih.tu-dresden.de
+#
+#####################################################################
+ 
+ # Path of temporary saved files (attention to enough space)
+ # $KERNELDIR -> path of this Kernel
+ BENCHIT_KERNEL_PATH_TEMP=$KERNELDIR
+
+ # Number of runs per measurement
+ BENCHIT_KERNEL_NUMBER_RUNS=1
+ 
+ # Additional filename string 
+ BENCHIT_FILENAME_COMMENT="iRODS"
+
+ # Don't change the following parameter
+ 
+ BENCHIT_RESULT_NAME="benchit_result_`date "+%d_%m_%Y_%H_%M_%S"`"
+ BENCHIT_SPEZIAL_RESULT="$BENCHIT_KERNEL_PATH_TEMP/$BENCHIT_RESULT_NAME"
+ BENCHIT_SPEZIAL_SCRIPT="$KERNELDIR/start.sh"
+ BENCHIT_SPEZIAL_IR="$KERNELDIR/rule.ir"
+
+#####################################################################
+# Log-History
+#
+#
+#####################################################################

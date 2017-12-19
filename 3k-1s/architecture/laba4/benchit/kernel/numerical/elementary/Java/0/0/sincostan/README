@@ -1,0 +1,6 @@
+the kernel isn't really comparable to the C and F77 version, the cause:
+	- temp=sin(temp);  instead of  y=sin(x);
+		-> Java version has data dependencies in each loop (for more detail read the code)
+	- without this Java makes some unknown optimizations and the result is crap
+	- no possibility to solve this, even subroutines like in the C version doesn't work
+

@@ -1,0 +1,20 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/numerical/jacobi/C/0/0/1_malloc/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: Jacobi algorithm measuring FLOPS (ij, ji) for change of
+#         dimension, one malloc for biggest dimension
+#####################################################################
+
+ # Kernel iterates over PROBLEMLIST
+ BENCHIT_KERNEL_PROBLEMLIST="1-200/1"
+ 
+ # JMITS is the maximum number of iterations in the jacobi poisson diff. eq. solver
+ # to get a given accuracy (diffnorm of 1.3e-3)
+ BENCHIT_KERNEL_JACOBI_MITS=500
+

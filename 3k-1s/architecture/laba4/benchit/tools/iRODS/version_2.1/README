@@ -1,0 +1,16 @@
+Only useable for the iRODS version 2.1
+
+The files iput.c and iget.c are needed to do measurements with the kernels 
+iRODS->iput->detailed und iRODS->iget->detailed. They are special versions 
+of the original ones.
+
+The script change.sh creates a backup of the files iput.c and iget.c and replace 
+them with the special versions.
+
+The script remove_files.sh removes the special versions with the original versions of the 
+files iput.c und iget.c.
+
+Both scripts need as argument the path of the iRODS installation. (e.g. /home/user/iRODS)
+
+After using one of the scripts it is necessary to change to the ~/iRODS/clients/icommands 
+and execute "make clean" and "make" to refresh iput und iget.

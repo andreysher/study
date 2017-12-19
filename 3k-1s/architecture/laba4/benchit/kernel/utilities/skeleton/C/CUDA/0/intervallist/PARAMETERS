@@ -1,0 +1,11 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: cuda kernel skeleton
+#####################################################################
+
+BENCHIT_KERNEL_PROBLEMLIST="1, 2, 3, 10-20/2, 30-100/10"

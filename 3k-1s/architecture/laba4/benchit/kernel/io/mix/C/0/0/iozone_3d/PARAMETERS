@@ -1,0 +1,68 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/io/mix/C/0/0/iozone_3d/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+
+###############################
+#      !!! Important !!!      #
+###############################
+#                             #
+# The kernel needs additional #
+# source files.               #
+# see README.txt		          #
+#                             #
+###############################
+
+ # in the src/ folder use "make" to get 
+ # a list of all possible target architectures
+ IOZONE_COMPILE_ARCH=linux-AMD64
+
+ # name of the file to use
+ BENCHIT_KERNEL_FILENAME="/var/tmp/iozone.out"
+
+ # The max file size to be written.
+ # use:
+ #		k .. Kb
+ #		m .. Mb
+ #		g .. Gb
+ BENCHIT_KERNEL_FILESIZE_MAX=32m
+
+ # file access stride in multiples of recordsize
+ # iozone's default is 17
+ BENCHIT_KERNEL_FILESTRIDE=17
+ 
+ # must be in byte
+ BENCHIT_KERNEL_CACHELINE_SIZE=64
+ 
+ # must be in Kbytes
+ BENCHIT_KERNEL_CACHE_SIZE=512
+
+ #additional Options
+ #	-B		Use mmap() files
+ #	-D		Use msync(MS_ASYNC) on mmap files
+ #	-G		Use msync(MS_SYNC) on mmap files
+ #	-c		Include close() in the timing calculations
+ #	-e		Include flush (fsync,fflush) in the timing calculations
+ #	-j #	Set stride of file accesses to (# * record size). 
+ #			The stride read test will read records at this stride.
+ #	-J #	Perform a compute delay of this many milliseconds before each I/O operation
+ #	-K		Generate some random accesses during the normal testing.
+ #	-m		Tells Iozone to use multiple buffers internally
+ #	-o		Iozone will open the files with the O_SYNC flag.
+ #	-p		This purges the processor cache before each file operation
+ #	-Q		Create offset/latency files
+ #	-Z		Enable mixing mmap I/O and file I/O.
+ #	-+n 	No retests selected.
+ #	-+q 	Delay in seconds between tests.
+ BENCHIT_KERNEL_OPTIONS="-c -e -p"
+
+
+ # Describe your own kernel modifications
+ export BENCHIT_KERNEL_COMMENT="FileStride=${BENCHIT_KERNEL_FILESTRIDE}, CacheSize=${BENCHIT_KERNEL_CACHE_SIZE}, CacheLineSize=${BENCHIT_KERNEL_CACHELINE_SIZE}, Options=${BENCHIT_KERNEL_OPTIONS}"
+
+

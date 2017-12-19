@@ -1,0 +1,30 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/memory/latencies/C/MPI/0/pointerchasing/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: Memory Access Time (C)
+#####################################################################
+
+ # BENCHIT_KERNEL_MIN_ACCESS_LENGTH is the minimum
+ # of accessed memory (in KByte)
+ BENCHIT_KERNEL_MIN_ACCESS_LENGTH=10
+
+ # BENCHIT_KERNEL_MAX_ACCESS_LENGTH is the maximum
+ # of accessed memory (in KByte)     
+ BENCHIT_KERNEL_MAX_ACCESS_LENGTH=2048
+
+ # BENCHIT_KERNEL_ACCESS_STRIDE is the stride in KByte between 
+ # two measurement points                       
+ BENCHIT_KERNEL_ACCESS_STRIDE=10
+
+ # BENCHIT_KERNEL_NUMBER_OF_JUMPS is the number of pointer jumps 
+ # that the kernel will perform per measurement   
+ # point (must be a multiple of 100)              
+ BENCHIT_KERNEL_NUMBER_OF_JUMPS=100000
+
+

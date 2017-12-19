@@ -1,0 +1,56 @@
+/****h* kernel/jacobi_java
+* SYNOPSIS
+* README file for benchit kernel
+* "Jacobi Poisson Equation Solver"
+*
+* This file is part of the benchit project of the Center for
+* High Performance Computing at the Dresden University of
+* Technology.
+*
+* Author: Robert Wloch - wloch@zhr.tu-dresden.de
+* SEE ALSO
+*
+* DESCRIPTION
+* -----------------------------------------------------------
+* Content
+* 1) What the kernel does
+* 2) Tips
+* 3) What if every approach to get it work fails?
+* -----------------------------------------------------------
+*
+* 1) The kernel solves the Jacobi Poisson Equation. It measures
+*    the calculation time and floating point operations per second.
+*
+* -----------------------------------------------------------
+* 
+* 2) Variables are in COMPILE.SH.
+*    JSTEPSIZE is the value for the increment of the size of
+*    the matrix with each bi_entry call.
+*    JMAX tells benchit, how often bi_entry is to be called.
+*    The product of JSTEPSIZE and JMAX results in the largest
+*    matrix' dimension minus 2 (JSTEPSIZE*JMAX + 2 = MAXDIM).
+*    JNXY tells the kernel how many threads it should use. But be
+*    aware that this number is the square root of the thread number.
+*    JNXY=2 means, the kernels will use 2*2=4 threads! You must
+*    pay attention to choosing a NXY so that (JMAX mod NXY) = 0!
+*    With JMITS you can fine-tune the accuracy of the
+*    calculation. To pass the abortion test JMITS should be
+*    greater than 200+MAXDIM.
+*    On home PCs a MAXDIM of 242 is fine. On high end systems
+*    you might want to extend it up to 1002 (that's for year
+*    2004 in ten years you might even need to insert more
+*    zeros between 1 and 2).
+*    To change those variables you don't have to edit the
+*    COMPILE.SH. Just export them to your environment before you
+*    execute the kernel.
+* 
+*    If you compile with -DUSE_SIZE_FITTED_MATRICES the
+*    kernel will allocate memory for the used matrices with
+*    every kernel entry according to the current dimensions.
+*    This might be removed some day and instead become
+*    fixed part of the kernel to compare the results with or
+*    without this option.
+* -----------------------------------------------------------
+*
+***
+*/

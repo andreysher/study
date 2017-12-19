@@ -1,0 +1,14 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2011-01-29 fschmitt $
+# $URL: svn+ssh://benchit@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/numerical/BLAS2/C/CUDA/CUBLAS/sgemv/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: Measurement Nvidia CUBLAS of sgemv performance
+#####################################################################
+
+ # Kernel iterates over PROBLEMLIST
+ BENCHIT_KERNEL_PROBLEMLIST="32-5000/32"

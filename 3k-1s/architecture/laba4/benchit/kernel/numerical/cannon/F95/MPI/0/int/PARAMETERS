@@ -1,0 +1,28 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/numerical/cannon/F95/MPI/0/int/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: a MPI version of matrix-matrix multiplication
+#         (cannon algotithm)
+#####################################################################
+
+ #-- !!! --
+ # WARNING Nr. 1: the BENCHIT_KERNEL_PROBLEMSIZE_MIN must be as big as the number of processors you use
+ # WARNING Nr. 2: the number of processors must be >= 4 and should be squared (else the kernel take a smaller number of cpus and the others are idle)
+ #-- !!! --
+ 
+ # Kernel iterates over PROBLEMLIST (one dim of the squared matricies)
+ #BENCHIT_KERNEL_PROBLEMLIST="1,3,6,7,9, 10-100, 100-1000/100, 1000-10000/1000"
+ BENCHIT_KERNEL_PROBLEMLIST="4-800/1"
+ # (the values min=4, max=800, incr=1 are reasonable for quad-cores)
+ 
+ # BENCHIT_KERNEL_OUTPUT define the mode of output
+ # 0 = FLOPS / IOPS
+ # 1 = time for the matrix-matrix multiplication
+ BENCHIT_KERNEL_OUTPUT=0
+

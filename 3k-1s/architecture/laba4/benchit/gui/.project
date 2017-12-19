@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>BenchIT-GUI</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>classes</name>
+			<type>2</type>
+			<location>/home/alex/Documents/benchitSVN/gui/build/classes</location>
+		</link>
+		<link>
+			<name>generated</name>
+			<type>2</type>
+			<location>/home/alex/Documents/benchitSVN/gui/src/generated</location>
+		</link>
+		<link>
+			<name>lib</name>
+			<type>2</type>
+			<location>/home/alex/Documents/benchitSVN/gui/lib</location>
+		</link>
+		<link>
+			<name>service</name>
+			<type>2</type>
+			<location>/home/alex/Documents/benchitSVN/gui/src/generated/org/benchit/bitconnect/service</location>
+		</link>
+	</linkedResources>
+</projectDescription>

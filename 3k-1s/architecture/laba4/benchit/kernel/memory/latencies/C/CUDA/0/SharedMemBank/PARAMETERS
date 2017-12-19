@@ -1,0 +1,14 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# For license details see COPYING in the package base directory
+#####################################################################
+
+#A single thread accesses a given (single) bank in shared memory
+
+#Number of accesses
+BENCHIT_KERNEL_BANKLIST="0-31/1"
+BENCHIT_KERNEL_ARRAYLENGTH="256"
+BENCHIT_KERNEL_ITERATIONS="5"

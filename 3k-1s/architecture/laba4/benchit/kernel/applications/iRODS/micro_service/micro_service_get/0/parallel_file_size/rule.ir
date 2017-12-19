@@ -1,0 +1,3 @@
+getin||assign(*rodsPath,/$rodsZoneClient/home/$userNameClient/*rodsName)##msiDataObjGet(*rodsPath,*local,*out)|nop##nop
+*local=$1%*rodsName=$2
+ruleExecOut

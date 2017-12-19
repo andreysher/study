@@ -1,0 +1,127 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id$
+# $URL$
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: measures aggregate read bandwidth of multiple parallel threads.
+#####################################################################
+
+ #additional information (e.g Turbo Boost enabled/disabled)
+ COMMENT=""
+
+ #at&t-style inline assembly is used so other compilers might not work
+ BENCHIT_CC=gcc
+ #disable compiler optimization. Optimisations would destroy the measurement, as some obviously
+ #useless operations when touching memory would be removed by the compiler 
+ BENCHIT_CC_C_FLAGS_HIGH="-O0"
+
+ #list of memorysizes to use for the measurement
+ #format: "x,y,z"or "x-y" or "x-y/step" or any combination
+ #BENCHIT_KERNEL_PROBLEMLIST="8192-131071/4096,131072-4194303/32768,4194304-14999999/524288,15000000-39999999/5000000,40000000-200000000/20000000"
+
+ #alternative: automatically generate logarithmic scale
+ #MIN should be at least half the L1 size times the number of CPUs used
+ #MAX should be at least twice the last level cache size of all used dies
+ BENCHIT_KERNEL_MIN=16000
+ BENCHIT_KERNEL_MAX=200000000
+ BENCHIT_KERNEL_STEPS=100
+
+ #defines how often each memorysize is measured internally (default 4)
+ BENCHIT_KERNEL_RUNS=4
+ 
+ #defines which cpus to run on, if not set sched_getaffinity is used to determine allowed cpus
+ #format: "x,y,z"or "x-y" or "x-y/step" or any combination
+ BENCHIT_KERNEL_CPU_LIST="0-127"
+ 
+ #Allocation method: (G/L) (default L)
+ #G: one global block of memory allocated and initialized by master thread
+ #L: each thread allocates and initilizes its own memory
+ #has no effect on UMA Systems
+ #effect on NUMA Systems depends on numactl setting, when used with localalloc policy option G results in
+ #memory being allocated at one numa node, option L results in memory of each thread being allocated at the 
+ #node the associated thread is runing on. If numactl is set to interleaved allocation, G and L should show
+ #the same result
+ BENCHIT_KERNEL_ALLOC="L"
+ 
+ #Multiple Threads using the same memory controller can cause conflickts in the memory
+ #(e.g. all Threads using the same memory channel or access the same chip of a single DIMM)
+ #This parameter assigns each Thread an individual offset (Thread-ID*THREAD_OFFSET)
+ #e.g not all Threads start at a 2M boundary when using hugepages
+ BENCHIT_KERNEL_THREAD_OFFSET="226688"
+ 
+ #use hugepages (0/1) (default 0, 1 recommended if hugetlbfs is available)
+ BENCHIT_KERNEL_HUGEPAGES=0
+ #hugepage directory, only needed when setting value above to "1"
+ BENCHIT_KERNEL_HUGEPAGE_DIR="/mnt/huge"
+
+ #number of accesses when using memory (default 4)
+ BENCHIT_KERNEL_USE_ACCESSES=4
+ 
+ #usage mode: (M/E/I) (default M)
+ #the target coherency state when using memory
+ #M: Modified, leaves accessed cachelines in modified state after usage, shows penalty of writebacks
+ #E: Exclusive, leaves accessed cachelines in exclusive state after usage, avoids writebacks
+ #              might not show desired results on inclusive caches
+ #I: Invalid, invalidates caches after usage, only usefull to test memory controller
+ BENCHIT_KERNEL_USE_MODE="M"
+
+ #influences which part of the buffer is accessed first during the measurement
+ #LIFO: measurement starts with the last byte that has been previosly used
+ #FIFO: measurement starts with the first byte that has been previosly used (default) 
+ BENCHIT_KERNEL_USE_DIRECTION="FIFO"
+
+ #define which cache levels to flush (default no flushes)
+ #avoids writeback penalties when use mode is M
+ BENCHIT_KERNEL_FLUSH_L1=0
+ BENCHIT_KERNEL_FLUSH_L2=0
+ BENCHIT_KERNEL_FLUSH_L3=0
+ 
+ #number of accesses per cacheline to flush cache (default 2)
+ BENCHIT_KERNEL_FLUSH_ACCESSES=2
+ #flush mode: (M/E/I) (default M)
+ #the target coherency state when flushing memory
+ #M: Modified, fills cache with modified lines, results in writeback penalties before using other memory
+ #E: Exclusive, fills cache with lines that do not have to be written back, does not cause writeback penalties
+ #I: Invalid, fills caches with invalid lines, CPUs might use free space for prefetching data
+ BENCHIT_KERNEL_FLUSH_MODE="M"
+ 
+ #the assembler instruction that will be used for the measurement (mov|movnti|movdqa|movdqu|movntdq)
+ BENCHIT_KERNEL_INSTRUCTION="movdqa"
+ #unaligned functions may access addresses, which are not aligned to the size 
+ #of the data type they are using (default 0), ignored when using movdqa or movntdq
+ BENCHIT_KERNEL_OFFSET="0"
+ 
+ #defines how many accesses are made using different registers, befor reusing the first register (default 4)
+ BENCHIT_KERNEL_BURST_LENGTH="4"
+ 
+ #when enabled PAPI_INC and PAPI_LIB environment variables have to point to
+ #the papi include directory or papi lib directory, respectively
+ #!!! recompilation required if the following parameter is changed !!!
+ BENCHIT_KERNEL_ENABLE_PAPI="0"
+ #comma seperated list of counters that should be measured
+ BENCHIT_KERNEL_COUNTERS="PAPI_L2_TCM"
+ 
+ #max time a benchmark can run
+ BENCHIT_KERNEL_TIMEOUT=3600
+ 
+ #TSC based synchronization (auto|enabled|disabled) (default: auto)
+ #if available TSC based synchronization optimizes barrier synchronizations for concurrently leaving threads
+ BENCHIT_KERNEL_TSC_SYNC="auto"
+ 
+ #serialization instruction between data accesses and rdtsc (mfence|cpuid) (default: mfence)
+ #changing this setting requires recompilation
+ BENCHIT_KERNEL_SERIALIZATION="mfence"
+ 
+ #default comment that will be displayed by the GUI summarizes used settings
+ BENCHIT_KERNEL_COMMENT="${COMMENT} ${BENCHIT_KERNEL_INSTRUCTION}(+${BENCHIT_KERNEL_OFFSET}), alloc: ${BENCHIT_KERNEL_ALLOC}, hugepages: ${BENCHIT_KERNEL_HUGEPAGES}, use mode: ${BENCHIT_KERNEL_USE_MODE}(${BENCHIT_KERNEL_USE_ACCESSES}), flush: ${BENCHIT_KERNEL_FLUSH_L1}${BENCHIT_KERNEL_FLUSH_L2}${BENCHIT_KERNEL_FLUSH_L3} - ${BENCHIT_KERNEL_FLUSH_MODE}(${BENCHIT_KERNEL_FLUSH_ACCESSES})"
+  
+#Uncomment settings that are not detected automatically on your machine
+# BENCHIT_KERNEL_CPU_FREQUENCY=2200000000
+# BENCHIT_KERNEL_L1_SIZE=
+# BENCHIT_KERNEL_L2_SIZE=
+# BENCHIT_KERNEL_L3_SIZE=
+# BENCHIT_KERNEL_CACHELINE_SIZE=

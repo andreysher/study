@@ -1,0 +1,26 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS.default 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/io/ls/C/0/0/io_ls/PARAMETERS.default $
+#####################################################################
+# Setting default environment for io_ls (C)
+#####################################################################
+
+# PLEASE DO NOT CHANGE! WRITE INSTEAD YOUR SETTINGS INTO my_env.conf
+
+# Where the root directory shall be written
+BENCHIT_io_tree_root="/tmp/benchit_io_dir"
+
+# Depth of binary directory tree
+BENCHIT_io_tree_depth=15
+
+# Files per directory, only for leafs
+BENCHIT_io_tree_fpd=2
+
+# How many directories read in each measurement
+BENCHIT_io_dirs_to_read=1000
+
+

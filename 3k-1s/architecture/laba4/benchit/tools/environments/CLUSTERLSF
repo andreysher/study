@@ -1,0 +1,69 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: CLUSTERLSF 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/tools/environments/CLUSTERLSF $
+# For license details see COPYING in the package base directory
+#####################################################################
+
+#non-mpi:		bsub -n 1 [-x] [-q name] ./a.out
+#mpi:  				bsub -n N [-x]  [-q name] -a mvapich mpirun.lsf ./a.out
+
+execute_cmd="${BENCHIT_KERNELBINARY} ${BENCHIT_KERNELBINARY_ARGS}"
+
+########################################################################
+# SAVE ENVIRONMENT IF NECESSARY
+########################################################################
+
+env | grep BENCHIT | sed -e 's/^\([^=]*\)=\(.*\)$/export \1=\"\2\"/g'> ${BENCHITROOT}/${BENCHIT_KERNELNAME}_env
+
+########################################################################
+# EXECUTE AND CLEANUP
+########################################################################
+
+batch_cmd="bsub -n ${BENCHIT_NUM_CPUS}"
+
+if [ "${BENCHIT_RUN_USE_MPI}" = "1" ]; then
+	batch_cmd="bsub -n ${BENCHIT_NUM_CPUS} -a mvapich mpirun.lsf"
+fi
+
+#bind single-cpu-job to a cpu
+if [ "${BENCHIT_NUM_PROCESSES}" = "1" ]; then
+	batch_cmd="bsub -n ${BENCHIT_NUM_CPUS} -x"
+fi
+
+if [ -n "${BENCHIT_RUN_REDIRECT_CONSOLE}" ]; then
+	batch_cmd="${batch_cmd} -o ${BENCHIT_RUN_REDIRECT_CONSOLE}"
+fi
+
+script="${BENCHITROOT}/temp_script_file_${BENCHIT_KERNELNAME}"
+# Remove old script if one exists
+rm -f ${script}
+
+# Assemble script for submission to the batch system
+echo "#!/bin/sh" > ${script}
+echo "cd ${BENCHITROOT}" >> ${script}
+echo ". ./${BENCHIT_KERNELNAME}_env" >> ${script}
+echo "${execute_cmd}" >> ${script}
+
+if [ "${BENCHIT_RUN_CLEAN}" = "1" ]; then
+	echo "rm -f ${BENCHIT_KERNELBINARY}" >> ${script}
+	echo "rm ${script}" >> ${script}
+fi
+
+chmod +x ${script}
+
+# Submit job to the batch system
+batch_cmd="${batch_cmd} ${script}"
+if [ "$BENCHIT_RUN_TEST" != "1" ]; then
+	${batch_cmd}
+else
+	echo ${batch_cmd}
+	echo "---------------------------------------------------------"
+	echo "cat LSF temporary script:"
+	cat ${script}
+	echo "---------------------------------------------------------"
+fi
+

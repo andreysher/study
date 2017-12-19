@@ -1,0 +1,49 @@
+Welcome to BenchIT!
+
+Table of contents:
+
+1. Quickstart (Console)
+2. Quickstart (GUI)
+3. Experimental Hardware Detection
+4. Further Information
+
+-----------------------
+
+1. Quickstart (Console)
+
+To use BenchIT a C compiler is required and your operating system has to be POSIX compatible. With this minimal set of conditions a complete reference run is possible. Some BenchIT kernels need additional libraries or compilers for other languages.
+
+ - First step is to run the 'tools/FIRSTTIME' script.
+ - For a reference run just execute 'reference_run.sh'
+
+You can find additional measurement kernels in the kernel/ subdir. To proceed with one of these you have to: 
+
+ - Select one and edit its PARAMETERS file
+ - Run ./COMPILE.sh path/to/your/kernel
+ - Run ./RUN.sh bin/your-kernel-binary
+
+All results can be found in the corresponding subdir of output/
+
+-----------------------
+
+2. Quickstart (GUI)
+ - Run ./GUI.sh
+ - Select a kernel from the kernel tree and edit its PARAMETERS file
+ - 'compile and run' should be selected by default in the toolbar, otherwise select it
+ - Press the execute button in the toolbar
+
+ - Results can be viewed by changing to results tree and select a result file
+
+-----------------------
+
+3. Experimental Hardware Detection
+
+In tools/hw_detect you can find BenchITs hardware detection. This will give you the opportunity to get deeper information about your CPU. Sizes and types of caches, codename, gate length etc.
+
+ - Follow the instructions in tools/hw_detect/README for usage
+
+-----------------------
+
+4. Further Information
+ - http://www.benchit.org/wiki/index.php/Documentation
+ 

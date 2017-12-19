@@ -1,0 +1,6 @@
+/* module microservices */
+/* Service name			# args		Service function */
+{ "msi_start_measurement",		0,		(funcPtr) msi_start_measurement },
+{ "msi_inside_measurement",		1,		(funcPtr) msi_inside_measurement },
+{ "msi_end_measurement",		1,		(funcPtr) msi_end_measurement },
+

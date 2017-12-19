@@ -1,0 +1,16 @@
+#!/bin/sh
+######################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: COMPILE.SH 1 2011-01-29 fschmitt $
+# $URL: svn+ssh://benchit@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/numerical/FFT_3D/C/CUDA/CUFFT/complex_double_npo2/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: 3D Fast Fourier Transform, Non-Powers of 2,
+# double precision, complex data, CUFFT
+# (C)
+#####################################################################
+
+ # Problemsizes (according to http://www.fftw.org/speed/)
+BENCHIT_KERNEL_PROBLEMLIST="1-128/1"

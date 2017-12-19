@@ -1,0 +1,71 @@
+# Name String			Cores per package	Arch short
+Celeron				1			InCe
+Celeron				2			ICe2
+Pentium(R) III			1			InP3
+Pentium(R) 4			1			InP4
+Pentium(R) M			1			InPM
+Pentium(R) Dual			2			IPDC
+Pentium(R) D CPU		2			InPD
+Core(TM)2			2			IC2D
+Core(TM)2			4			IC2Q
+Core(TM) Solo			1			InCS
+Core(TM) Duo			2			InCD
+Core(TM)i7			6			ICi7
+Core(TM)i7			4			ICi7
+Core(TM)i7			2			ICi7
+Core(TM)i5			4			ICi5
+Core(TM)i5			2			ICi5
+Core(TM)i3			2			ICi3
+Xeon				1			InXn
+Xeon				2			InX2
+Xeon				4			InX4
+Xeon				6			InX6
+Xeon				8			InX8
+Xeon				16			IX16
+Opteron(tm)			1			AmOp
+Opteron(tm)			2			AmO2
+Opteron(tm)			4			AmO4
+Opteron(tm)			6			AmO6
+Opteron(tm)			8			AmO8
+Opteron(tm)			12			AO12
+Phenom(tm) II			3			APX3
+Phenom(tm) II			4			APX4
+Phenom(tm) II			6			APX6
+Athlon(tm) 64			1			AmK8
+Athlon(tm) 64 			2			AmX2
+Athlon(tm) X2			2			AmX2
+Athlon(tm) X3			3			AmX3
+Athlon(tm) X4			4			AmX4
+Athlon(tm) II			2			AmX2
+Athlon(tm) II			3			AmX3
+Athlon(tm) II			4			AmX4
+Turion(tm)			1			AmTu
+Turion(tm)			2			ATX2
+Mobile AMD Athlon(tm) XP-M	1			AmK8
+Athlon(tm) Processor LE		1			AmK8
+Athlon(tm) XP			1			AmK7
+Athlon(tm) Processor  		1			AmK7
+Athlon(tm) processor  		1			AmK7
+AMD-K5				1			AmK5
+AMD-K6				1			AmK6
+AMD-K7				1			AmK7
+Duron(tm)			1			AmK7
+Sempron(tm)			2			ASX2
+Sempron(tm)			1			AmSe
+Intel(R)			1			In_1
+Intel(R)			2			In_2
+Intel(R)			4			In_4
+Intel(R)			6			In_6
+Intel(R)			8			In_8
+Intel(R)			16			I_16
+AMD				1			Am_1
+AMD				2			Am_2
+AMD				3			Am_3
+AMD				4			Am_4
+AMD				6			Am_6
+AMD				8			Am_8
+AMD				12			A_12
+VIA				1			Vi_1
+VIA				2			Vi_2
+VIA				3			Vi_3
+VIA				4			Vi_4

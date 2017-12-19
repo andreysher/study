@@ -1,0 +1,66 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/io/read/C/PThread/0/big_files/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+
+ #########################
+ # number of IO-Channels #
+ #########################
+ export BENCHIT_KERNEL_NUMCHANNELS="1"
+
+ #######################################
+ # path for files that will be written #
+ #######################################
+ export BENCHIT_KERNEL_DISKPATH="/var/tmp/"
+
+ ######################################################
+ # diskspace for files that will be written (in byte) #
+ ######################################################
+ export BENCHIT_KERNEL_DISKSPACE="104857600.0"  # 100Mb
+
+ ###################################################
+ # RAM that is installed on the computer (in byte) #
+ ###################################################
+ export BENCHIT_KERNEL_RAMSIZE="134217728.0"   #128Mb
+
+ #######################
+ # threads per channel #
+ #######################
+ export BENCHIT_KERNEL_CHANNELFACTOR="1"
+
+ #########################################
+ # size in Bytes (one file)		 #
+ # - has to be at least 1048576.0 = 1 Mb #
+ # - should be a multiple of 1048576.0	 #
+ #########################################
+ export BENCHIT_KERNEL_FILESIZE="5242880.0"   #5Mb
+
+ #############################################################
+ # with the following variables the kernel can be finetuned, #
+ # they are described in the README file                     #
+ # and should propably remain in their present state         #
+ #############################################################
+ export BENCHIT_KERNEL_TMPHEADER="BenchITtempFile"
+ export BENCHIT_KERNEL_FILESPERDIR="32"
+ export BENCHIT_KERNEL_POTFILPERDIR="5"
+
+ #############################################
+ # check wether 2^POTFILPERDIR = FILESPERDIR #
+ #############################################
+#POTFILPERDIR=${BENCHIT_IOREAD_C_PTHREADS_BIG_POTFILPERDIR}
+#let "FILESPERDIR = 2 ** ${POTFILPERDIR}"
+#if [ "${BENCHIT_IOREAD_C_PTHREADS_BIG_FILESPERDIR}" != "${FILESPERDIR}" ]; then
+#  echo "check wether 2^POTFILPERDIR = FILESPERDIR"
+#  echo " !!! FAILED !!! "
+#  exit 127
+#fi
+ export BENCHIT_KERNEL_FILESPERTHREAD="1"
+ export BENCHIT_KERNEL_MAXREPEAT="2"
+ export BENCHIT_KERNEL_REPEATSTOP="25"
+
+

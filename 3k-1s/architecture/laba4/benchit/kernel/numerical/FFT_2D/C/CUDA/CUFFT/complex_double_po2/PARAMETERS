@@ -1,0 +1,21 @@
+#!/bin/sh
+######################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2011-01-29 fschmitt $
+# $URL: svn+ssh://benchit@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/numerical/FFT_2D/C/CUDA/CUFFT/complex_double_po2/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: 2D Fast Fourier Transform, Powers of 2,
+# double precision, complex data, CUFFT
+# (C)
+#####################################################################
+
+LD_LIBRARY_FLAGS=${CUDA_LIB}:${LD_LIBRARY_FLAGS}
+
+ # Define your problemsize.
+ # Example:
+ # Problemsize will iterate from 2^1 = 2 to 2^20 = 1048576
+ # (only using powers of 2)
+ BENCHIT_KERNEL_PROBLEMLIST="1-10/1"

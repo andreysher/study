@@ -1,0 +1,8 @@
+Name:		Benchit
+Brief:		part of benchit 
+Description:	microservice for time measurement of other microservises
+Dependencies:
+Enabled:	yes
+Creator:	BenchIT (Huenich)
+Created:	
+License:	

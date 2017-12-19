@@ -1,0 +1,1312 @@
+# BenchIT-Resultfile
+#
+# feel free to fill in more architectural information
+#########################################################
+beginofmeasurementinfos
+kernelstring="tests" 
+date="Nov 22 17:26:31 2017"
+numberofprocessorsused=4
+numberofprocesses=1
+numberofthreadsperprocesses=4
+memorysizeused="3258"
+comment=" 0B missaligned, alloc: L, hugep.: 0, use: E4, flush: 111 - E2, TLB:\
+0"
+kerneldescription="memory latency"
+language=
+compiler="gcc"
+compilerversion="(null)"
+compilerflags="  -O0"
+Size of basic data types:
+  - sizeof(char)               :  1 Byte
+  - sizeof(unsigned char)      :  1 Byte
+  - sizeof(short)              :  2 Byte
+  - sizeof(unsigned short)     :  2 Byte
+  - sizeof(int)                :  4 Byte
+  - sizeof(unsigned int)       :  4 Byte
+  - sizeof(long)               :  8 Byte
+  - sizeof(unsigned long)      :  8 Byte
+  - sizeof(long long)          :  8 Byte
+  - sizeof(unsigned long long) :  8 Byte
+  - sizeof(float)              :  4 Byte
+  - sizeof(double)             :  8 Byte
+  - sizeof(long double)        : 16 Byte
+  - sizeof(void*)              :  8 Byte
+library1=""
+kernelisparallel=1
+is3d=0
+codesequence="mov memory->register"
+xinmin=16000
+xinmax=2e+08
+y1inmin=5
+y1inmax=221
+y2inmin=5
+y2inmax=216
+y3inmin=63
+y3inmax=221
+y4inmin=63
+y4inmax=221
+y5inmin=2.94864
+y5inmax=130.33
+y6inmin=2.94864
+y6inmax=127.381
+y7inmin=37.1529
+y7inmax=130.33
+y8inmin=37.1529
+y8inmax=130.33
+endofmeasurementinfos
+################################################
+beginofarchitecture
+# Architekturangaben
+nodename="andrey-Easynote-TE69HW"
+hostname="andrey-Easynote-TE69HW" 
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PROTOTYPE_input_architecture 1 2009-09-11 12:26:19Z william $
+# $URL:\
+svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/LOCA\
+DEFS/PROTOTYPE_input_architecture $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Architectural information about your system, used to compare your 
+# system to others. 
+#####################################################################
+
+#
+# feel free to insert your data
+#
+# quotation marks have to be `escaped'!!!
+#
+# Note: The examples are from very different systems.
+#
+
+
+# Manufacturer of the mainboard, for example: "MSI"
+mainboardmanufacturer=""
+
+# Type of the mainboard without manufacturer's name, for example: "845PE Max3\
+(800 Edition)"
+mainboardtype=""
+
+# Chipset of the mainboard, for example: "Intel i845PE"
+mainboardchipset=""
+
+# Total number of Processors
+numberofprocessors=
+
+# Name of the processor, for example: "Intel Pentium 4"
+processorname=""
+
+# Codename according to manufacturer roadmap, for example: "Montecito"
+codename=""
+
+# Processor Serial Number, if available
+processorserialnumber=""
+
+# Processor version, for example: "x86, Family 6, Model 5, Stepping 1"
+processorversion=""
+
+# Instruction Set Architecture (ISA) of the processor, for example: "IA-32" or\
+"MIPS"
+processorisaset=""
+
+# Several processors are using exact descriptions of their ISA level, for\
+example: "IV" (for MIPS)
+processorisalevel=""
+
+# Extensions of the ISA with an additional number; extendable
+# for example: 
+# processorisaextension1="MMX"
+# processorisaextension2="SSE"
+# processorisaextension3="SSE2"
+processorisaextension1=""
+processorisaextension2=""
+processorisaextension3=""
+
+# Clock rate of the processor in Hz, for example: 3060000000
+processorclockrate=""
+
+# Instruction length in bit, for example: 32 [for RISC] or 0 [for CISC or\
+variable length]
+instructionlength=""
+
+# Processor word length or Word format or xx-bit architecture in bit, for\
+example: 32 
+processorwordlength=""
+
+# Number of instructions issued to the functional units per clock, for example:\
+6
+instructionissue=""
+
+# Number of separate integer units, for example: 2
+integerunits=""
+
+# Number of separate floating point units, for example: 3
+floatingpointunits=""
+
+# Number of separate load/store units, for example: 1
+loadstoreunits=""
+
+# Support of multithreading, for example: 1 [0 for no | 1 for yes]\
+[Hyperthreading --> 1]
+multithreading=""
+
+# Number of physical cores per CPU
+numberofcorespercpu=0
+
+# L1 instruction cache size in byte, for example: 12288 
+level1icachesize=""
+
+# L1 data cache size in byte, for example: 8192
+level1dcachesize=""
+
+# L2 cache size in byte, for example: 524288
+level2cachesize=""
+
+
+# L3 cache size in byte, for example:  33554432
+level3cachesize=""
+
+# L1 instruction cache organization, for example: "Execution Trace Cache"
+level1icachetype=""
+
+# L1 data cache organization, for example: "4-way set-associative,\
+write-through, dual ported"
+level1dcachetype=""
+
+# L2 cache organization, for example: "8-way set-associative, cache line size\
+32 words"
+level2cachetype=""
+
+# L3 cache organization, for example: "8-way set-associative, cache line size\
+128 words with 4 128-byte sectors"
+level3cachetype=""
+
+# L2 cache location, for example: "on-chip" or "on-board"
+level2cachelocation=""
+
+# Support of prefetching, for example: 1 [0 for no | 1 for yes]
+prefetching=""
+
+# Support of preloading, for example: 1 [0 for no | 1 for yes]
+preloading=""
+
+# Clock rate of the processor side bus in Hz, for example: 133000000 
+processorsidebusclockrate=""
+
+# Clock rate of the backside bus (connection to the on-chip L2-cache) in Hz,\
+for example: 200000000
+backsideclockrate=""
+
+# Structure details of the technology in m, for example: 0.000000130
+technologylevel=""
+
+# Memory chip type, for example: "PC-100 SDRAM" or "RIMM-4200"
+memorychiptype=""
+
+# Memory bus type, for example: "SDRAM bus" or "RAMBUS"
+memorybustype=""
+
+# Clock rate of the memory bus in Hz, for example: 100000000
+memorybusclockrate=""
+
+# Total size of available memory in Byte
+memorysize=
+
+# Additionaly comment for your system (e.g. Hyper Threading enabled/disabled)
+ systemcomment=""
+
+endofarchitecture
+####################################################
+beginofenvironmentvariables
+DBUS_SESSION_BUS_ADDRESS="unix:abstract=/tmp/dbus-RTnNKxMNns"
+BENCHIT_MPIRUN="mpirun"
+OPTIND="1"
+GPG_AGENT_INFO="/home/andrey/.gnupg/S.gpg-agent:0:1"
+retval="0"
+BENCHIT_LOCAL_CC="gcc"
+BENCHIT_KERNEL_USE_MODE="E"
+BENCHIT_MPIF77_C_FLAGS_OMP=""
+ROS_DISTRO="kinetic"
+BENCHIT_KERNEL_HUGEPAGES="0"
+BENCHIT_F77_C_FLAGS_STD="-O2"
+BENCHIT_F95_C_FLAGS_STD="-O2"
+OMP_DYNAMIC="FALSE"
+LESSOPEN="| /usr/bin/lesspipe %s"
+BENCHIT_LIB_PVM=""
+BENCHIT_MPICXX_C_FLAGS_HIGH="-O3"
+XDG_CURRENT_DESKTOP="Unity"
+BENCHIT_KERNEL_FILE_VERSION_BIENVHASH_H="NO REVISION (Wed Jul 10 23:38:47\
+2013)"
+LANGUAGE="ru_RU"
+BENCHIT_KERNEL_FILE_VERSION_BIENVHASH_TEMPLATE_C="NO REVISION (Wed Jul 10\
+23:38:47 2013)"
+BENCHIT_F77_C_FLAGS_OMP=""
+BENCHIT_F95_C_FLAGS_OMP=""
+BENCHIT_KERNEL_FILE_VERSION_QUICKVIEW_SH="NO REVISION (Thu Nov 12 19:13:49\
+2009)"
+BENCHIT_PARAMETER_FILE="/home/andrey/study/architecture/laba4/benchit/kernel/te\
+ts/PARAMETERS"
+BENCHIT_CPP_SCSL=""
+BENCHIT_KERNELBINARY="/home/andrey/study/architecture/laba4/benchit/bin/tests.0\
+
+XDG_SESSION_DESKTOP="ubuntu"
+BENCHIT_KERNEL_FILE_VERSION_ERROR_H="NO REVISION (Wed Aug 25 17:53:18 2010)"
+BENCHIT_CXX_C_FLAGS_HIGH="-O3"
+BENCHIT_KERNEL_COUNTERS="PAPI_L2_DCM"
+XDG_GREETER_DATA_DIR="/var/lib/lightdm-data/andrey"
+BENCHIT_LIB_FFTW3=" -lfftw3"
+BENCHIT_LIB_ACML=" -lacml"
+BENCHIT_KERNEL_TIMEOUT="3600"
+BENCHIT_MPICXX_C_FLAGS=""
+BENCHIT_MPICC="gcc"
+BENCHIT_RUN_QUEUENAME=""
+LOCAL_LINKERFLAGS="-pthread -lm"
+BENCHIT_CPP_ESSL=""
+LOCAL_KERNEL_COMPILERFLAGS="  -O0"
+XDG_DATA_DIRS="/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/\
+/var/lib/snapd/desktop"
+BENCHIT_KERNEL_FILE_VERSION_BENCHSCRIPT_H="NO REVISION (Wed Aug 25 17:53:40\
+2010)"
+BENCHIT_ARCH_SPEED="1695M"
+BENCHIT_JAVA_FLAGS=""
+PWD="/home/andrey/study/architecture/laba4/benchit/tools"
+BENCHIT_KERNEL_HUGEPAGE_DIR="/mnt/huge"
+MANDATORY_PATH="/usr/share/gconf/ubuntu.mandatory.path"
+TERM="xterm-256color"
+COMPIZ_CONFIG_PROFILE="ubuntu"
+BENCHIT_CXX_C_FLAGS=""
+BENCHIT_CC="gcc"
+BENCHIT_KERNEL_STEPS="100"
+BENCHIT_LOCAL_CC_C_FLAGS=""
+XDG_CONFIG_DIRS="/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg"
+BENCHIT_MPICXX_LD="gcc"
+BENCHIT_KERNEL_FILE_VERSION_GNUWRITER_C="NO REVISION (Mon Aug 12 23:58:00\
+2013)"
+BENCHIT_F90="gfortran"
+BENCHIT_RUN_REDIRECT_CONSOLE=""
+BENCHIT_COMPILE="gcc   -O0 -I. -I/home/andrey/study/architecture/laba4/benchit\
+-I/home/andrey/study/architecture/laba4/benchit/tools  -DDEBUGLEVEL=0 -c\
+/home/andrey/study/architecture/laba4/benchit/benchit.c\
+/home/andrey/study/architecture/laba4/benchit/tools/stringlib.c\
+/home/andrey/study/architecture/laba4/benchit/tools/output.c\
+/home/andrey/study/architecture/laba4/benchit/tools/bitWriter.c\
+/home/andrey/study/architecture/laba4/benchit/tools/gnuWriter.c\
+/home/andrey/study/architecture/laba4/benchit/bienvhash.c"
+BENCHIT_MPICC_C_FLAGS_HIGH="-O3"
+BENCHIT_JAVA="java"
+BENCHIT_KERNEL_ALIGNMENT="256"
+BENCHIT_KERNEL_ALLOC="L"
+BENCHIT_CXX_LD="g++"
+BENCHIT_INTERACTIVE="0"
+BENCHIT_LIB_PTHREAD=""
+cFlags=""
+LOCAL_BENCHIT_COMPILER="gcc"
+BENCHIT_RUN_COREDUMPLIMIT="0"
+BENCHIT_INCLUDES="-I. -I/home/andrey/study/architecture/laba4/benchit\
+-I/home/andrey/study/architecture/laba4/benchit/tools"
+XDG_SEAT="seat0"
+COMPILE_GLOBAL="1"
+BENCHIT_CC_C_FLAGS_HIGH="-O0"
+BENCHIT_MPIXX="g++"
+myval=""
+BENCHIT_KERNEL_FILE_VERSION_FILEVERSION="NO REVISION (Wed Nov 22 17:19:10\
+2017)"
+BENCHIT_LIB_BLAS="-lblas"
+SHLVL="1"
+BENCHIT_KERNEL_FILE_VERSION_BMERGE_SH="NO REVISION (Thu Nov 12 19:13:49 2009)"
+BENCHIT_KERNEL_FILE_VERSION_FEATURES="NO REVISION (Thu Nov 12 19:13:49 2009)"
+BENCHIT_MPICC_C_FLAGS=""
+BENCHIT_F90_C_FLAGS_HIGH="-O3"
+BENCHIT_RUN_MAX_MEMORY="3258"
+SESSION="ubuntu"
+BENCHIT_IGNORE_PARAMETER_FILE="0"
+BENCHIT_PROGRESS_DIR="progress"
+QT4_IM_MODULE="xim"
+ROS_ROOT="/opt/ros/kinetic/share/ros"
+BENCHIT_MPIF77=""
+BENCHIT_CC_C_FLAGS=""
+BENCHIT_KERNEL_FILE_VERSION_TMP_ENV="NO REVISION (Wed Nov 22 17:19:10 2017)"
+BENCHIT_FILES="/home/andrey/study/architecture/laba4/benchit/benchit.c\
+/home/andrey/study/architecture/laba4/benchit/tools/stringlib.c\
+/home/andrey/study/architecture/laba4/benchit/tools/output.c\
+/home/andrey/study/architecture/laba4/benchit/tools/bitWriter.c\
+/home/andrey/study/architecture/laba4/benchit/tools/gnuWriter.c\
+/home/andrey/study/architecture/laba4/benchit/bienvhash.c"
+BENCHIT_KERNEL_FILE_VERSION_GNUWRITER_H="NO REVISION (Wed Jul 10 23:38:47\
+2013)"
+BENCHIT_F77="gfortran"
+BENCHIT_F95="gfortran"
+BENCHIT_MPICC_LD="gcc"
+BENCHIT_USE_VAMPIR_TRACE="0"
+UPSTART_EVENTS="xsession started"
+BENCHIT_F90_C_FLAGS=""
+USER="andrey"
+BENCHIT_RUN_TIMELIMIT="3600"
+BENCHIT_KERNEL_RUNS="4"
+OMP_NESTED="FALSE"
+GNOME_KEYRING_PID=""
+LD_LIBRARY_PATH="/opt/ros/kinetic/lib"
+BENCHIT_MPICXX_L_FLAGS="-lm -lmpi"
+BENCHIT_CC_LD="gcc"
+BENCHIT_KERNELBINARY_ARGS=" "
+BENCHIT_MPIF77_C_FLAGS_HIGH=""
+PYTHONPATH="/opt/ros/kinetic/lib/python2.7/dist-packages"
+BENCHIT_CPP_PVM=""
+BENCHIT_JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+LOGNAME="andrey"
+UPSTART_SESSION="unix:abstract=/com/ubuntu/upstart-session/1000/1032"
+BENCHIT_KERNEL_FILE_VERSION_CMDLINEPARAMS="NO REVISION (Thu Nov 12 19:13:49\
+2009)"
+BENCHIT_KERNEL_FILE_VERSION_LOC_CONVERT_SH="NO REVISION (Thu Nov 12 19:13:49\
+2009)"
+BENCHIT_CXX_L_FLAGS="-lm"
+BENCHIT_F90_LD="gfortran"
+BENCHIT_F77_C_FLAGS_HIGH="-O3"
+BENCHIT_F95_C_FLAGS_HIGH="-O4"
+myvar="BENCHIT_CMDLINE_ARG_RUN_USE_OPENMP"
+BENCHIT_LIB_ATLAS=" -latlas"
+GTK_MODULES="gail:atk-bridge:unity-gtk-module"
+BENCHIT_LOCAL_CC_L_FLAGS="-lm"
+BENCHIT_KERNEL_FILE_VERSION_COMPILERVERSION="NO REVISION, UNABLE TO READ (Sun\
+Jan 19 06:00:39 2014)"
+BENCHIT_CROSSCOMPILE="0"
+_CMDLINE_VARLIST="BENCHIT_KERNELBINARY BENCHIT_KERNELBINARY_ARGS\
+BENCHIT_CMDLINE_ARG_FILENAME_COMMENT BENCHIT_CMDLINE_ARG_PARAMETER_FILE\
+BENCHIT_CMDLINE_ARG_IGNORE_PARAMETER_FILE BENCHIT_NODENAME BENCHIT_CROSSCOMPILE\
+BENCHIT_CMDLINE_ARG_NUM_CPUS BENCHIT_CMDLINE_ARG_NUM_PROCESSES\
+BENCHIT_CMDLINE_ARG_NUM_THREADS_PER_PROCESS BENCHIT_CMDLINE_ARG_RUN_CLEAN\
+BENCHIT_CMDLINE_ARG_RUN_COREDUMPLIMIT BENCHIT_CMDLINE_ARG_RUN_EMAIL_ADDRESS\
+BENCHIT_CMDLINE_ARG_RUN_MAX_MEMORY BENCHIT_CMDLINE_ARG_RUN_QUEUENAME\
+BENCHIT_CMDLINE_ARG_RUN_QUEUETIMELIMIT BENCHIT_CMDLINE_ARG_RUN_REDIRECT_CONSOLE\
+BENCHIT_CMDLINE_ARG_RUN_TEST BENCHIT_CMDLINE_ARG_RUN_USE_MPI\
+BENCHIT_CMDLINE_ARG_RUN_USE_OPENMP "
+BENCHIT_KERNEL_FILE_VERSION_CHANGE_SH_SH="NO REVISION (Thu Nov 12 19:13:49\
+2009)"
+BENCHIT_CPP_FFTW3=""
+BENCHIT_MPIF77_C_FLAGS=""
+BENCHIT_CPP_ACML=""
+BENCHIT_HOSTNAME="andrey-Easynote-TE69HW"
+BENCHIT_NUM_PROCESSES=""
+BENCHIT_KERNEL_FILE_VERSION_FILEVERSION_C="*/ (Mon Jun 17 19:57:27 2013)"
+KERNELDIR="/home/andrey/study/architecture/laba4/benchit/kernel/tests"
+BENCHIT_LIB_PAPI=""
+lFlags="-lm"
+BENCHIT_F77_C_FLAGS=""
+BENCHIT_F95_C_FLAGS=""
+flags=""
+BENCHIT_KERNEL_FLUSH_ACCESSES="2"
+file="/home/andrey/study/architecture/laba4/benchit/tools/hw_detect/x86.c"
+XDG_SESSION_TYPE="x11"
+BENCHIT_KERNEL_SERIALIZATION="mfence"
+BENCHIT_KERNEL_FILE_VERSION_REPEAT_H="NO REVISION (Mon Sep  2 20:18:08 2013)"
+BENCHIT_MPIF77_LD=""
+BENCHIT_KERNEL_FILE_VERSION_IRODS="NO REVISION, UNABLE TO READ (Sun Jan 19\
+06:00:39 2014)"
+BENCHIT_MPICC_L_FLAGS="-lm -lmpi"
+XDG_SEAT_PATH="/org/freedesktop/DisplayManager/Seat0"
+COMPIZ_BIN_PATH="/usr/bin/"
+INSTANCE=""
+BENCHIT_KERNEL_FILE_VERSION_STRINGLIB_C="NO REVISION (Thu Aug  8 19:25:10\
+2013)"
+ROS_MASTER_URI="http://localhost:11311"
+BENCHIT_LIB_PCL=""
+BENCHIT_KERNEL_CPU_LIST="0,1,2,3"
+BENCHIT_LINK="gcc -o /home/andrey/study/architecture/laba4/benchit/bin/tests.0\
+*.o -pthread -lm"
+BENCHIT_KERNEL_FLUSH_L1="1"
+PS1="$ "
+BENCHIT_F77_LD="gfortran"
+BENCHIT_F95_LD="gfortran"
+cFlagsOpt="-O0"
+_="./benchit/COMPILE.SH"
+BENCHIT_CC_L_FLAGS="-lm"
+BENCHIT_KERNEL_FILE_VERSION_FIRSTTIME="NO REVISION (Wed Aug 25 17:53:18 2010)"
+BENCHIT_KERNEL_FILE_VERSION_HW_DETECT="NO REVISION, UNABLE TO READ (Wed Nov 15\
+17:51:54 2017)"
+BENCHIT_KERNEL_FLUSH_L2="1"
+PS2="> "
+BENCHIT_KERNEL_FILE_VERSION_ALIGNED_MEMORY_H="NO REVISION (Wed Aug 25 17:53:40\
+2010)"
+BENCHIT_CPP_BLAS=""
+BENCHIT_KERNEL_FILE_VERSION_ENVHASHBUILDER="NO REVISION (Wed Nov 22 17:19:10\
+2017)"
+BENCHIT_F90_L_FLAGS="-lm"
+CONFIGURE_MODE="COMPILE"
+OLDCWD="/home/andrey/study/architecture/laba4/benchit"
+BENCHIT_KERNEL_FLUSH_L3="1"
+BENCHIT_KERNEL_COMMENT=" 0B missaligned, alloc: L, hugep.: 0, use: E4, flush:\
+111 - E2, TLB: 0"
+BENCHIT_NUM_CPUS="4"
+BENCHIT_COMPILE_SH_IS_CALLED="1"
+KERNELNAME_FULL=""
+BENCHIT_MANDATORY_FILES="benchit.c interface.h tools/envhashbuilder.c\
+tools/bienvhash.template.c tools/bienvhash.h tools/stringlib.c\
+tools/stringlib.h tools/bitWriter.c tools/bitWriter.h tools/gnuWriter.c\
+tools/gnuWriter.h tools/output.c tools/output.h "
+PS4="+ "
+BENCHIT_KERNEL_OFFSET="0"
+GDM_LANG="ru_RU"
+GTK_IM_MODULE="ibus"
+BENCHIT_KERNEL_FILE_VERSION_HELPER_SH="1.14 (Thu Nov 12 19:13:49 2009)"
+LastChecked=""
+BENCHIT_KERNEL_USE_ACCESSES="4"
+UPSTART_INSTANCE=""
+BENCHITROOT="/home/andrey/study/architecture/laba4/benchit"
+SESSIONTYPE="gnome-session"
+BENCHIT_KERNEL_FILE_VERSION_OUTPUT_C="NO REVISION (Tue Jul  2 23:05:03 2013)"
+BENCHIT_KERNEL_FILE_VERSION_STRINGLIB_H="NO REVISION (Wed Aug 25 17:53:18\
+2010)"
+BENCHIT_LIB_MKL=" -lmkl"
+LOCAL_KERNEL_FILES="kernel_main.c"
+KERNEL_COMPILE="gcc   -O0 -I. -I/home/andrey/study/architecture/laba4/benchit\
+-I/home/andrey/study/architecture/laba4/benchit/tools  -DDEBUGLEVEL=0 -c\
+kernel_main.c"
+LOCAL_LINKER="gcc"
+ROSLISP_PACKAGE_DIRECTORIES=""
+QT_QPA_PLATFORMTHEME="appmenu-qt5"
+BENCHIT_MPIF77_L_FLAGS=""
+LOCAL_BENCHIT_COMPILERFLAGS="  -O0"
+LOCAL_KERNEL_COMPILER="gcc"
+GTK2_MODULES="overlay-scrollbar"
+BENCHIT_CPP_PTHREADS=""
+DESKTOP_SESSION="ubuntu"
+BENCHIT_MPICXX_C_FLAGS_STD="-O2"
+BENCHIT_LIB_MPI=""
+SCRIPTNAME="COMPILE.SH"
+BENCHIT_F77_L_FLAGS="-lm"
+BENCHIT_F95_L_FLAGS="-lm"
+BENCHIT_KERNEL_FILE_VERSION_LOC_REPL="NO REVISION (Thu Nov 12 19:13:49 2009)"
+JOB="unity-settings-daemon"
+USEJAVA="0"
+BENCHIT_OPTIONAL_FILES="LOCALDEFS/PROTOTYPE_input_architecture\
+LOCALDEFS/PROTOTYPE_input_display "
+BENCHIT_RUN_OUTPUT_DIR="/home/andrey/study/architecture/laba4/benchit/output"
+BENCHIT_KERNEL_MIN="16000"
+BENCHIT_MPICXX_C_FLAGS_OMP=""
+BENCHIT_CPP_ATLAS=""
+BENCHIT_CXX_C_FLAGS_STD="-O2"
+HOME="/home/andrey"
+BENCHIT_DEBUGLEVEL="0"
+IS_SCRIPT="0"
+BENCHIT_KERNEL_TLB_MODE="0"
+LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:\
+d=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37\
+44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=0\
+;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.\
+7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz\
+01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.\
+z=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31\
+*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01\
+31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.p\
+m=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;3\
+:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg\
+01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35\
+*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=0\
+;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.g\
+=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*\
+ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;\
+6:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav\
+00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:"
+SHELLSCRIPT_DEBUG="0"
+BENCHIT_RUN_ACCURACY="2"
+BENCHIT_KERNEL_FILE_VERSION_CBLAS="NO REVISION, UNABLE TO READ (Sun Jan 19\
+06:00:36 2014)"
+BENCHIT_LIB_SCSL=" -lscsl"
+BENCHIT_CXX_C_FLAGS_OMP=""
+BENCHIT_RUN_EMAIL_ADDRESS=""
+GNOME_KEYRING_CONTROL=""
+XDG_SESSION_ID="c1"
+BENCHIT_KERNEL_FILE_VERSION_OUTPUT_H="NO REVISION (Wed Jul 10 23:38:47 2013)"
+BENCHIT_KERNEL_MAX="200000000"
+KERNELBASEDIR="/home/andrey/study/architecture/laba4/benchit/kernel"
+BENCHIT_KERNEL_FILE_VERSION_ENVHASHBUILDER_C="NO REVISION (Mon Jun 17 19:57:27\
+2013)"
+BENCHIT_CPP_PAPI="-DUSE_PAPI"
+LOCAL_MODULE_FILES="arch.c work.c\
+/home/andrey/study/architecture/laba4/benchit/tools/hw_detect/generic.c\
+/home/andrey/study/architecture/laba4/benchit/tools/hw_detect/properties.c\
+/home/andrey/study/architecture/laba4/benchit/tools/hw_detect/x86.c"
+_VARLIST="'BENCHITROOT"
+IM_CONFIG_PHASE="1"
+BENCHIT_NODENAME="andrey-Easynote-TE69HW"
+SHELL="/bin/bash"
+MODULE_COMPILE="gcc   -O0 -I. -I/home/andrey/study/architecture/laba4/benchit\
+-I/home/andrey/study/architecture/laba4/benchit/tools  -DDEBUGLEVEL=0 -c arch.c\
+work.c /home/andrey/study/architecture/laba4/benchit/tools/hw_detect/generic.c\
+/home/andrey/study/architecture/laba4/benchit/tools/hw_detect/properties.c\
+/home/andrey/study/architecture/laba4/benchit/tools/hw_detect/x86.c"
+COMMENT=""
+BENCHIT_JAVAC_FLAGS_HIGH="-O"
+BENCHIT_KERNEL_FILE_VERSION_ENVIRONMENTS="NO REVISION, UNABLE TO READ (Sun Jan\
+19 06:00:39 2014)"
+LESSCLOSE="/usr/bin/lesspipe %s %s"
+BENCHIT_LIB_ESSL=" -lessl"
+myfile="tools/output.h"
+BENCHIT_KERNELNAME="tests"
+XMODIFIERS="@im=ibus"
+BENCHIT_KERNEL_FILE_VERSION_REFERENCE_RUN_SH="NO REVISION (Thu Nov 12 19:13:49\
+2009)"
+ROS_ETC_DIR="/opt/ros/kinetic/etc/ros"
+UPSTART_JOB="unity7"
+BENCHIT_ENVIRONMENT="DEFAULT"
+BENCHIT_CPP_PCL=" -DUSE_PCL"
+HLL=""
+OLDIR="/home/andrey/study/architecture/laba4/benchit"
+BENCHIT_F90_SOURCE_FORMAT_FLAG=""
+BENCHIT_MPICC_C_FLAGS_STD="-O2"
+PATH="/home/andrey/study/architecture/laba4/benchit/tools:/opt/ros/kinetic/bin:\
+home/andrey/bin:/home/andrey/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbi\
+:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+PPID="25870"
+BENCHIT_KERNEL_FILE_VERSION_BIENVHASH_TEMPLATE_JAVA="NO REVISION (Thu Nov 12\
+19:13:49 2009)"
+CLUTTER_IM_MODULE="xim"
+BENCHIT_RUN_TEST="0"
+GDMSESSION="ubuntu"
+XAUTHORITY="/home/andrey/.Xauthority"
+BR="0"
+BENCHIT_JAVAC_FLAGS=""
+DEFAULTS_PATH="/usr/share/gconf/ubuntu.default.path"
+BENCHIT_MPICC_C_FLAGS_OMP=""
+BENCHIT_CC_C_FLAGS_STD="-O2"
+ROS_PACKAGE_PATH="/opt/ros/kinetic/share"
+QT_LINUX_ACCESSIBILITY_ALWAYS_ON="1"
+SESSION_MANAGER="local/andrey-Easynote-TE69HW:@/tmp/.ICE-unix/1507,unix/andrey-\
+asynote-TE69HW:/tmp/.ICE-unix/1507"
+DISPLAY=":0"
+BENCHIT_FILENAME_COMMENT="0"
+CURDIR="/home/andrey/study/architecture/laba4/benchit"
+BENCHIT_KERNEL_FILE_VERSION_BITWRITER_C="NO REVISION (Mon Aug 12 23:58:00\
+2013)"
+IFS="' 	"
+BENCHIT_KERNEL_FLUSH_MODE="E"
+BENCHIT_DEFINES=" -DDEBUGLEVEL=0"
+XDG_MENU_PREFIX="gnome-"
+XDG_RUNTIME_DIR="/run/user/1000"
+BENCHIT_CC_C_FLAGS_OMP=""
+QT_ACCESSIBILITY="1"
+LOCAL_FILES_TO_COPY=""
+BENCHIT_F90_C_FLAGS_STD="-O2"
+CMAKE_PREFIX_PATH="/opt/ros/kinetic"
+DEST="/home/andrey/study/architecture/laba4/benchit/bin/"
+OMP_NUM_THREADS="1"
+OLDPWD="/home/andrey/study/architecture/laba4/benchit/kernel/tests"
+BENCHIT_KERNEL_SHARE_CPU="7"
+XDG_SESSION_PATH="/org/freedesktop/DisplayManager/Session0"
+BENCHIT_JAVAC="javac"
+BENCHIT_F90_C_FLAGS_OMP=""
+tmpCompiler="gcc"
+WINDOWID="85983242"
+QT_IM_MODULE="ibus"
+BENCHIT_KERNEL_ENABLE_PAPI="0"
+BENCHIT_ARCH_SHORT="In_2"
+BENCHIT_CPP_MKL=""
+BENCHIT_F95_SOURCE_FORMAT_FLAG=""
+BENCHIT_KERNEL_FILE_VERSION_CONFIGURE="NO REVISION (Tue Jul 16 22:31:45 2013)"
+BENCHIT_KERNEL_ACCESSES="1024"
+BENCHIT_COMPILETIME_CC="gcc"
+LOCAL_FILES_TO_DELETE=""
+XDG_VTNR="7"
+BENCHIT_KERNEL_FILE_VERSION_BENCHSCRIPT_C="NO REVISION (Mon Jun 17 19:57:27\
+2013)"
+GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
+BENCHIT_CXX="g++"
+BENCHIT_LD_LIBRARY_PATH="/home/andrey/study/architecture/laba4/benchit/jbi/jni"
+SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
+BENCHIT_NUM_THREADS_PER_PROCESS=""
+PKG_CONFIG_PATH="/opt/ros/kinetic/lib/pkgconfig"
+BENCHIT_MPIF77_C_FLAGS_STD=""
+VTE_VERSION="4205"
+BENCHIT_KERNEL_FILE_VERSION_BLAS="NO REVISION, UNABLE TO READ (Sun Jan 19\
+06:00:36 2014)"
+BENCHIT_RUN_LINEAR="0"
+BENCHIT_KERNEL_FILE_VERSION_BITWRITER_H="NO REVISION (Tue Jul  2 22:32:22\
+2013)"
+BENCHIT_CPP_MPI=" -DUSE_MPI"
+endofenvironmentvariables
+beginofdisplay
+
+xoutmin=10000
+xoutmax=1e+09
+xaxisticks=5
+xaxislogbase=10
+xaxistext="data set size [Byte]"
+
+y1outmin=0
+y1outmax=225
+y1axisticks=9
+y1axislogbase=0
+y1axistext="latency [cycles]"
+
+y2outmin=0
+y2outmax=225
+y2axisticks=9
+y2axislogbase=0
+y2axistext="latency [cycles]"
+
+y3outmin=60
+y3outmax=230
+y3axisticks=17
+y3axislogbase=0
+y3axistext="latency [cycles]"
+
+y4outmin=60
+y4outmax=230
+y4axisticks=17
+y4axislogbase=0
+y4axistext="latency [cycles]"
+
+y5outmin=0
+y5outmax=140
+y5axisticks=14
+y5axislogbase=0
+y5axistext="latency [ns]"
+
+y6outmin=0
+y6outmax=130
+y6axisticks=13
+y6axislogbase=0
+y6axistext="latency [ns]"
+
+y7outmin=30
+y7outmax=140
+y7axisticks=11
+y7axislogbase=0
+y7axistext="latency [ns]"
+
+y8outmin=30
+y8outmax=140
+y8axisticks=11
+y8axislogbase=0
+y8axistext="latency [ns]"
+numfunctions=8
+
+## Fuer Architektur- oder Messmerkmal : abc
+#
+# displayabc=1                                           # Steuervariable
+# #Textfeld-Eigenschaften des date-Strings               # Kommentar
+# tabc="ABC-Merkmal: 3 Tm"                               # Text: Wert
+# xabc=                                                  # x-Position
+# yabc=                                                  # y-Position
+# fonttypabc=                                            # Schriftart
+# fontsizeabc=                                           # Schriftgroesse
+tlegendfunction1="memory latency CPU0 locally (CPU cycles)"
+xlegendfunction1=
+ylegendfunction1=
+fonttypelegendfunction1=
+fontsizelegendfunction1=
+
+tlegendfunction2="memory latency CPU0 accessing CPU1 memory (CPU cycles)"
+xlegendfunction2=
+ylegendfunction2=
+fonttypelegendfunction2=
+fontsizelegendfunction2=
+
+tlegendfunction3="memory latency CPU0 accessing CPU2 memory (CPU cycles)"
+xlegendfunction3=
+ylegendfunction3=
+fonttypelegendfunction3=
+fontsizelegendfunction3=
+
+tlegendfunction4="memory latency CPU0 accessing CPU3 memory (CPU cycles)"
+xlegendfunction4=
+ylegendfunction4=
+fonttypelegendfunction4=
+fontsizelegendfunction4=
+
+tlegendfunction5="memory latency CPU0 locally (time)"
+xlegendfunction5=
+ylegendfunction5=
+fonttypelegendfunction5=
+fontsizelegendfunction5=
+
+tlegendfunction6="memory latency CPU0 accessing CPU1 memory (time)"
+xlegendfunction6=
+ylegendfunction6=
+fonttypelegendfunction6=
+fontsizelegendfunction6=
+
+tlegendfunction7="memory latency CPU0 accessing CPU2 memory (time)"
+xlegendfunction7=
+ylegendfunction7=
+fonttypelegendfunction7=
+fontsizelegendfunction7=
+
+tlegendfunction8="memory latency CPU0 accessing CPU3 memory (time)"
+xlegendfunction8=
+ylegendfunction8=
+fonttypelegendfunction8=
+fontsizelegendfunction8=
+
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PROTOTYPE_input_display 1 2009-09-11 12:26:19Z william $
+# $URL:\
+svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/LOCA\
+DEFS/PROTOTYPE_input_display $
+# For license details see COPYING in the package base directory
+#####################################################################
+# display of optional information can be enabled by setting:
+#    display***=1
+#####################################################################
+
+
+# optional information of the measurement-programs:
+
+# deactivation of the kernelstring is useful, if a separate caption
+# should be used
+displaykernelstring=1
+# topkernelstring=1|0: headline|underline
+topkernelstring=1
+fonttypkernelstring=""
+fontsizekernelstring=
+
+displaycomment=1
+# textfield properties of the comment-string
+tcomment="Comment:"
+xcomment=
+ycomment=
+fonttypcomment=
+fontsizecomment=
+
+displaydate=1
+# textfield properties of the date-string
+tdate="Datum: "
+xdate=""
+ydate=""
+fonttypdate=""
+fontsizedate=""
+
+displaylanguage=0
+# textfield properties of the language-string
+tlanguage="HLL: "
+xlanguage=""
+ylanguage=""
+fonttyplanguage=""
+fontsizelanguage=""
+
+displaycompiler=0
+# textfield properties of the compiler-string
+tcompiler="Compiler: "
+xcompiler=""
+ycompiler=""
+fonttypcompiler=""
+fontsizecompiler=""
+
+displaycompilerflags=0
+# textfield properties of the compilerflags-string
+tcompilerflags="Compiler-Flags: "
+xcompilerflags=""
+ycompilerflags=""
+fonttypcompilerflags=""
+fontsizecompilerflags=""
+
+displaycodesequence=1
+# textfield properties of the codesequence-string
+tcodesequence=""
+xcodesequence=""
+ycodesequence=""
+fonttypcodesequence=""
+fontsizecodesequence=""
+
+# optional information about the architecture, names etc.:
+
+displayhostname=0
+# textfield properties of the hostname-string
+thostname="Hostname: "
+xhostname=""
+yhostname=""
+fonttyphostname=""
+fontsizehostname=""
+
+displaynodename=0
+# textfield properties of the nodename-string
+tnodename="Nodename: "
+xnodename=""
+ynodename=""
+fonttypnodename=""
+fontsizenodename=""
+
+displaymainboardmanufacturer=0
+# textfield properties of the mainboardmanufacturer-string
+tmainboardmanufacturer="Manufacturer of  mainboard: "
+xmainboardmanufacturer=""
+ymainboardmanufacturer=""
+fonttypmainboardmanufacturer=""
+fontsizemainboardmanufacturer=""
+
+displaymainboardtype=0
+# textfield properties of the mainboardtype-string
+tmainboardtype="Mainboard type: "
+xmainboardtype=""
+ymainboardtype=""
+fonttypmainboardtype=""
+fontsizemainboardtype=""
+
+displaymainboardchipset=0
+# textfield properties of the mainboardchipset-string
+tmainboardchipset="Mainboard Chipset: "
+xmainboardchipset=""
+ymainboardchipset=""
+fonttypmainboardchipset=""
+fontsizemainboardchipset=""
+
+displayprocessorname=0
+# textfield properties of the processorname-string
+tprocessorname="Processor name: "
+xprocessorname=""
+yprocessorname=""
+fonttypprocessorname=""
+fontsizeprocessorname=""
+
+displayprocessorserialnumber=0
+# textfield properties of the processorserialnumber-string
+tprocessorserialnumber="Processor Serial No.: "
+yprocessorserialnumber=""
+fonttypprocessorserialnumber=""
+fontsizeprocessorserialnumber=""
+
+displayprocessorversion=0
+# textfield properties of the processorversion-string
+tprocessorversion="Processor Version: "
+xprocessorversion=""
+yprocessorversion=""
+fonttypprocessorversion=""
+fontsizeprocessorversion=""
+
+displayprocessorisaset=0
+# textfield properties of the processorisaset-string
+tprocessorisaset="Instruction Set Architecture: "
+xprocessorisaset=""
+yprocessorisaset=""
+fonttypprocessorisaset=""
+fontsizeprocessorisaset=""
+
+displayprocessorisalevel=0
+# textfield properties of the processorisalevel-string
+tprocessorisalevel="ISA Level: "
+xprocessorisalevel=""
+yprocessorisalevel=""
+fonttypprocessorisalevel=""
+fontsizeprocessorisalevel=""
+
+displayprocessorisaextension1=0
+# textfield properties of the processorisaextension1-string
+tprocessorisaextension1="ISA Extension: "
+xprocessorisaextension1=""
+yprocessorisaextension1=""
+fonttypprocessorisaextension1=""
+fontsizeprocessorisaextension1=""
+
+displayprocessorisaextension2=0
+# textfield properties of the processorisaextension2-string
+tprocessorisaextension2="ISA Extension: "
+xprocessorisaextension2=""
+yprocessorisaextension2=""
+fonttypprocessorisaextension2=""
+fontsizeprocessorisaextension2=""
+
+displayprocessorisaextension3=0
+# textfield properties of the processorisaextension3-string
+tprocessorisaextension3="ISA Extension: "
+xprocessorisaextension3=""
+yprocessorisaextension3=""
+fonttypprocessorisaextension3=""
+fontsizeprocessorisaextension3=""
+
+displayprocessorclockrate=0
+# textfield properties of the processorclockrate-string
+tprocessorclockrate="Processor Clock Rate: "
+xprocessorclockrate=""
+yprocessorclockrate=""
+fonttypprocessorclockrate=""
+fontsizeprocessorclockrate=""
+
+displayinstructionlength=0
+# textfield properties of the instructionlength-string
+tinstructionlength="Instruction Length: "
+xinstructionlength=""
+yinstructionlength=""
+fonttypinstructionlength=""
+fontsizeinstructionlength=""
+
+displayprocessorwordlength=0
+# textfield properties of the processorwordlength-string
+tprocessorwordlength="Processor Word Length: "
+xprocessorwordlength=""
+yprocessorwordlength=""
+fonttypprocessorwordlength=""
+fontsizeprocessorwordlength=""
+
+displayinstructionissue=0
+# textfield properties of the instructionissue-string
+tinstructionissue="Instruction Issue: "
+xinstructionissue=""
+yinstructionissue=""
+fonttypinstructionissue=""
+fontsizeinstructionissue=""
+
+displayintegerunits=0
+# textfield properties of the integerunits-string
+tintegerunits="Number of Integer Units: "
+xintegerunits=""
+yintegerunits=""
+fonttypintegerunits=""
+fontsizeintegerunits=""
+
+displayfloatingpointunits=0
+# textfield properties of the floatingpointunits-string
+tfloatingpointunits="Number of Floating Point Units: "
+xfloatingpointunits=""
+yfloatingpointunits=""
+fonttypfloatingpointunits=""
+fontsizefloatingpointunits=""
+
+displayloadstoreunits=0
+# textfield properties of the loadstoreunits-string
+tloadstoreunits="Number of Load/Store Units: "
+xloadstoreunits=""
+yloadstoreunits=""
+fonttyploadstoreunits=""
+fontsizeloadstoreunits=""
+
+displaylevel1icachesize=0
+# textfield properties of the level1icachesize-string
+tlevel1icachesize="L1 Instruction Cache Size: "
+xlevel1icachesize=""
+ylevel1icachesize=""
+fonttyplevel1icachesize=""
+fontsizelevel1icachesize=""
+
+displaylevel1icachetype=0
+# textfield properties of the level1icachetype-string
+tlevel1icachetype="L1 Instruction Cache Type: "
+xlevel1icachetype=""
+ylevel1icachetype=""
+fonttyplevel1icachetype=""
+fontsizelevel1icachetype=""
+
+displaylevel1dcachesize=0
+# textfield properties of the level1dcachesize-string
+tlevel1dcachesize="L1 Data Cache Size: "
+xlevel1dcachesize=""
+ylevel1dcachesize=""
+fonttyplevel1dcachesize=""
+fontsizelevel1dcachesize=""
+
+displaylevel1dcachetype=0
+# textfield properties of the level1dcachetype-string
+tlevel1dcachetype="L1 Data Cache Type: "
+xlevel1dcachetype=""
+ylevel1dcachetype=""
+fonttyplevel1dcachetype=""
+fontsizelevel1dcachetype=""
+
+displaylevel2cachesize=0
+# textfield properties of the level2cachesize-string
+tlevel2cachesize="L2 Data Cache Size: "
+xlevel2cachesize=""
+ylevel2cachesize=""
+fonttyplevel2cachesize=""
+fontsizelevel2cachesize=""
+
+displaylevel2cachetype=0
+# textfield properties of the level2cachetype-string
+tlevel2cachetype="L2 Cache Type: "
+xlevel2cachetype=""
+ylevel2cachetype=""
+fonttyplevel2cachetype=""
+fontsizelevel2cachetype=""
+
+displaylevel2cachelocation=0
+# textfield properties of the level2cachelocation-string
+tlevel2cachelocation="L2 Cache Location: "
+xlevel2cachelocation=""
+ylevel2cachelocation=""
+fonttyplevel2cachelocation=""
+fontsizelevel2cachelocation=""
+
+displaylevel3cachesize=0
+# textfield properties of the level3cachesize-string
+tlevel3cachesize="L3 Data Cache Size: "
+xlevel3cachesize=""
+ylevel3cachesize=""
+fonttyplevel3cachesize=""
+fontsizelevel3cachesize=""
+
+displaylevel3cachetype=0
+# textfield properties of the level3cachetype-string
+tlevel3cachetype="L3 Cache Type: "
+xlevel3cachetype=""
+ylevel3cachetype=""
+fonttyplevel3cachetype=""
+fontsizelevel3cachetype=""
+
+displaylevel3cachelocation=0
+# textfield properties of the level3cachelocation-string
+tlevel3cachelocation="L3 Cache Location: "
+xlevel3cachelocation=""
+ylevel3cachelocation=""
+fonttyplevel3cachelocation=""
+fontsizelevel3cachelocation=""
+
+displayprefetching=0
+# textfield properties of the prefetching-string
+tprefetching="Prefetching: "
+xprefetching=""
+yprefetching=""
+fonttypprefetching=""
+fontsizeprefetching=""
+
+displaypreloading=0
+# textfield properties of the preloading-string
+tpreloading="Preloading: "
+xpreloading=""
+ypreloading=""
+fonttyppreloading=""
+fontsizepreloading=""
+
+displaybacksideclockrate=0
+# textfield properties of the backsideclockrate-string
+tbacksideclockrate="Clock Rate of the Backside Bus: "
+xbacksideclockrate=""
+ybacksideclockrate=""
+fonttypbacksideclockrate=""
+fontsizebacksideclockrate=""
+
+displaytechnologylevel=0
+# textfield properties of the technologylevel-string
+ttechnologylevel="Technology Level: "
+xtechnologylevel=""
+ytechnologylevel=""
+fonttyptechnologylevel=""
+fontsizetechnologylevel=""
+
+displaymemorychiptype=0
+# textfield properties of the memorychiptype-string
+tmemorychiptype="Memory Chip Type: "
+xmemorychiptype=""
+ymemorychiptype=""
+fonttypmemorychiptype=""
+fontsizememorychiptype=""
+
+displaymemorybustype=0
+# textfield properties of the memorybustype-string
+tmemorybustype="Memory Bus Type: "
+xmemorybustype=""
+ymemorybustype=""
+fonttypmemorybustype=""
+fontsizememorybustype=""
+
+displaymemorybusclockrate=0
+# textfield properties of the memorybusclockrate-string
+tmemorybusclockrate="Memory Bus Clock Rate: "
+xmemorybusclockrate=""
+ymemorybusclockrate=""
+fonttypmemorybusclockrate=""
+fontsizememorybusclockrate=""
+
+displaynumberofprocessorsused=0
+# textfield properties of the numberofprocessorsused-string
+tnumberofprocessorsused="Number Of Used Processors: "
+xnumberofprocessorsused=""
+ynumberofprocessorsused=""
+fonttypnumberofprocessorsused=""
+fontsizenumberofprocessorsused=""
+
+displaymemorysizeused=0
+# textfield properties of the memorysizeused-string
+tmemorysizeused="Used Memory Size: "
+xmemorysizeused=""
+ymemorysizeused=""
+fonttypmemorysizeused=""
+fontsizememorysizeused=""
+
+displaysystemcomment=0
+# textfield properties of the systemcomment-string
+tsystemcomment="Additional System Information: "
+xsystemcomment=""
+ysystemcomment=""
+fonttypsystemcomment=""
+fontsizesystemcomment=""
+
+displayaid=0
+# textfield properties of the aid-string
+taid="AID identifier: "
+xaid=""
+yaid=""
+fonttypaid=""
+fontsizeaid=""
+
+displaycodename=0
+# textfield properties of the codename-string
+tcodename="codename according to roadmap: "
+xcodename=""
+ycodename=""
+fonttypcodename=""
+fontsizecodename=""
+
+displaynumberofcorespercpu=0
+# textfield properties of the numberofcorespercpu-string
+tnumberofcorespercpu="number of physical cores per CPU: "
+xnumberofcorespercpu=""
+ynumberofcorespercpu=""
+fonttypnumberofcorespercpu=""
+fontsizenumberofcorespercpu=""
+endofdisplay
+####################################################
+beginofidentifierstrings
+# strings as replacement for the identifiers in menu-windows
+hostname="Hostname"
+nodename="Nodename"
+mainboardmanufacturer="Manufacturer of  mainboard"
+mainboardtype="Mainboard type"
+mainboardchipset="Mainboard Chipset"
+processorname="Processor name"
+processorserialnumber="Processor Serial No."
+processorversion="Processor Version"
+processorisaset="Instruction Set Architecture"
+processorisalevel="ISA Level"
+processorisaextension1="ISA Extension"
+processorisaextension2="ISA Extension"
+processorisaextension3="ISA Extension"
+processorclockrate="Processor Clock Rate"
+instructionlength="Instruction Length"
+processorwordlength="Processor Word Length"
+instructionissue="Instruction Issue"
+integerunits="Number of Integer Units"
+floatingpointunits="Number of Floating Point Units"
+loadstoreunits="Number of Load/Store Units"
+level1icachesize="L1 Instruction Cache Size"
+level1icachetype="L1 Instruction Cache Type"
+level1dcachesize="L1 Data Cache Size"
+level1dcachetype="L1 Data Cache Type"
+level2cachesize="L2 Data Cache Size"
+level2cachetype="L2 Cache Type"
+level2cachelocation="L2 Cache Location"
+level3cachesize="L3 Data Cache Size"
+level3cachetype="L3 Cache Type"
+level3cachelocation="L3 Cache Location"
+prefetching="Prefetching"
+preloading="Preloading"
+backsideclockrate="Clock Rate of the Backside Bus"
+technologylevel="Technology Level"
+memorychiptype="Memory Chip Type"
+memorybustype="Memory Bus Type"
+memorybusclockrate="Memory Bus Clock Rate"
+numberofprocessorsused="Number Of Used Processors"
+memorysizeused="Used Memory Size"
+systemcomment="Additional System Information"
+aid="AID identifier"
+codename="codename according to roadmap"
+numberofcorespercpu="number of physical cores per CPU"
+endofidentifierstrings
+###################################################
+beginofdata
+16000	7	7	65	65	4.1281	4.1281	38.3324	38.3324	
+17599.6	5	5	63	64	2.94864	2.94864	37.1529	37.7426	
+19359.1	5	5	63	64	2.94864	2.94864	37.1529	37.7426	
+21294.6	5	6	66	65	2.94864	3.53837	38.9221	38.3324	
+23423.5	5	5	65	67	2.94864	2.94864	38.3324	39.5118	
+25765.3	5	5	63	64	2.94864	2.94864	37.1529	37.7426	
+28341.2	5	5	63	64	2.94864	2.94864	37.1529	37.7426	
+31174.6	5	6	65	64	2.94864	3.53837	38.3324	37.7426	
+34291.3	12	12	64	63	7.07674	7.07674	37.7426	37.1529	
+37719.5	12	12	64	64	7.07674	7.07674	37.7426	37.7426	
+41490.6	12	12	63	63	7.07674	7.07674	37.1529	37.1529	
+45638.6	12	12	64	65	7.07674	7.07674	37.7426	38.3324	
+50201.3	12	12	63	65	7.07674	7.07674	37.1529	38.3324	
+55220.2	12	12	64	64	7.07674	7.07674	37.7426	37.7426	
+60740.9	12	12	65	64	7.07674	7.07674	38.3324	37.7426	
+66813.5	12	12	64	65	7.07674	7.07674	37.7426	38.3324	
+73493.1	12	12	65	65	7.07674	7.07674	38.3324	38.3324	
+80840.6	12	12	66	66	7.07674	7.07674	38.9221	38.9221	
+88922.7	12	12	64	66	7.07674	7.07674	37.7426	38.9221	
+97812.8	12	12	65	66	7.07674	7.07674	38.3324	38.9221	
+107592	12	13	65	65	7.07674	7.66647	38.3324	38.3324	
+118348	12	13	66	65	7.07674	7.66647	38.9221	38.3324	
+130180	12	14	66	66	7.07674	8.2562	38.9221	38.9221	
+143195	12	15	67	66	7.07674	8.84593	39.5118	38.9221	
+157511	12	17	68	68	7.07674	10.0254	40.1015	40.1015	
+173258	13	17	69	70	7.66647	10.0254	40.6913	41.281	
+190579	15	20	69	69	8.84593	11.7946	40.6913	40.6913	
+209633	18	21	69	69	10.6151	12.3843	40.6913	40.6913	
+230591	19	24	70	70	11.2048	14.1535	41.281	41.281	
+253644	20	26	70	70	11.7946	15.3329	41.281	41.281	
+279002	35	35	71	71	20.6405	20.6405	41.8707	41.8707	
+306896	35	36	72	71	20.6405	21.2302	42.4605	41.8707	
+337578	36	36	72	72	21.2302	21.2302	42.4605	42.4605	
+371327	36	37	72	72	21.2302	21.82	42.4605	42.4605	
+408451	37	37	73	73	21.82	21.82	43.0502	43.0502	
+449286	37	37	74	73	21.82	21.82	43.6399	43.0502	
+494203	38	38	74	74	22.4097	22.4097	43.6399	43.6399	
+543611	38	38	74	74	22.4097	22.4097	43.6399	43.6399	
+597959	38	38	75	74	22.4097	22.4097	44.2296	43.6399	
+657740	39	39	75	75	22.9994	22.9994	44.2296	44.2296	
+723498	39	39	75	75	22.9994	22.9994	44.2296	44.2296	
+795830	39	39	75	75	22.9994	22.9994	44.2296	44.2296	
+875393	39	38	76	75	22.9994	22.4097	44.8194	44.2296	
+962911	40	38	76	76	23.5891	22.4097	44.8194	44.8194	
+1.05918e+06	40	38	76	76	23.5891	22.4097	44.8194	44.8194	
+1.16507e+06	40	38	76	76	23.5891	22.4097	44.8194	44.8194	
+1.28155e+06	40	37	77	76	23.5891	21.82	45.4091	44.8194	
+1.40967e+06	40	37	77	77	23.5891	21.82	45.4091	45.4091	
+1.5506e+06	40	37	79	77	23.5891	21.82	46.5886	45.4091	
+1.70562e+06	41	38	80	78	24.1789	22.4097	47.1783	45.9988	
+1.87615e+06	41	38	81	78	24.1789	22.4097	47.768	45.9988	
+2.06371e+06	42	40	82	80	24.7686	23.5891	48.3577	47.1783	
+2.27003e+06	42	42	84	83	24.7686	24.7686	49.5372	48.9475	
+2.49698e+06	44	43	86	84	25.9481	25.3583	50.7167	49.5372	
+2.74662e+06	47	46	88	86	27.7172	27.1275	51.8961	50.7167	
+3.02121e+06	53	52	91	90	31.2556	30.6659	53.6653	53.0756	
+3.32326e+06	129	127	139	136	76.075	74.8955	81.9723	80.2031	
+3.6555e+06	133	127	139	137	78.4339	74.8955	81.9723	80.7928	
+4.02096e+06	135	128	142	143	79.6134	75.4853	83.7415	84.3312	
+4.42296e+06	138	128	144	147	81.3825	75.4853	84.9209	86.6901	
+4.86514e+06	142	128	148	145	83.7415	75.4853	87.2798	85.5106	
+5.35154e+06	144	129	149	147	84.9209	76.075	87.8696	86.6901	
+5.88656e+06	148	128	150	149	87.2798	75.4853	88.4593	87.8696	
+6.47507e+06	151	130	153	153	89.049	76.6647	90.2285	90.2285	
+7.12242e+06	153	129	156	156	90.2285	76.075	91.9977	91.9977	
+7.83448e+06	154	130	156	158	90.8182	76.6647	91.9977	93.1771	
+8.61774e+06	156	130	160	159	91.9977	76.6647	94.3566	93.7668	
+9.4793e+06	160	128	162	161	94.3566	75.4853	95.536	94.9463	
+1.0427e+07	162	129	165	169	95.536	76.075	97.3052	99.6641	
+1.14694e+07	165	130	167	167	97.3052	76.6647	98.4847	98.4847	
+1.26161e+07	168	136	171	169	99.0744	80.2031	100.844	99.6641	
+1.38774e+07	170	141	173	173	100.254	83.1517	102.023	102.023	
+1.52648e+07	173	143	176	176	102.023	84.3312	103.792	103.792	
+1.67909e+07	175	148	178	178	103.203	87.2798	104.972	104.972	
+1.84696e+07	179	151	183	180	105.561	89.049	107.92	106.151	
+2.03161e+07	181	157	183	185	106.741	92.5874	107.92	109.1	
+2.23472e+07	181	160	189	185	106.741	94.3566	111.459	109.1	
+2.45813e+07	187	163	191	192	110.279	96.1258	112.638	113.228	
+2.70389e+07	189	166	192	195	111.459	97.8949	113.228	114.997	
+2.97421e+07	191	170	196	196	112.638	100.254	115.587	115.587	
+3.27156e+07	193	174	198	195	113.818	102.613	116.766	114.997	
+3.59863e+07	195	180	200	198	114.997	106.151	117.946	116.766	
+3.9584e+07	198	181	202	202	116.766	106.741	119.125	119.125	
+4.35415e+07	198	186	205	203	116.766	109.69	120.894	119.715	
+4.78945e+07	199	187	206	206	117.356	110.279	121.484	121.484	
+5.26828e+07	201	189	204	206	118.535	111.459	120.305	121.484	
+5.79498e+07	205	192	208	209	120.894	113.228	122.664	123.253	
+6.37433e+07	207	195	208	212	122.074	114.997	122.664	125.022	
+7.01161e+07	208	197	211	210	122.664	116.177	124.433	123.843	
+7.7126e+07	209	199	212	212	123.253	117.356	125.022	125.022	
+8.48367e+07	212	202	212	215	125.022	119.125	125.022	126.792	
+9.33182e+07	213	206	214	215	125.612	121.484	126.202	126.792	
+1.02648e+08	213	207	214	218	125.612	122.074	126.202	128.561	
+1.1291e+08	216	207	217	218	127.381	122.074	127.971	128.561	
+1.24198e+08	217	208	219	217	127.971	122.664	129.151	127.971	
+1.36615e+08	217	211	219	219	127.971	124.433	129.151	129.151	
+1.50273e+08	220	212	220	221	129.74	125.022	129.74	130.33	
+1.65297e+08	220	213	220	220	129.74	125.612	129.74	129.74	
+1.81822e+08	220	214	220	221	129.74	126.202	129.74	130.33	
+2e+08	221	216	221	221	130.33	127.381	130.33	130.33	
+endofdata

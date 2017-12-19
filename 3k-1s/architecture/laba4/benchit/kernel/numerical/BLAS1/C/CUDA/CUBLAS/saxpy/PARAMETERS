@@ -1,0 +1,14 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2010-01-25 fschmitt $
+# $URL: svn+ssh://benchit@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/numerical/BLAS1/C/CUDA/CUBLAS/saxpy/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: Measurement of Nvidia CUBLAS saxpy performance
+#####################################################################
+
+ # Kernel iterates over PROBLEMLIST
+BENCHIT_KERNEL_PROBLEMLIST="1-10000/7"

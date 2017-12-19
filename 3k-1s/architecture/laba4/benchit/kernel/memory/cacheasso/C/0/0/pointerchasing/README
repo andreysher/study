@@ -1,0 +1,66 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: README 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/memory/cacheasso/C/0/0/pointerchasing/README $
+#####################################################################
+# Kernel: Kernel to determine the association of the L1 data cache
+#####################################################################
+
+###########################################################
+README file for benchit kernel
+"cacheasso_c"
+
+This file is part of the benchit project of the Center for
+High Performance Computing at the Dresden University of
+Technology.
+
+Author: Michael Kluge - kluge@zhr.tu-dresden.de
+###########################################################
+
+/****h* kernel/cacheasso_c
+* SYNOPSIS
+* to be added 
+* short introduction of the kernel 
+* and of the persons concerned with the kernel
+* SEE ALSO
+* if you want to referenz anything else - here is your chance
+* DESCRIPTION
+* now follows the real ReadMe
+* -----------------------------------------------------------
+* Content
+* 1) What the kernel does
+* 2) Environment variables
+* -----------------------------------------------------------
+* 
+* 1) The kernel tries to determine the association of the
+*    first level data cache. The way to find this value is to
+*    jump around in the memory with N linked pointers. The
+*    last pointer points back to the first pointer. The
+*    number of pointers that are linked in a loop is the
+*    problem size of this kernel. Every loop lenght is
+*    tested with different jump distances. The distances
+*    we use are multiples of 512 Byten and are doubled after
+*    each loop. The biggest distance are 128 Kbytes. You can
+*    change this minimum and maximum parameters by passing
+*    options to the compiler.
+* 
+*    The diagram of the kernel shows the access time for a
+*    loop sequence as funktions of the loop length. If you
+*    have a 4-way associated first level data cache then you
+*    will see a jump in the access time from 4 to 5.
+* 
+* -----------------------------------------------------------
+* 
+* 2) MINSTRIDE - mininum stride we use to jump through the
+*    memory
+*    MAXSTRIDE - maximum stride we use to jump through the
+*    memory
+*    MAXLOOPLENGHT - the maximum loop lenght, should always
+*    be bigger then the expected cache association
+*    
+* -----------------------------------------------------------
+***
+*/

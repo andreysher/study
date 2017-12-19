@@ -1,0 +1,21 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/numerical/vecadd/F77/0/0/BjxxEBjxxPAi/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+
+ # Kernel iterates over PROBLEMLIST (vector lenght)
+ #BENCHIT_KERNEL_PROBLEMLIST="1,3,6,7,9, 10-100, 100-1000/100, 1000-10000/1000"
+ BENCHIT_KERNEL_PROBLEMLIST="10-3000/3"
+ 
+ # Number of repetitions for every single measurement in
+ # the kernel.
+ # This multiplies with the ACCURACY-variable in the
+ # configure script of the benchit main program.
+ BENCHIT_KERNEL_REPETITIONS=1
+ 
+

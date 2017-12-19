@@ -1,0 +1,23 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/io/ls/C/0/0/io_ls/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+ 
+ # Where the root directory shall be written
+ BENCHIT_KERNEL_IO_TREE_ROOT="/tmp/benchit_io_dir"
+
+ # Depth of binary directory tree
+ BENCHIT_KERNEL_IO_TREE_DEPTH=5
+ 
+ # |F|iles |P|er |D|irectory, only for leafs
+ BENCHIT_KERNEL_IO_TREE_FPD=2
+ 
+ # How many directories to read in each measurement
+ BENCHIT_KERNEL_IO_DIRS_TO_READ=10
+
+

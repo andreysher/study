@@ -1,0 +1,28 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/applications/reflection/C/0/0/soccergoal/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: compare the possibility to hit the goal when the pole
+#         have a squared or round form
+#####################################################################
+ 
+ # Kernel iterates over PROBLEMLIST
+ # for each step the halfcircles (180 degree) are subdivided into PROBLEMSIZE+1 parts
+ #BENCHIT_KERNEL_PROBLEMLIST="1,3,6,7,9, 10-100, 100-1000/100, 1000-10000/1000"
+ BENCHIT_KERNEL_PROBLEMLIST="1-360/1"
+ 
+ # explanation:
+ #   * we have 2 circles (in the simulation only halfcircles, because a shot
+ #                        from a point outside of the field make no sense):
+ #       - one is for the point the player stand with the ball
+ #       - the next is for point the ball hits the pole
+ #   * the player make a shot from each point of the outer circle to each point of the inner circle
+ #   * now we count the balls which end up in the goal
+ #       - one time for a goal with squared poles
+ #       - one time for a goal with round poles
+ 

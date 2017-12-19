@@ -1,0 +1,13 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: cuda kernel skeleton
+#####################################################################
+
+ BENCHIT_KERNEL_PROBLEMSIZE_MIN=100000
+ BENCHIT_KERNEL_PROBLEMSIZE_MAX=1000000
+ BENCHIT_KERNEL_PROBLEMSIZE_INCREMENT=5000

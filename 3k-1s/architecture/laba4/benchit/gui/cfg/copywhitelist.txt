@@ -1,0 +1,14 @@
+# Whitelist
+#
+# This file lists all item that should be copied to a remote folder during creation.
+# Every line contains a file or folder relative to the benchit folder.
+# Please use / to separate folders, e.g. folder/subfolder.
+#
+benchit.c
+interface.h
+tools
+LOCALDEFS/PROTOTYPE_input_display
+LOCALDEFS/PROTOTYPE_input_architecture
+jbi
+RUN.SH
+COMPILE.SH

@@ -1,0 +1,82 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: README 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/numerical/meanSquareError/C/0/0/double/README $
+#####################################################################
+
+###########################################################
+README file for benchit kernel
+"mse_c"
+
+This file is part of the benchit project of the Center for
+High Performance Computing at the Dresden University of
+Technology.
+
+Author: Sebastian Koelling - koelling@zhr.tu-dresden.de
+###########################################################
+
+
+/****h* kernel/mse_c
+* SYNOPSIS
+* A kernel solving a linear mean square error problem
+* by using QR decomposition.
+* Author: Sebastian Koelling - koelling@zhr.tu-dresden.de
+* SEE ALSO
+* no references
+* DESCRIPTION
+* -----------------------------------------------------------
+* Content
+* 1) What the kernel does
+* 2) Environment variables
+* 3) Hints
+* -----------------------------------------------------------
+* 
+* 1) What the kernel does
+* 
+* The Kernel solves solves a linear mean square error problem.
+* Therefore it calculates a matrix which presents a number of points
+* by using a Polynom and various random variances.
+* Then it tries to find the best approximation for the coefficients
+* of a polynom of n-th degree.
+* The FLOPS the kernel reaches during the approximation is measured.
+* 
+* The approximation is made by using a QR decomposition after
+* Householder and solving the linear system of equations that
+* the R-Matrix represents.
+* 
+* The X-axis of the resulting diagramm is the number of unknown
+* variables. So if x=15 a approximation with polynom of 15th degree
+* is made.
+* The Y-axis shows the reached FLOPS.
+* 
+* 
+* 2) Environment variables
+* 
+* You can find the 3 environment variables in the file "mse.h"
+* 
+* SIZE: represents the number of points the will be created for the
+* approximation. The solution of the problem is a polynom which has
+* the fewest mean square error to all the points.
+* 
+* MINVARS: represents the minimum of unknown variables that should be
+*          used for the approximation.
+* 
+* MAXVARS: represents the maximum of unknown variables that should be
+*          used for the approximation.
+* 
+* 
+* 3) Hints
+* 
+* MINVARS should not be smaller then 2. Two unknown coefficients means
+*    the polynmon: y=ax+b with a and b unknown. So its a linear
+*    approximation and everything below that is not really useful.
+* 
+* MAXVARS should not be bigger then 300 because of the limitations of
+*    the double type in C. The program will display a warning if its
+*    bigger but it wont stop!
+*
+***
+*/

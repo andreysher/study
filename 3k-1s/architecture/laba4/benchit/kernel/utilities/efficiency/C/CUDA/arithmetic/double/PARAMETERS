@@ -1,0 +1,16 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# For license details see COPYING in the package base directory
+#####################################################################
+
+#Number of accesses
+#BENCHIT_KERNEL_NUMTHREADS="1;64-16384/64"
+BENCHIT_KERNEL_NUMTHREADS="1;64-65536/64"
+#BENCHIT_KERNEL_NUMTHREADS="2097152-2097152/2048"
+
+BENCHIT_KERNEL_THREADS_PER_BLOCK=1024;
+
+BENCHIT_KERNEL_COMMENT="${BENCHIT_KERNEL_THREADS_PER_BLOCK} TPB"

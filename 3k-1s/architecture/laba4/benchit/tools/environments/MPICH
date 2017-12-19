@@ -1,0 +1,57 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: MPICH 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/tools/environments/MPICH $
+# For license details see COPYING in the package base directory
+#####################################################################
+
+########################################################################
+# FIRST PART: ASSEMBLE COMMAND
+########################################################################
+
+execute_cmd="${BENCHIT_KERNELBINARY} ${BENCHIT_KERNELBINARY_ARGS}"
+
+if [ "${BENCHIT_RUN_USE_MPI}" = "1" ]; then
+	execute_cmd="${BENCHIT_MPIRUN} -np ${BENCHIT_NUM_PROCESSES} ${execute_cmd}"
+fi
+
+#moved to actual execution as assembling this into the command string
+#confuses the shell (passes redirection as argument to the kernel)
+#if [ -n "${BENCHIT_RUN_REDIRECT_CONSOLE}" ]; then
+#	execute_cmd="${execute_cmd} > ${BENCHIT_RUN_REDIRECT_CONSOLE} 2>&1"
+#fi
+
+
+########################################################################
+# SECOND PART: SAVE ENVIRONMENT IF NECESSARY
+########################################################################
+
+
+########################################################################
+# THIRD PART: EXECUTE AND CLEANUP
+########################################################################
+
+if [ "${BENCHIT_RUN_TEST}" != "1" ]; then
+	cd ${BENCHITROOT}
+	if [ -n "${BENCHIT_RUN_REDIRECT_CONSOLE}" ]; then
+		${execute_cmd} > ${BENCHIT_RUN_REDIRECT_CONSOLE} 2>&1
+	else	
+		${execute_cmd}
+	fi
+	if [ "${BENCHIT_RUN_CLEAN}" = "1" ]; then
+		rm -f ${BENCHIT_KERNELBINARY}
+	fi
+else
+	printf "${execute_cmd}"
+        if [ -n "${BENCHIT_RUN_REDIRECT_CONSOLE}" ]; then
+		printf " > ${BENCHIT_RUN_REDIRECT_CONSOLE} 2>&1"
+	fi
+	printf "\n"
+	if [ "${BENCHIT_RUN_CLEAN}" = "1" ]; then
+		printf "rm -f ${BENCHIT_KERNELBINARY}\n"
+	fi
+fi
+

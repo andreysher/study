@@ -1,0 +1,24 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/numerical/dotproduct/F77/0/0/double/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: Core for dot product of two vectors
+#####################################################################
+
+ # Kernel iterates over PROBLEMLIST
+ BENCHIT_KERNEL_PROBLEMLIST="1-100/1,1000-10000/11,10000-100000/101"
+ 
+ # shall the kernel do a cache flush befor dot product calculation
+ # 0 or "" -> no flush, else -> perform flush
+ BENCHIT_KERNEL_PERFORM_CACHEFLUSH=1
+ 
+ # number of doubles in a array to perform a cache flush
+ # BENCHIT_KERNEL_NCACHE * 8 in bytes should be bigger that the cache of the CPU
+ # example: 400000 for a 3MB L2 cache
+ BENCHIT_KERNEL_NCACHE=400000
+

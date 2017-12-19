@@ -1,0 +1,121 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id$
+# $URL$
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: measures aggregate read bandwidth of multiple parallel threads.
+#####################################################################
+
+ #additional information (e.g Turbo Boost enabled/disabled)
+ COMMENT=""
+
+ #at&t-style inline assembly is used so other compilers might not work
+ #BENCHIT_CC="vtcc"
+ #BENCHIT_CC_C_FLAGS="-vt:inst manual -vt:cc gcc -DVTRACE"
+ #aditional flag for energy measurement
+ #BENCHIT_CC_C_FLAGS="${BENCHIT_CC_C_FLAGS} -vt:mt"
+ BENCHIT_RUN_LINEAR="1"
+ BENCHIT_RUN_ACCURACY="3"
+ 
+ TRACE_FILE_PREFIX="${TRACE_FILE_PREFIX}PAPI_"
+ TRACE_FILE_POSTFIX="${TRACE_FILE_POSTFIX}_${CPUFREQ}"
+
+ #disable compiler optimization. Optimisations would destroy the measurement, as some obviously
+ #useless operations when touching memory would be removed by the compiler 
+ BENCHIT_CC_C_FLAGS_HIGH="-O0"
+
+ #list of memorysizes to use for the measurement
+ #format: "x,y,z"or "x-y" or "x-y/step" or any combination
+ #BENCHIT_KERNEL_PROBLEMLIST="8192-131071/4096,131072-4194303/32768,4194304-14999999/524288,15000000-39999999/2000000,40000000-202000000/8000000"
+
+ #alternative: automatically generate logarithmic scale
+ #MIN should be at least half the L1 size times the number of CPUs used
+ #MAX should be at least twice the last level cache size of all used dies
+ BENCHIT_KERNEL_MIN=16000
+ BENCHIT_KERNEL_MAX=2000000
+ BENCHIT_KERNEL_STEPS=100
+
+ #number of accesses for each data set size
+ BENCHIT_KERNEL_ACCESSES=307200000
+
+ #defines which cpus to run on, if not set sched_getaffinity is used to determine allowed cpus
+ #format: "x,y,z"or "x-y" or "x-y/step" or any combination
+ BENCHIT_KERNEL_CPU_LIST="0-127"
+ 
+ #Allocation method: (G/L) (default L)
+ #G: one global block of memory allocated and initialized by master thread
+ #L: each thread allocates and initilizes its own memory
+ #has no effect on UMA Systems
+ #effect on NUMA Systems depends on numactl setting, when used with localalloc policy option G results in
+ #memory being allocated at one numa node, option L results in memory of each thread being allocated at the 
+ #node the associated thread is runing on. If numactl is set to interleaved allocation, G and L should show
+ #the same result
+ BENCHIT_KERNEL_ALLOC="L"
+ 
+ #Multiple Threads using the same memory controller can cause conflickts in the memory
+ #(e.g. all Threads using the same memory channel or access the same chip of a single DIMM)
+ #This parameter assigns each Thread an individual offset (Thread-ID*THREAD_OFFSET)
+ #e.g not all Threads start at a 2M boundary when using hugepages
+ BENCHIT_KERNEL_THREAD_OFFSET="226688"
+ 
+ #use hugepages (0/1) (default 0, 1 recommended if hugetlbfs is available)
+ BENCHIT_KERNEL_HUGEPAGES=0
+ #hugepage directory, only needed when setting value above to "1"
+ BENCHIT_KERNEL_HUGEPAGE_DIR="/mnt/huge"
+ 
+ #method that will be used for the measurement (load_pi|load_pd|load_ps|store|store_nt|copy|copy_nt|scale_int)
+ #alternative load variants (mul_pi|add_pi|mul_pd|add_pd|mul_ps|add_ps|mul_sd|add_sd|mul_ss|add_ss|div_pd|div_ps|div_sd|div_ss|sqrt_pd|sqrt_ps|sqrt_sd|sqrt_ss|mul_add_pd|mul+add_pd|and_pi|and_pd)
+ # use arithmetic operations instead of movdqa to move data
+ # _p* -> packed, _s* -> scalar
+ # _*i -> integer, _*d -> double, _*s -> single
+ # the scalar versions can report to high bandwidth for the L1 cache (e.g. on AMD K8)
+ #*_pi/scale_int requires SSE4.1
+ BENCHIT_KERNEL_INSTRUCTION="load_pd"
+
+ #initialization values
+ BENCHIT_KERNEL_INT_INIT="546743"
+ BENCHIT_KERNEL_FP_INIT="75498.51"
+ #BENCHIT_KERNEL_FP_INIT="0.0"
+
+ #unaligned functions may access addresses, which are not aligned to the size 
+ #of the data type they are using (default 0)
+ BENCHIT_KERNEL_OFFSET="0"
+ 
+ #defines how many accesses are made using different registers, befor reusing the first register (default 4)
+ BENCHIT_KERNEL_BURST_LENGTH="8"
+ 
+ #influences which part of the buffer is accessed first during the measurement
+ #LIFO: measurement starts with the last byte that has been previosly used
+ #FIFO: measurement starts with the first byte that has been previosly used (default) 
+ BENCHIT_KERNEL_USE_DIRECTION="FIFO"
+ 
+ #when enabled PAPI_INC and PAPI_LIB environment variables have to point to
+ #the papi include directory or papi lib directory, respectively
+ #!!! recompilation required if the following parameter is changed !!!
+ BENCHIT_KERNEL_ENABLE_PAPI="0"
+ #comma seperated list of counters that should be measured
+ BENCHIT_KERNEL_PAPI_COUNTERS="PAPI_L2_TCM"
+ 
+ #highly experimental,requires perfmon2 !
+ #!!! recompilation required if the following parameter is changed !!!
+ BENCHIT_KERNEL_ENABLE_NEHALEM_UNCORE_EVENTS="0"
+ #UNCORE counters to measure
+ BENCHIT_KERNEL_UNCORE_EVENT="UNC_GQ_CYCLES_FULL:WRITE_TRACKER,UNC_GQ_CYCLES_NOT_EMPTY:WRITE_TRACKER"
+ 
+ #max time a benchmark can run
+ BENCHIT_KERNEL_TIMEOUT=1000
+ 
+ #default comment that will be displayed by the GUI summarizes used settings
+ BENCHIT_KERNEL_COMMENT="${COMMENT}  ${BENCHIT_KERNEL_INSTRUCTION}(+${BENCHIT_KERNEL_OFFSET}), alloc: ${BENCHIT_KERNEL_ALLOC}, hugepages: ${BENCHIT_KERNEL_HUGEPAGES}, use mode: ${BENCHIT_KERNEL_USE_MODE}(${BENCHIT_KERNEL_USE_ACCESSES}), flush: ${BENCHIT_KERNEL_FLUSH_L1}${BENCHIT_KERNEL_FLUSH_L2}${BENCHIT_KERNEL_FLUSH_L3} - ${BENCHIT_KERNEL_FLUSH_MODE}(${BENCHIT_KERNEL_FLUSH_ACCESSES})"
+ VT_FILE_PREFIX="${TRACE_FILE_PREFIX}Energy-${BENCHIT_KERNEL_INSTRUCTION}_CPU-${BENCHIT_KERNEL_CPU_MASK}${BENCHIT_KERNEL_CPU_LIST}_HUGE-${BENCHIT_KERNEL_HUGEPAGES}_ALLOC-${BENCHIT_KERNEL_ALLOC}_UNROLL-${BENCHIT_KERNEL_BURST_LENGTH}${TRACE_FILE_POSTFIX}"
+ 
+#Uncomment settings that are not detected automatically on your machine
+# BENCHIT_KERNEL_CPU_FREQUENCY=2200000000
+# BENCHIT_KERNEL_L1_SIZE=
+# BENCHIT_KERNEL_L2_SIZE=
+# BENCHIT_KERNEL_L3_SIZE=
+# BENCHIT_KERNEL_CACHELINE_SIZE=

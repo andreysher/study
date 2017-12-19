@@ -1,0 +1,3 @@
+putin||assign(*rodsPath,/$rodsZoneClient/home/$userNameClient/*rodsName)##msiDataObjPutWithOptions(*rodsPath,*source,*local,*out,"forceFlag",NULL)|nop##nop
+*local=$1%*rodsName=$2%*source=$3
+ruleExecOut

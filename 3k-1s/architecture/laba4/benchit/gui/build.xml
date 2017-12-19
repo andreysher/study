@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="help" name="BenchIT-GUI">
+    <!--ANT 1.7 is required                                        -->
+	<property environment="env"/>
+
+    <property name="build" value="build"/>
+    <property name="src" value="src"/>
+    <property name="dist" value="bin"/>
+	<property name="lib" value="lib"/>
+    <property name="build.classes" value="build/classes"/>
+
+	<condition property="axis2.loc" value="${env.AXIS2_HOME}/lib" else="${lib}">
+		<and>
+			<isset property="env.AXIS2_HOME"/>
+		</and>
+	</condition>
+	
+	<path id="axis2.classpath" location="${axis2.loc}">
+		<fileset dir="${axis2.loc}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+	<zipfileset id="axis2.jars" dir="${lib}">
+		<include name="**/axiom-api-*.jar"/>
+		<include name="**/axiom-dom-*.jar"/>
+        <include name="**/axiom-impl-*.jar"/>
+		<include name="**/axis2-adb-*.jar"/>
+        <include name="**/axis2-kernel-*.jar"/>
+        <include name="**/backport-util-concurrent-*.jar"/>
+        <include name="**/wsdl4j-*.jar"/>
+        <include name="**/wstx-asl-*.jar"/>
+        <include name="**/XmlSchema-*.jar"/>
+        <include name="**/neethi-*.jar"/>
+        <include name="**/activation-*.jar"/>
+        <include name="**/commons-httpclient-*.jar"/>
+        <include name="**/commons-logging-*.jar"/>
+		<exclude name="META-INF/*.SF"/>
+	</zipfileset>
+
+	<target name="clean" description="remove previous build artifacts">
+		<delete dir="${build.classes}"/>
+		<delete dir="${build}"/>
+		<delete file="${dist}/BenchIT.jar"/>
+	</target>
+	
+	<target name="prepare" description="set up directory structure: dist, lib, and build/classes">
+        <mkdir dir="${dist}"/>
+		<mkdir dir="${build}"/>
+		<mkdir dir="${build.classes}"/>
+	</target>
+	
+	<target name="compile" description="compile all source files from src into build/classes." depends="prepare">
+		<javac srcdir="${src}" destdir="${build.classes}" includejavaruntime="no" includeantruntime="no" optimize="true" debug="on" deprecation="true" bootclasspath="${sun.boot.class.path}" extdirs="${java.ext.dirs}" fork="yes" sourcepath="">
+			<classpath>
+				<pathelement location="${lib}"/>
+				<fileset dir="${lib}">
+					<include name="**/*.jar"/>
+				</fileset>				
+			</classpath>
+		</javac>
+	</target>
+	
+    <target name="pack.noup" depends="prepare,compile" description="re-create the jar in dist/ and include all jars from lib/. compile is called to incorporate changes to classes.">
+		<jar destfile="${dist}/BenchIT.jar" filesetmanifest="mergewithoutmain" compress="true" level="9">
+			<zipgroupfileset excludes="META-INF/*.SF" dir="${lib}" includes="**/*.jar"/>
+			<manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Main-Class" value="BIGMain"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+			<fileset dir="${build.classes}">
+				<exclude name="test/"/>
+			</fileset>
+			<fileset dir=".">
+				<include name="**/*.jks"/>
+			</fileset>
+		</jar>
+    </target>
+	
+	<target name="pack.up" depends="prepare,compile" description="update a previously created jar in dist/ and include all jars from lib/. compile is called to incorporate changes to classes.">
+		<jar destfile="${dist}/BenchIT.jar" filesetmanifest="mergewithoutmain" compress="true" level="9" update="true">
+			<zipgroupfileset excludes="META-INF/*.SF" dir="${lib}" includes="**/*.jar"/>
+			<manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Main-Class" value="BIGMain"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+			<fileset dir="${build.classes}">
+				<exclude name="test/"/>
+			</fileset>
+			<fileset dir=".">
+				<include name="**/*.jks"/>
+			</fileset>
+        </jar>		
+	</target>
+	
+	<target name="help" description="print this help">
+		<exec executable="ant">
+			<arg value="-p"/>
+		</exec>
+	</target>
+
+	<target name="bcc.help" description="bitconnect client: show general usage information on bcc. tasks">
+		<echo>
+			The bcc.* tasks are supposed for maintenance on the Axis2 generated classes found in org.benchit.bitconnect.service.*.
+			
+			[bcc.clean]
+			will remove all the generated classes. This is usefull especially if the WSDL has undergone some changes,
+			and some features have been refactored or removed.
+			
+			[bcc.regen]
+			will regenerate the service client based on the WSDL published at https://www.benchit.org/lib/service/service.php.
+			In order for code generation to work, a complete Apache Axis2 distribution has to be installed somewhere on the development
+			system and an environment variable AXIS2_HOME has to point to the directory containing all the Axis2 *.jar's.
+			Also, make sure that the servers SSL certificate is contained within benchitkeys.jks.
+		</echo>
+	</target>
+	
+	<target name="bcc.clean" description="bitconnect client: remove all generated source files.">
+        <delete dir="${src}/org/benchit/bitconnect/service"/>
+	</target>
+	
+	<target name="bcc.regen" description="bitconnect client: regenerate the client's source files using axis2's wsdl2java.">
+    	<java classname="org.apache.axis2.wsdl.WSDL2Java" fork="true">
+            <classpath refid="axis2.classpath"/>
+    		<sysproperty key="usessl" value="true"/>
+    		<sysproperty key="javax.net.ssl.trustStore" value="benchitkeys.jks"/>
+    		<sysproperty key="javax.net.ssl.trustStorePassword" value="www.benchit.org"/>
+            <arg value="-wv"/>
+            <arg value="1.1"/>
+            <arg value="-uw"/>
+            <arg value="-u"/>
+            <arg value="-t"/>
+            <arg value="-or"/>
+    		<arg value="-ap"/>
+    		<arg value="-d"/>
+    		<arg value="adb"/>
+    		<arg value="-g"/>
+            <arg value="-uri"/>
+            <arg value="https://www.benchit.org/lib/service/BITConnect.wsdl"/>
+        	<arg value="--noBuildXML"/>
+    		<arg value="-o"/>
+    		<arg file="generated"/>
+        </java>
+	</target>
+</project>

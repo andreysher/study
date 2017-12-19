@@ -1,0 +1,10 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# For license details see COPYING in the package base directory
+#####################################################################
+
+#Number of accesses
+BENCHIT_KERNEL_ITERATIONS="1-20/1"

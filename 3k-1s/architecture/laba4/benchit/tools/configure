@@ -1,0 +1,560 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: configure 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/tools/configure $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: <description>
+#####################################################################
+
+# Debugging mode off by default
+[ -z "${SHELLSCRIPT_DEBUG}" ] && SHELLSCRIPT_DEBUG=0
+
+debug_msg() {
+	if [ "${SHELLSCRIPT_DEBUG}" = "1" ]; then
+		printf "${1}\n"
+	fi
+}
+
+###############################################################################
+
+check_files() {
+# Check whether all necessary files are present and create directories if needed
+
+	# List of optional files for BenchIT
+	BENCHIT_OPTIONAL_FILES="\
+LOCALDEFS/PROTOTYPE_input_architecture \
+LOCALDEFS/PROTOTYPE_input_display \
+"
+
+	# List of needed files for BenchIT
+	BENCHIT_MANDATORY_FILES="\
+benchit.c \
+interface.h \
+tools/envhashbuilder.c \
+tools/bienvhash.template.c \
+tools/bienvhash.h \
+tools/stringlib.c \
+tools/stringlib.h \
+tools/bitWriter.c \
+tools/bitWriter.h \
+tools/gnuWriter.c \
+tools/gnuWriter.h \
+tools/output.c \
+tools/output.h \
+"
+
+	# Check existance of optional files
+	for myfile in ${BENCHIT_OPTIONAL_FILES}; do
+		if [ ! -f "${BENCHITROOT}/$myfile" ]; then
+			printf "BenchIT: WARNING: \"$myfile\" not present. Trying to continue...\n"
+		fi
+	done
+
+	# Check existance of mandatory files
+	for myfile in ${BENCHIT_MANDATORY_FILES}; do
+		if [ ! -f "${BENCHITROOT}/$myfile" ]; then
+			printf "BenchIT: ERROR: \"$myfile\" not present - Sorry, can't continue without it. Aborting.\n"
+			exit 1
+		fi
+	done
+
+	if [ ! -d "${BENCHITROOT}/bin" ]; then
+		mkdir "${BENCHITROOT}/bin"
+	fi
+
+	if [ -z "$BENCHIT_RUN_OUTPUT_DIR" ]; then
+	   BENCHIT_RUN_OUTPUT_DIR="${BENCHITROOT}/output"
+	   export BENCHIT_RUN_OUTPUT_DIR
+	fi
+
+	#printf "BenchIT: Checking for necessary files   [  OK  ]\n"
+}
+###############################################################################
+
+load_localdefs() {
+	# if we are new on the machine (LOCALDEFS don't exist) run script FIRSTTIME
+	[ -f "${BENCHITROOT}/LOCALDEFS/${BENCHIT_NODENAME}" ] || "${BENCHITROOT}/tools/FIRSTTIME"
+
+	[ "$?" -ne 0 ] && printf "BenchIT: ERROR: First time setup did not run successfully. Aborting...\n" && exit 1
+
+	# Source LOCALDEFS
+	if  [ -f "${BENCHITROOT}/LOCALDEFS/${BENCHIT_NODENAME}" ]; then
+		debug_msg "Configure: Loading \"${BENCHITROOT}/LOCALDEFS/${BENCHIT_NODENAME}\"\n"
+		set -a
+		. "${BENCHITROOT}/LOCALDEFS/${BENCHIT_NODENAME}"
+		set +a
+	else
+		printf "BenchIT: WARNING: No LOCALDEFS found for your system. Trying to continue...\n"
+	fi
+}
+###############################################################################
+
+load_parameter_file() {
+	if [ -n "$BENCHIT_PARAMETER_FILE" ] && [ "$BENCHIT_IGNORE_PARAMETER_FILE" != "1" ]; then
+		# Use eval for expanding "~" in pathname, if not already done.
+		eval BENCHIT_PARAMETER_FILE="$BENCHIT_PARAMETER_FILE"
+		cd "`dirname \"$BENCHIT_PARAMETER_FILE\"`"
+		BENCHIT_PARAMETER_FILE="`pwd`/`basename \"$BENCHIT_PARAMETER_FILE\"`"	
+		#Pass parameterfile in RUN mode
+		#if [ "$CONFIGURE_MODE" = "RUN" ] && [ -n "$BENCHIT_PARAMETER_FILE" ]; then
+		#	BENCHIT_KERNELBINARY_ARGS="$BENCHIT_KERNELBINARY_ARGS -p $BENCHIT_PARAMETER_FILE"
+		#fi
+		cd "$OLDCWD"
+		if [ ! -r "$BENCHIT_PARAMETER_FILE" ]; then
+			printf "Configure: ERROR: Parameterfile \"$BENCHIT_PARAMETER_FILE\" not readable\n"
+			exit 1
+		fi
+	elif [ "$BENCHIT_IGNORE_PARAMETER_FILE" != "1" ]; then
+	#BENCHIT_PARAMETER_FILE is empty (no --parameter-file= used)
+		if [ -r "${KERNELDIR}/PARAMETERS" ]; then
+			BENCHIT_PARAMETER_FILE="${KERNELDIR}/PARAMETERS"
+		else
+			debug_msg "Configure: NO Parameterfile used."
+		fi
+		#Pass parameterfile in RUN mode
+		#if [ "$CONFIGURE_MODE" = "RUN" ] && [ -n "$BENCHIT_PARAMETER_FILE" ]; then
+		#	BENCHIT_KERNELBINARY_ARGS="$BENCHIT_KERNELBINARY_ARGS -p $BENCHIT_PARAMETER_FILE"
+		#fi
+	else
+		debug_msg "Configure: NO Parameterfile used."
+	fi
+
+	# Source parameter file (if any)
+	if [ -n "$BENCHIT_PARAMETER_FILE" ]; then
+		debug_msg "Configure: Loading \"$BENCHIT_PARAMETER_FILE\"\n"
+		set -a
+		. "$BENCHIT_PARAMETER_FILE"
+		set +a
+	fi
+
+	# Check if a C compiler is available
+	if [ -z "$BENCHIT_CC" ]; then
+		printf "BenchIT: ERROR: Cannot find specified C compiler. Check if you supplied it in your LOCALDEFS.\n"
+		printf "                Sorry, can't continue without it. Aborting...\n"
+		exit 1
+	fi
+
+	#printf "BenchIT: System definitions loaded   [  OK  ]\n"
+}
+
+###############################################################################
+
+compile_prerequisites() {
+	#set LOCAL_COMPILER to BENCHIT_CC if not defined diferent
+	#it is only necessary to define it for cross-compiling
+	if [ -z "$BENCHIT_LOCAL_CC" ];then
+	   BENCHIT_LOCAL_CC="$BENCHIT_CC"
+	fi
+	if [ -z "$BENCHIT_LOCAL_CC_C_FLAGS" ];then
+	   BENCHIT_LOCAL_CC_C_FLAGS="$BENCHIT_CC_C_FLAGS"
+	fi
+	if [ -z "$BENCHIT_LOCAL_CC_L_FLAGS"  ];then
+	   BENCHIT_LOCAL_CC_L_FLAGS="$BENCHIT_CC_L_FLAGS"
+	fi
+	# create bienvhash.c
+	OLDIR="`pwd`"
+	rm -f "${BENCHITROOT}/tools/envhashbuilder" "${BENCHITROOT}/bienvhash.c"
+	rm -f "${BENCHITROOT}/tools/tmp.env" "${BENCHITROOT}/jbi/BIEnvHash.java"
+	rm -f "${BENCHITROOT}/tools/fileversion"
+	cd "${BENCHITROOT}/tools"
+	printf "${BENCHIT_LOCAL_CC} ${BENCHIT_LOCAL_CC_C_FLAGS} ${BENCHIT_LOCAL_CC_L_FLAGS} -o ./envhashbuilder -ansi -Wall envhashbuilder.c stringlib.c\n"
+	${BENCHIT_LOCAL_CC} ${BENCHIT_LOCAL_CC_C_FLAGS} ${BENCHIT_LOCAL_CC_L_FLAGS} -o ./envhashbuilder -ansi -Wall envhashbuilder.c stringlib.c 2>/dev/null
+	if [ "$?" != "0" ]; then
+		printf "${BENCHIT_LOCAL_CC} ${BENCHIT_LOCAL_CC_C_FLAGS} ${BENCHIT_LOCAL_CC_L_FLAGS} -o ./envhashbuilder envhashbuilder.c stringlib.c\n"
+		${BENCHIT_LOCAL_CC} ${BENCHIT_LOCAL_CC_C_FLAGS} ${BENCHIT_LOCAL_CC_L_FLAGS} -o ./envhashbuilder envhashbuilder.c stringlib.c
+	fi
+	printf "${BENCHIT_LOCAL_CC} ${BENCHIT_LOCAL_CC_C_FLAGS} ${BENCHIT_LOCAL_CC_L_FLAGS} -o ./fileversion fileversion.c\n"
+	${BENCHIT_LOCAL_CC} ${BENCHIT_LOCAL_CC_C_FLAGS} ${BENCHIT_LOCAL_CC_L_FLAGS} -o ./fileversion fileversion.c
+	rm -f envhashbuilder.o stringlib.o
+	cd "${OLDIR}"
+}
+###############################################################################
+
+interactive_setup() {
+	[ ${BENCHIT_INTERACTIVE} != "1" ] && return 1
+	printf "\nBenchIT: Entering Setup\n"
+
+	printf "\nWelcome to BenchIT!\n"
+	printf "\nThis will setup your measurement run in the interactive mode. If you do\n"
+	printf "wish to set the values once and then have this script run automatically\n"
+	printf "edit the file <BenchIT-rootdir>/tools/configure and set the parameter\n"
+	printf "BENCHIT_INTERACTIVE to 0.\n"
+
+	timelimit="g"
+	while [ `printf "${timelimit}" | grep -q -v "[^[:digit:]]"` -ne 0 ]; do
+		printf "\nYou may restrict the length of the measurement by setting\n"
+		printf "BENCHIT_RUN_TIMELIMIT in your LOCALDEFS. It currently has the value ${BENCHIT_RUN_TIMELIMIT},\n"
+		if [ "${BENCHIT_RUN_TIMELIMIT}" = "0" ]; then
+			printf "which means that the kernels will run until all measurements have completed.\n"
+		else
+			printf "which means that the measurements will stop after ${BENCHIT_RUN_TIMELIMIT} seconds.\n"
+		fi
+		printf "You may now change this value if you like to.\n"
+		printf "Enter new value (leave blank to not change it): "
+		read timelimit
+	done
+	[ -n "${timelimit}" ] && BENCHIT_RUN_TIMELIMIT="${timelimit}"
+
+	use_vampir="g"
+	while [ "$use_vampir" != "y" ] && [ "$use_vampir" != "n" ]; do
+		printf "\nThe Vampir suite allows the generation of trace files that can be displayed\n"
+		printf "by vampir as well to help you debug your kernel. Do you wish to use the\n"
+		printf "Vampir trace file library? (y/n) [default=n] "
+		read use_vampir
+	done
+	if [ "$use_vampir" = "y" ]; then
+		BENCHIT_USE_VAMPIR_TRACE=1
+	else
+		BENCHIT_USE_VAMPIR_TRACE=0
+	fi
+
+	accuracy=-1
+	while [ "$accuracy" -lt 0 ]; do
+		printf "\nBenchIT allows for different accuracies of the measurements. This means how\n"
+		printf "often BenchIT will repeat a measurement run to eliminate outliers. How many\n"
+		printf "repetitions should BenchIT do?\n"
+		printf "(Note: Increasing that number will slow down the measurement by that factor)\n"
+		printf "0=no repetition [default=2] "
+		read accuracy
+		[ -z "$accuracy" ] && accuracy=2
+	done
+	BENCHIT_ACCURACY="$accuracy"
+
+	linear="g"
+	while [ "$linear" != "y" ] && [ "$linear" != "n" ]; do
+		printf "\nBenchIT offers two ways how the measurement problem sizes are arranged.\n"
+		printf "Usually BenchIT cuts the problemsize in half and measures for that point.\n"
+		printf "In the next iteration the new intervals are again cut in half and so on.\n"
+		printf "Do you wish to overide this and run the measurement linearly from\n"
+		printf "problemsize 1 to maxproblemsize? (y/n) [default=no] "
+		read linear
+	done
+	if [ "$linear" = "y" ]; then
+		BENCHIT_RUN_LINEAR=1
+	else
+		BENCHIT_RUN_LINEAR=0
+	fi
+
+	debuglevel=-1
+	while [ "$debuglevel" -lt 0 ] || [ "$debuglevel" -gt 3 ]; do
+		printf "\nTo debug the application in case of problems, use the following\n"
+		printf "debug levels:\n"
+		printf "0 for the standard ouput (default)\n"
+		printf "1 additionally a message for each function call (on entry and exit)\n"
+		printf "2 additionally a message for each loop (on entry, cycle, and exit)\n"
+		printf "3 additionally a message for each code section (use this if you encounter\n"
+		printf "  problems when the output-file is written)\n"
+		printf "Which debug level would you like to use for this measurement? "
+		read debuglevel
+	done
+	if [ -z "$debuglevel" ]; then
+	  	debuglevel=0
+	fi
+	BENCHIT_DEBUGLEVEL="$debuglevel"
+}
+###############################################################################
+
+setup_environment_variables() {
+	BENCHIT_DEFINES=""
+
+	if [ "$BENCHIT_USE_VAMPIR_TRACE" = "1" ]; then
+	  BENCHIT_DEFINES="$BENCHIT_DEFINES -DVAMPIR_TRACE"
+	fi
+
+	if [ "$BENCHIT_RUN_LINEAR" = "1" ]; then
+	  BENCHIT_DEFINES="$BENCHIT_DEFINES -DLINEAR_MEASUREMENT"
+	fi
+
+	BENCHIT_DEFINES="$BENCHIT_DEFINES -DDEBUGLEVEL=$BENCHIT_DEBUGLEVEL"
+
+	if [ -z "${BENCHIT_KERNELNAME##*MPI*}" -o "${BENCHIT_RUN_USE_MPI}" = "1" ]; then
+		BENCHIT_DEFINES="${BENCHIT_DEFINES} ${BENCHIT_CPP_MPI} -DUSE_MPI"
+		BENCHIT_CC_L_FLAGS="${BENCHIT_MPICC_L_FLAGS}"
+		BENCHIT_RUN_USE_MPI=1
+		BENCHIT_NUM_PROCESSES="${BENCHIT_NUM_PROCESSES:-$BENCHIT_NUM_CPUS}"
+	fi
+
+	if [ -z "${BENCHIT_KERNELNAME##*OpenMP*}" -o "${BENCHIT_RUN_USE_OPENMP}" = "1" ]; then
+		BENCHIT_RUN_USE_OPENMP=1
+		BENCHIT_NUM_THREADS_PER_PROCESS="${BENCHIT_NUM_THREADS_PER_PROCESS:-$BENCHIT_NUM_CPUS}"
+		OMP_NUM_THREADS="${BENCHIT_NUM_THREADS_PER_PROCESS}"
+	else
+	        OMP_NUM_THREADS=1
+	fi
+
+	#printf "BENCHIT_DEFINES:$BENCHIT_DEFINES\n"
+	#printf "KERNEL_DEFINE:$KERNEL_DEFINES\n"
+}
+###############################################################################
+
+eval_cmdline_args() {
+	for myvar in ${_CMDLINE_VARLIST}; do
+		if [ -z "${myvar%BENCHIT_CMDLINE_ARG_*}" ]; then
+			eval myval="\$${myvar}"
+			# Only assign if not empty
+			if [ -n "${myval}" ]; then
+				envname="BENCHIT_${myvar#BENCHIT_CMDLINE_ARG_}"
+				eval ${envname}="\$${myvar}"
+				if [ "${SHELLSCRIPT_DEBUG}" = "1" ]; then
+					eval myval="\$${envname}"
+					printf "\t${envname} =\t\"${myval}\"\n"
+				fi
+			fi
+		fi
+	done
+}
+###############################################################################
+
+done_msg() {
+	printf "BenchIT: Setting up measurement options   [  OK  ]\n" 
+}
+###############################################################################
+
+
+###############################################################################
+# Main function
+###############################################################################
+# let me handle errors
+set +e
+unset LANG
+
+if [ -z "${CONFIGURE_MODE}" ]; then
+	printf "Configure: ERROR: missing \$CONFIGURE_MODE\n"
+	exit 1
+fi
+
+# Save cwd for later restoration
+OLDCWD="`pwd`"
+# Find the path of the BenchIT main-directory
+CURDIR="`pwd`"
+BENCHITROOT="${CURDIR}"
+# Stop search after changing to 1000th parent directory
+BR=0
+while [ ! -f "${BENCHITROOT}/benchit.c" ] && [ "${BR}" -lt 1000 ]; do
+	BENCHITROOT="${BENCHITROOT}/.."
+	BR=$((${BR} + 1))
+done
+
+if [ ${BR} -ge 1000 ]; then
+	printf "Configure: ERROR: BenchIT root directory not found. Make sure that\n"
+	printf "                  \"benchit.c\" exists in it. Aborting...\n"
+	exit 1
+fi
+
+cd "${BENCHITROOT}"
+BENCHITROOT="`pwd`"
+export BENCHITROOT
+# Restore old cwd
+cd "${OLDCWD}"
+
+if [ ! -f "${BENCHITROOT}/tools/cmdlineparams" ]; then
+	printf "Configure: ERROR: \"${BENCHITROOT}/tools/cmdlineparams\" not present - Sorry, can't continue without it. Aborting...\n"
+	exit 1
+fi
+
+# Parse Commandline parameters
+. "${BENCHITROOT}/tools/cmdlineparams"
+eval_cmdline_args
+
+PATH="${BENCHITROOT}/tools:${PATH}"
+
+KERNELBASEDIR="${BENCHITROOT}/kernel"
+
+# Variables needed by other programs
+_VARLIST="\
+BENCHITROOT
+KERNELBASEDIR
+KERNELDIR
+BENCHIT_DEFINES
+BENCHIT_FILENAME_COMMENT
+BENCHIT_KERNELBINARY
+BENCHIT_KERNELBINARY_ARGS
+BENCHIT_KERNELNAME
+BENCHIT_HOSTNAME
+BENCHIT_NODENAME
+BENCHIT_RUN_USE_MPI
+BENCHIT_RUN_USE_OPENMP
+BENCHIT_LD_LIBRARY_PATH
+BENCHIT_PROGRESS_DIR
+OMP_NUM_THREADS
+PATH
+"
+# Make the variables available in the environment
+for myvar in ${_VARLIST}; do
+	export ${myvar}
+done
+
+# Get nodename and hostname
+if [ -z "$BENCHIT_NODENAME" ]; then
+	BENCHIT_NODENAME="`hostname`" || BENCHIT_NODENAME="`uname -n`"
+	BENCHIT_NODENAME=${BENCHIT_NODENAME%%.*}
+fi
+if [ -z "$BENCHIT_HOSTNAME" ]; then
+	BENCHIT_HOSTNAME="`hostname -f 2>/dev/null`" || BENCHIT_HOSTNAME="$BENCHIT_NODENAME"
+fi
+
+# BENCHIT_KERNELNAME with BENCHIT_FILENAME_COMMENT appended
+KERNELNAME_FULL=""
+# Check if BENCHIT_KERNELBINARY ends with an invalid character
+if [ -n "${BENCHIT_KERNELBINARY}" ]; then
+	if [ "${BENCHIT_KERNELBINARY}" != "${BENCHIT_KERNELBINARY%[.]}" ]; then
+		printf "\nConfigure: ERROR: The kernel binary you specified is invalid (${BENCHIT_KERNELBINARY})\n\n"
+		exit 1
+	fi
+fi
+
+case "${CONFIGURE_MODE}" in
+	RUN)
+		debug_msg "Configure: Entering RUN mode"
+		if [ -n "${BENCHIT_KERNELBINARY}" ]; then
+			cd "`dirname \"${BENCHIT_KERNELBINARY}\"`"
+			BENCHIT_KERNELBINARY="`pwd`/`basename \"${BENCHIT_KERNELBINARY}\"`"
+			cd "$OLDCWD"
+			KERNELNAME_FULL="`basename \"${BENCHIT_KERNELBINARY}\"`"
+			if [ ! -x "${BENCHIT_KERNELBINARY}" ]; then
+				if [ ! -f "${BENCHIT_KERNELBINARY}" ]; then
+					# Search for binary in $BENCHITROOT/bin/ directory
+					BENCHIT_KERNELBINARY="${BENCHITROOT}/bin/${KERNELNAME_FULL}"
+					if [ ! -x "${BENCHIT_KERNELBINARY}" ]; then
+					if [ -f "${BENCHIT_KERNELBINARY}" ]; then
+						printf "Configure: ERROR: File \"${BENCHIT_KERNELBINARY}\" is not executable\n"
+							exit 1
+						else
+							printf "Configure: ERROR: File \"${BENCHIT_KERNELBINARY}\" does not exist\n"
+							exit 1
+						fi
+					fi
+				else
+					printf "Configure: ERROR: File \"${BENCHIT_KERNELBINARY}\" is not executable\n"
+					exit 1
+				fi
+			fi
+			# Strip the comment from KERNELNAME_FULL
+			BENCHIT_KERNELNAME="${KERNELNAME_FULL%.*}"
+			KERNELDIR="${KERNELBASEDIR}/`printf \"${BENCHIT_KERNELNAME}\" | tr . /`"
+		else
+			printf "Configure: ERROR: No kernelbinary specified\n"
+			exit 1
+		fi
+
+		load_localdefs
+		eval_cmdline_args
+		load_parameter_file
+		eval_cmdline_args
+		check_files
+		interactive_setup
+		setup_environment_variables
+		done_msg
+		;;
+	COMPILE)
+		debug_msg "Configure: Entering COMPILE mode"
+		if [ -n "${BENCHIT_KERNELBINARY}" ]; then
+			if [ -z "`echo \"${BENCHIT_KERNELBINARY}\" | cut -s -d / -f 1,2`" ]; then
+				# No "/" in name -> we have a kernelname, not a path
+				debug_msg "Configure: Building BENCHIT_KERNELNAME from \"${BENCHIT_KERNELBINARY}\""
+				BENCHIT_KERNELNAME="`basename \"${BENCHIT_KERNELBINARY}\"`"
+				KERNELDIR="`printf \"${BENCHIT_KERNELNAME}\" | tr . /`"
+				KERNELDIR="${BENCHITROOT}/kernel/${KERNELDIR}"
+			else
+				# We got a path from the commandline
+				cd "${BENCHIT_KERNELBINARY}"
+				KERNELDIR="`pwd`"
+				cd "${OLDCWD}"
+				if [ -d "${KERNELDIR}" ]; then
+					debug_msg "Configure: Building BENCHIT_KERNELNAME from \"${KERNELDIR}\""
+					# Determine kernelname from its path
+					# 1. Remove the KERNELBASEDIR portion from the beginning of KERNELDIR
+					# Remark: remove the slash, too, so that the name does not start with a dot
+					BENCHIT_KERNELNAME="${KERNELDIR#${KERNELBASEDIR}/}"
+					# 2. Replace "/" by "."
+					BENCHIT_KERNELNAME="`printf \"${BENCHIT_KERNELNAME}\" | tr / .`"
+				else
+					printf "Configure: ERROR: Directory \"${KERNELDIR}\" does not exist\n"
+					exit 1
+				fi
+			fi
+			if [ ! -d "${KERNELDIR}" ]; then
+				printf "Configure: ERROR: Kerneldir \"${KERNELDIR}\" does not exist\n"
+				exit 1
+			fi
+		else
+			debug_msg "Configure: Building BENCHIT_KERNELNAME from \"${OLDCWD}\""
+			KERNELDIR="${OLDCWD}"
+			# Check if we are in a kernel subdirectory
+			# If the path contains /kernel/ the result of the opration will be an empty string
+			if [ -n "${KERNELDIR##*/kernel/*}" ]; then
+				usage
+				printf "\nERROR: ${0} was not called from a kernel directory and no kernel\n"
+				printf "       was given on the commandline.\n\n"
+				exit 1
+			fi
+			# Determine kernelname from its path
+			# 1. Remove the KERNELBASEDIR portion from the beginning of KERNELDIR
+			# Remark: remove the slash, too, so that the name does not start with a dot
+			BENCHIT_KERNELNAME="${KERNELDIR#$KERNELBASEDIR/}"
+			# 2. Replace "/" by "."
+			BENCHIT_KERNELNAME="`printf \"${BENCHIT_KERNELNAME}\" | tr / .`"
+		fi
+
+		
+		load_localdefs
+		eval_cmdline_args
+		load_parameter_file
+		eval_cmdline_args
+
+		HLL="`echo -n \"${BENCHIT_KERNELNAME}\" | cut -s -d . -f 3`"
+		# if we have a Java-Kernel we check if JNI-Library is available
+		if [ "${HLL}" = "Java" ]; then
+			printf "checking for JNI-Libraries"
+			if [ ! -f ${BENCHITROOT}/jbi/jni/libjbi.so ]; then
+				printf " - Failed\n"
+				if [ ${BENCHIT_JAVA_HOME} ] && [ -n ${BENCHIT_JAVA_HOME} ] && [ -n ${BENCHIT_CC} ]; then
+					sh "${BENCHITROOT}/jbi/jni/compile.sh" "${BENCHIT_JAVA_HOME}"
+				else
+					printf "will use Java-Fallbacks\n"
+				fi
+			else
+				printf " - OK\n"
+			fi
+		fi
+
+		# Set default values...
+		if [ -z "${BENCHIT_FILENAME_COMMENT}" ]; then
+			BENCHIT_FILENAME_COMMENT="0"
+		fi
+		# Assemble BENCHIT_KERNELBINARY from KERNELNAME and BENCHIT_FILENAME_COMMENT
+		BENCHIT_KERNELBINARY="${BENCHITROOT}/bin/${BENCHIT_KERNELNAME}.${BENCHIT_FILENAME_COMMENT}"
+
+		check_files
+		interactive_setup
+		compile_prerequisites
+		setup_environment_variables
+		done_msg
+		;;
+	FIRSTTIME)
+		if [ -z "${BENCHIT_INTERACTIVE}" ]; then
+			export BENCHIT_INTERACTIVE=1
+		fi
+		;;
+	*)
+		printf "Configure: ERROR: unknown CONFIGURE_MODE \"$CONFIGURE_MODE\".\n"
+		printf "Possible values are: RUN, COMPILE, FIRSTTIME.\n"
+		exit 1
+		;;
+esac
+
+#printf "BenchIT: Leaving Setup\n\n"
+
+# Show exported variables for debugging
+if [ "${SHELLSCRIPT_DEBUG}" = "1" ]; then
+	printf "Configure: Exported variables:\n"
+	for myvar in ${_VARLIST}; do
+		eval myval="\$${myvar}"
+		printf "\t${myvar} =\t\"${myval}\"\n"
+	done
+fi
+

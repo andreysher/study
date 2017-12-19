@@ -1,0 +1,25 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/communication/reduction/C/MPI/0/reduce/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: compare the flops for different MPI reduction methodes
+#####################################################################
+ 
+ #  measured functions:
+ #     1. MPI_MIN
+ #     2. MPI_MAX
+ #     3. MPI_SUM
+ #     4. MPI_PROD
+ #     5. user defined vector addition (commutativ) with vectors in R^3
+ #     6. user defined matmul (not commutativ, Winograd algorithm) with matricies in R^(2,2)
+ 
+ # Kernel iterates over PROBLEMLIST (number of scalar, vectors, matricies in sendarray)
+ #BENCHIT_KERNEL_PROBLEMLIST="1,3,6,7,9, 10-100, 100-1000/100, 1000-10000/1000"
+ BENCHIT_KERNEL_PROBLEMLIST="1024-512000/1024"
+ 
+

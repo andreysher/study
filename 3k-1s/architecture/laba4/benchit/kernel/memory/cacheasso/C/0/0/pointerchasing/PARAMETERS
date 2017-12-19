@@ -1,0 +1,21 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/memory/cacheasso/C/0/0/pointerchasing/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: Kernel to determine the association of the L1 data cache
+#####################################################################
+ 
+ # Iterate over matrix size from BENCHIT_KERNEL_PROBLEMSIZE_MIN
+ # to BENCHIT_KERNEL_PROBLEMSIZE_MAX, incrementing by
+ # BENCHIT_KERNEL_PROBLEMSIZE_INCREMENT with each step.
+
+ BENCHIT_KERNEL_MINSTRIDE=32768
+ BENCHIT_KERNEL_MAXSTRIDE=131072
+ BENCHIT_KERNEL_MAXLOOPLENGTH=20
+
+

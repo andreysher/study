@@ -1,0 +1,156 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id$
+# $URL$
+# For license details see COPYING in the package base directory
+#####################################################################
+# Kernel: measures combined bandwidth of one read and one write stream located
+#          in different cache levels or memory of certain CPUs.
+#####################################################################
+
+ #additional information (e.g Turbo Boost enabled/disabled)
+ COMMENT=""
+
+ #at&t-style inline assembly is used so other compilers might not work
+ BENCHIT_CC=gcc
+ #disable compiler optimization. Optimisations would destroy the measurement, as some obviously
+ #useless operations when touching memory would be removed by the compiler 
+ BENCHIT_CC_C_FLAGS_HIGH="-O0"
+ 
+ #enforce linear measurement
+ BENCHIT_RUN_LINEAR=1
+
+ #list of memorysizes to use for the measurement
+ #format: "x,y,z"or "x-y" or "x-y/step" or any combination
+ #BENCHIT_KERNEL_PROBLEMLIST="16384-131071/512,131072-4194303/32768,4194304-14999999/524288,15000000-39999999/2000000,40000000-200000000/8000000"
+
+ #alternative: automatically generate logarithmic scale
+ #MIN should be about half the L1 size
+ #MAX should be at least twice the last level cache size
+ BENCHIT_KERNEL_MIN=16000
+ BENCHIT_KERNEL_MAX=200000000
+ BENCHIT_KERNEL_STEPS=100
+ 
+ #defines how often each memorysize is measured internally (default 8)
+ #buffers are slightly shifted after each run thus, thus higher values can improve results by reducing bank conflicts
+ BENCHIT_KERNEL_RUNS=8
+ 
+ #defines which cpus to run on, if not set sched_getaffinity is used to determine allowed cpus
+ #format: "x,y,z"or "x-y" or "x-y/step" or any combination
+ BENCHIT_KERNEL_CPU_LIST="0,2,3,4,5,6,7,8-127/8"
+ 
+ #Allocation method: (G/L) (default L)
+ #G: one global block of memory allocated and initialized by master thread
+ #L: each thread allocates and initilizes its own memory
+ #has no effect on UMA Systems
+ #effect on NUMA Systems depends on numactl setting, when used with localalloc policy option G results in
+ #memory being allocated at one numa node, option L results in memory of each thread being allocated at the 
+ #node the associated thread is runing on. If numactl is set to interleaved allocation, G and L should show
+ #the same result
+ BENCHIT_KERNEL_ALLOC="L"
+ 
+ #placement of the streams in memory (F/C/A1/A2) (default F)
+ #F: read buffer starts at the beginning, write buffer in the middle of the whole buffer (determined by BENCHIT_KERNEL_MAX)
+ #C: write buffer starts directly after the end of the read buffer (performs better occasionally, likely causes bank conflicts)
+ #A1: alternateing runs with F and C setting (needs higher number of runs)
+ #A2: first half of the runs uses F setting, second half uses C (needs higher number of runs)
+ BENCHIT_KERNEL_LAYOUT="F"
+ 
+ #use hugepages (0/1) (default 0, 1 recommended if hugetlbfs is available)
+ BENCHIT_KERNEL_HUGEPAGES=0
+ #hugepage directory, only needed when setting value above to "1"
+ BENCHIT_KERNEL_HUGEPAGE_DIR="/mnt/huge"
+
+ #number of accesses when using memory (default 4)
+ BENCHIT_KERNEL_USE_ACCESSES=4
+ 
+ #usage mode: (M/O/E/S/I/F) (default read: E write: M)
+ #the target coherency state when using memory
+ #M: Modified,  leaves accessed cachelines in modified state after usage, shows penalty of writebacks
+ #E: Exclusive, leaves accessed cachelines in exclusive state after usage, avoids writebacks
+ #I: Invalid,   invalidates caches after usage, only usefull to test memory controller
+ #S: Shared,    shares unmodified cachelines with another CPU, other CPU reads last
+ #F: Forward,   shares unmodified cachelines with another CPU, other CPU reads first
+ #O: Owned,     shares modified cachelines with another CPU
+ BENCHIT_KERNEL_READ_STREAM_USE_MODE="E"
+ BENCHIT_KERNEL_WRITE_STREAM_USE_MODE="M"
+ 
+ #use local memory for one stream (default: read remote write local memory)
+ #NOTE: setting both to 1 is useless!
+ BENCHIT_KERNEL_READ_LOCAL="0"
+ BENCHIT_KERNEL_WRITE_LOCAL="1"
+ 
+ #S/O/F require a CPU to share cachelines with, which must not be part of the CPU_LIST
+ #should be as far away (max. number of HT/QPI hops) from the first CPU in BENCHIT_KERNEL_CPU_LIST as possible
+ BENCHIT_KERNEL_SHARE_CPU="1"
+ 
+ #influences which part of the buffer is accessed first during the measurement
+ #LIFO: measurement starts with the last byte that has been previosly used
+ #FIFO: measurement starts with the first byte that has been previosly used (default) 
+ BENCHIT_KERNEL_USE_DIRECTION="FIFO"
+
+ #define which cache levels to flush (default no flushes)
+ #avoids writeback penalties when use mode is M
+ BENCHIT_KERNEL_FLUSH_L1=0
+ BENCHIT_KERNEL_FLUSH_L2=0
+ BENCHIT_KERNEL_FLUSH_L3=0
+ 
+ #number of accesses per cacheline to flush cache (default 2)
+ BENCHIT_KERNEL_FLUSH_ACCESSES=2
+ #flush mode: (M/E/I) (default E)
+ #the target coherency state when flushing memory
+ #M: Modified, fills cache with modified lines, results in writeback penalties before using other memory
+ #E: Exclusive, fills cache with lines that do not have to be written back, does not cause writeback penalties
+ #I: Invalid, fills caches with invalid lines, CPUs might use free space for prefetching data
+ BENCHIT_KERNEL_FLUSH_MODE="E"
+ 
+ #dependencie between streams (copy|scale|independent) (default copy)
+ # copy: duplicates a vector
+ # scale: multiplies each vector element by a constant and writes result into new vector
+ # independent: (data) independent read and write of two vectors
+ BENCHIT_KERNEL_METHOD="copy"
+ 
+ #memory is initialized with this value (should be a non-trivial double value)
+ BENCHIT_KERNEL_INIT_VALUE="4.56783e26"
+ #factor for METHOD scale (should be a non-trivial double value)
+ BENCHIT_KERNEL_FACTOR="8.94563e2"
+ 
+ #the assembler instruction that will be used for data transfers (mov|movnti|mov+clflush|movapd|movupd|movntpd)
+ #BENCHIT-KERNEL_METHOD "scale" will additionally use multiply operations (mulsd/mulpd) and replace mov by movq
+ #if movnti or movntpd is selected, load instructions  will use mov or movapd, respectively
+ #the mov+clflush variant uses a combination of mov and clflush instead of non-temporal store (movnti)
+ BENCHIT_KERNEL_INSTRUCTION="movapd"
+ #unaligned functions may access addresses, which are not aligned to the data type size (default 0)
+ #ignored for aligned function 
+ #has to be smaller then cache line length
+ BENCHIT_KERNEL_OFFSET="0"
+ 
+ #defines how many accesses are made using different registers, befor reusing the first register (1,2,3,4,8) (default 4)
+ # burst_length 8 is not supported for mov and movnti! (not enough general purpose registers)
+ BENCHIT_KERNEL_BURST_LENGTH="4"
+ 
+ #when enabled PAPI_INC and PAPI_LIB environment variables have to point to
+ #the papi include directory or papi lib directory respectively
+ BENCHIT_KERNEL_ENABLE_PAPI="0"
+ #comma seperated list of counters that should be measured
+ BENCHIT_KERNEL_COUNTERS="PAPI_L2_TCM"
+ 
+ #max time a benchmark can run
+ BENCHIT_KERNEL_TIMEOUT=3600
+ 
+ #serialization instruction between data accesses and rdtsc (mfence|cpuid) (default: mfence)
+ #changing this setting requires recompilation
+ BENCHIT_KERNEL_SERIALIZATION="mfence"
+ 
+ #default comment that will be displayed by the GUI summarizes used settings
+ BENCHIT_KERNEL_COMMENT="${COMMENT} ${BENCHIT_KERNEL_METHOD}, ${BENCHIT_KERNEL_INSTRUCTION}(+${BENCHIT_KERNEL_OFFSET}), alloc: ${BENCHIT_KERNEL_ALLOC}, hugepages: ${BENCHIT_KERNEL_HUGEPAGES}, use mode: ${BENCHIT_KERNEL_READ_STREAM_USE_MODE}:${BENCHIT_KERNEL_WRITE_STREAM_USE_MODE}, flush: ${BENCHIT_KERNEL_FLUSH_L1}${BENCHIT_KERNEL_FLUSH_L2}${BENCHIT_KERNEL_FLUSH_L3} - ${BENCHIT_KERNEL_FLUSH_MODE}(${BENCHIT_KERNEL_FLUSH_ACCESSES})"
+
+#Uncomment settings that are not detected automatically on your machine
+# BENCHIT_KERNEL_CPU_FREQUENCY=2200000000
+# BENCHIT_KERNEL_L1_SIZE=
+# BENCHIT_KERNEL_L2_SIZE=
+# BENCHIT_KERNEL_L3_SIZE=
+# BENCHIT_KERNEL_CACHELINE_SIZE=

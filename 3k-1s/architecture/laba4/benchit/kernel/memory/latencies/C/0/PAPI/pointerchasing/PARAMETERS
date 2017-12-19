@@ -1,0 +1,56 @@
+#!/bin/sh
+#####################################################################
+# BenchIT - Performance Measurement for Scientific Applications
+# Contact: developer@benchit.org
+#
+# $Id: PARAMETERS 1 2009-09-11 12:26:19Z william $
+# $URL: svn+ssh://william@rupert.zih.tu-dresden.de/svn-base/benchit-root/BenchITv6/kernel/memory/latencies/C/0/PAPI/pointerchasing/PARAMETERS $
+# For license details see COPYING in the package base directory
+#####################################################################
+
+
+ #####################################
+ # MIN_ACCESS_LENGTH is the minimum  #
+ # of accessed memory (in KByte)      #
+ #####################################
+ MIN_ACCESS_LENGTH=2048
+ export MIN_ACCESS_LENGTH
+
+ ####################################
+ # MAX_ACCESS_LENGTH is the maximum #
+ # of accessed memory (in KByte)     #
+ ####################################
+ MAX_ACCESS_LENGTH=50000
+ export MAX_ACCESS_LENGTH
+
+ ################################################
+ # ACCESS_INCREMENT is the increment in kB
+ # it must be used exclusively with ACCESS_STEPS
+ ################################################
+# ACCESS_INCREMENT ist 40
+# export ACCESS_INCREMENT
+ 
+ ################################################
+ # ACCESS_STEPS is the number of measurement points
+ # it must be used exclusively with ACCESS_INCREMENT
+ ################################################
+ACCESS_STEPS=150
+export ACCESS_STEPS
+
+ ################################################
+ # PAPI_COUNTERS comma separates list of names of
+ # PAPI counters. Check PAPI's event_chooser for
+ # possible combinations
+ ################################################
+ PAPI_COUNTERS=L3_READS_DATA_READ_MISS,L3_READS_ALL_ALL,L3_READS_ALL_MISS,L2DTLB_MISSES
+ export PAPI_COUNTERS
+ 
+ ##################################################
+ # NUMBER_OF_JUMPS is the number of pointer jumps #
+ # that the kernel will perform per measurement   #
+ # point (must be a multiple of 100)              #
+ ##################################################
+ NUMBER_OF_JUMPS=40000000
+ export NUMBER_OF_JUMPS
+ 
+
