@@ -1,0 +1,1 @@
+enum MessageType { SYN, ACK, SYNACK, PAYLOAD, DEAD, DEADACK }
