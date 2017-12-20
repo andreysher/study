@@ -10,7 +10,7 @@
 #define INCOMINGNUMBER 510
 #define OUTCOMINGNUMBER 510
 #define SOCKETNUMBER (1 + INCOMINGNUMBER + OUTCOMINGNUMBER)//1 for serverSocket and 510 pairs for connections
-#define STARTBUFFERSIZE (1024*1000)
+#define STARTBUFFERSIZE (1024*10)
 #define DEFAULTPORT 80
 
 struct InAttr
@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
   for ( ; ; )
   {
     printf("poll %d %d\n", sockets, SOCKETNUMBER);
-
+    printf("\n\n\n\n%d () %d\n\n\n\n\n\n", incomingCount, outcomingCount);
     int readyCount = poll(sockets, SOCKETNUMBER, -1);
 
     printf("poll done\n");
@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
     {
         if (0 != (incoming[i].revents & POLLIN))
         {
-            printf("on incoming get input\n");
+            printf("on incoming %d get input\n" , i);
 
             int received = recv(incoming[i].fd, inAttrs[i].buffer + inAttrs[i].end, inAttrs[i].size - inAttrs[i].end, 0);
             //получаем столько сколько можем получить
@@ -194,7 +194,7 @@ int main(int argc, char *argv[])
                     }
                     // printf("in %s\n", inAttrs[i].buffer);
                     //если на incoming что-то пришло, а outcoming для него не создан:
-                    if (outcomingCount <= i)
+                    while (outcomingCount <= i)
                     {
                         struct hostent * hostInfo = gethostbyname(argv[2]);
                         if (NULL == hostInfo)
@@ -263,7 +263,7 @@ int main(int argc, char *argv[])
     {//есть что считaть
       if (0 != (outcoming[i].revents & POLLIN))
       {
-        printf(" on outcoming pollin\n");
+        printf(" on outcoming %d pollin\n", i);
         int received = recv(outcoming[i].fd, outAttrs[i].buffer + outAttrs[i].end, outAttrs[i].size - outAttrs[i].end, 0);
         printf("received %d\n", received);
         printf("%s\n", outAttrs[i].buffer);
@@ -288,7 +288,7 @@ int main(int argc, char *argv[])
       }
       else if (0 != (outcoming[i].revents & POLLOUT))
       {
-        printf("outcoming pollout %d %d\n", outcoming[i].events, POLLIN);
+        printf("outcoming %d pollout\n", i);
 
         int sent = send(outcoming[i].fd, inAttrs[i].buffer, inAttrs[i].end - inAttrs[i].start, 0);
         // cout << inAttrs[i].buffer << endl;
