@@ -115,8 +115,8 @@ int main(int argc, char *argv[])
 // создали пары incoming+outcoming, подготовились к поллу
   for ( ; ; )
   {
-    printf("poll %d %d\n", sockets, SOCKETNUMBER);
-    printf("\n\n\n\n%d () %d\n\n\n\n\n\n", incomingCount, outcomingCount);
+    printf("poll\n");
+
     int readyCount = poll(sockets, SOCKETNUMBER, -1);
 
     printf("poll done\n");
@@ -168,12 +168,10 @@ int main(int argc, char *argv[])
     {
         if (0 != (incoming[i].revents & POLLIN))
         {
-            printf("on incoming %d get input\n" , i);
+            printf("on incoming %d input\n" , i);
 
             int received = recv(incoming[i].fd, inAttrs[i].buffer + inAttrs[i].end, inAttrs[i].size - inAttrs[i].end, 0);
             //получаем столько сколько можем получить
-
-            printf("%s\n", inAttrs[i].buffer);
 
             switch (received)
             {
@@ -182,14 +180,16 @@ int main(int argc, char *argv[])
                     exit(EXIT_FAILURE);
                 case 0:
                     // free(inAttrs[i].buffer);
-                    closeConnection(incoming[i]);
-                    incomingCount--;
+                    shutdown(incoming[i].fd, SHUT_RD);
+                    incoming[i].events &= ~POLLIN;
+                    // closeConnection(incoming[i]);
+                    // incomingCount--;
                     break;
                 default:
                     inAttrs[i].end += received;
                     if (inAttrs[i].end == inAttrs[i].size)
                     {
-                        incoming[i].events &= ~POLLIN;
+                        // incoming[i].events &= ~POLLIN;
                         //pollin больше не ждем!
                     }
                     // printf("in %s\n", inAttrs[i].buffer);
@@ -233,7 +233,7 @@ int main(int argc, char *argv[])
         }//ending if (0 != (incoming[i].revents & POLLIN))
         else if (0 != (incoming[i].revents & POLLOUT))
         {
-            printf("on %d incoming geting output flag\n", i);
+            printf("on incoming %d output \n", i);
             //отправляем не 0 байт(тестил)
             printf("%s\n", outAttrs[i].buffer);
             int sent = send(incoming[i].fd, outAttrs[i].buffer + outAttrs[i].start, outAttrs[i].end - outAttrs[i].start, 0);
@@ -244,8 +244,8 @@ int main(int argc, char *argv[])
                 exit(EXIT_FAILURE);
               case 0:
                 perror("Can not send");
-                free(outAttrs[i].buffer);
-                closeConnection(incoming[i]);
+                // free(outAttrs[i].buffer);
+                // closeConnection(incoming[i]);
                 exit(EXIT_FAILURE);
               default://больше не хотим отсылать, потому что все отослали, чот могли, теперь надо положить новую порцию данных
                 outAttrs[i].start += sent;
@@ -263,7 +263,7 @@ int main(int argc, char *argv[])
     {//есть что считaть
       if (0 != (outcoming[i].revents & POLLIN))
       {
-        printf(" on outcoming %d pollin\n", i);
+        printf(" on outcoming %d input\n", i);
         int received = recv(outcoming[i].fd, outAttrs[i].buffer + outAttrs[i].end, outAttrs[i].size - outAttrs[i].end, 0);
         printf("received %d\n", received);
         printf("%s\n", outAttrs[i].buffer);
@@ -273,26 +273,28 @@ int main(int argc, char *argv[])
             perror("Error while recv(outcoming).\n");
             exit(EXIT_FAILURE);
           case 0:
-            closeConnection(outcoming[i]);
-            outcomingCount--;
+            // closeConnection(outcoming[i]);
+            // outcomingCount--;
+            shutdown(outcoming[i].fd, SHUT_RD);
+            outcoming[i].events &= ~POLLIN;
             // free(outAttrs[i].buffer);
             break;
           default:
             outAttrs[i].end += received;
             if (outAttrs[i].end == outAttrs[i].size)
             {
-                outcoming[i].events &= ~POLLIN;
+                // outcoming[i].events &= ~POLLIN;
             }
             incoming[i].events |= POLLOUT;
         }
       }
       else if (0 != (outcoming[i].revents & POLLOUT))
       {
-        printf("outcoming %d pollout\n", i);
+        printf("outcoming %d output\n", i);
 
         int sent = send(outcoming[i].fd, inAttrs[i].buffer, inAttrs[i].end - inAttrs[i].start, 0);
         // cout << inAttrs[i].buffer << endl;
-        write(0, inAttrs[i].buffer, inAttrs[i].end - inAttrs[i].start);
+        // write(0, inAttrs[i].buffer, inAttrs[i].end - inAttrs[i].start);
         switch (sent)
         {
           case -1:
@@ -301,9 +303,9 @@ int main(int argc, char *argv[])
             break;
           case 0:
             perror("Can not send");
-            free(outAttrs[i].buffer);
-            closeConnection(incoming[i]);
-            exit(EXIT_FAILURE);
+            // free(outAttrs[i].buffer);
+            // closeConnection(incoming[i]);
+            // exit(EXIT_FAILURE);
           default:
             inAttrs[i].start += sent;
 
