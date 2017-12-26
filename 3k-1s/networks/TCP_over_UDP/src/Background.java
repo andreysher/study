@@ -1,5 +1,8 @@
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+
 import java.io.IOException;
 import java.net.*;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
@@ -103,11 +106,16 @@ class Background {
     }
 
     private void sendAllMessages() {
-        for (SocketAddress client : clients.keySet()) {//достаем клиента
-            if (clients.get(client).isDead()) {//если клиент умер
-                clients.remove(client);
-            } else {
-                sendAllMessagesOfClient(client);
+        Iterator itr = clients.entrySet().iterator();
+        while(itr.hasNext()){
+            Map.Entry clEntry = (Map.Entry) itr.next();
+            SocketAddress clAddr = (SocketAddress) clEntry.getKey();
+            if(clients.get(clAddr).isDead()){
+                itr.remove();
+                System.out.println("UBILI");
+            }
+            else {
+                sendAllMessagesOfClient(clAddr);
             }
         }
     }
@@ -129,13 +137,13 @@ class Background {
         }
     }
 
+    private int rrr = 0;
     private int recvMessage() {
         byte[] data = new byte[Constants.MAX_BUFFER_SIZE];
         DatagramPacket packet = new DatagramPacket(data, data.length);
 
         try {
             socket.receive(packet);
-
             proxy.put(packet);
             if (proxy.isReady())
                 packet = proxy.get();
@@ -172,6 +180,11 @@ class Background {
                 handleSYNMsg(msg, packet.getSocketAddress());
                 break;
             case ACK:
+                rrr++;
+                if (rrr > 5) {
+                    System.out.println(123321);
+                    break;
+                }
                 handleAckMsg(msg, packet.getSocketAddress());
                 break;
             case SYNACK:
@@ -203,7 +216,8 @@ class Background {
             }
         }
         Buffer clientBuf = clients.get(address);//достали клиентский буфер
-        clientBuf.putToSendMessage((new MessageCreator(clientBuf.getSendMsgId())).genSYNAckMsg(msg.getMessageId()));
+        clientBuf.putToSendMessage(
+        (new MessageCreator(clientBuf.getSendMsgId())).genSYNAckMsg(msg.getMessageId()));
         //положили синак msg,msgid-id сообщ кот хотим отпр
         clientBuf.connected();
     }

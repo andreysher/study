@@ -59,6 +59,7 @@ class Buffer {
 
     void dead() {
         isDead = true;
+        System.out.println("umer");
         deadTime = System.currentTimeMillis();
     }
 
