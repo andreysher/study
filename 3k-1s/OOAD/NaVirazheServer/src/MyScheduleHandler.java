@@ -31,24 +31,33 @@ public class MyScheduleHandler implements HttpHandler {
         }
         Headers headers = httpExchange.getRequestHeaders();
         String tock = headers.getFirst("Authorization");
-        if (tock == null) {
-            httpExchange.sendResponseHeaders(401, 0);
+        if (tock == null || tock.equals("")) {
+            JSONArray answer = server.dbController.getAllSchedule();
+            Headers resph = httpExchange.getResponseHeaders();
+            resph.set("Content-Type", "application/json");
+            String ansStr = answer.toJSONString();
+            out.write(ansStr);
+            int len = ansStr.length();
+            httpExchange.sendResponseHeaders(200, len);
         }
-        synchronized (server.tockens) {
-            Iterator itr = server.tockens.entrySet().iterator();
-            while (itr.hasNext()) {
-                Map.Entry ent = (Map.Entry) itr.next();
-                String t = (String) ent.getKey();
-                if (t.equals(tock)) {
-                    JSONArray ans = server.dbController.getScheduleForUser((String) ent.getValue());
-                    Headers resph = httpExchange.getResponseHeaders();
-                    resph.set("Content-Type", "application/json");
-                    String ansStr = ans.toJSONString();
-                    out.write(ansStr);
-                    int len = ansStr.length();
-                    httpExchange.sendResponseHeaders(200, len);
+        else {
+            synchronized (server.tockens) {
+                Iterator itr = server.tockens.entrySet().iterator();
+                while (itr.hasNext()) {
+                    Map.Entry ent = (Map.Entry) itr.next();
+                    String t = (String) ent.getKey();
+                    if (t.equals(tock)) {
+                        JSONArray ans = server.dbController.getScheduleForUser((String) ent.getValue());
+                        Headers resph = httpExchange.getResponseHeaders();
+                        resph.set("Content-Type", "application/json");
+                        String ansStr = ans.toJSONString();
+                        out.write(ansStr);
+                        int len = ansStr.length();
+                        httpExchange.sendResponseHeaders(200, len);
+                    }
                 }
             }
+            httpExchange.sendResponseHeaders(404,0);
         }
     out.close();
     }
