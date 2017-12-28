@@ -29,42 +29,26 @@ public class MyScheduleHandler implements HttpHandler {
         if (!httpExchange.getRequestMethod().equals("GET")) {
             httpExchange.sendResponseHeaders(405, 0);
         }
-        try {
-            Headers headers = httpExchange.getRequestHeaders();
-            String tock = headers.getFirst("Authorization");
-            if(tock == null){
-                httpExchange.sendResponseHeaders(401,0);
-            }
-            synchronized (server.tockens) {
-                Iterator itr = server.tockens.entrySet().iterator();
-                while (itr.hasNext()) {
-                    Map.Entry ent = (Map.Entry) itr.next();
-                    String t = (String) ent.getKey();
-                    if (t.equals(tock)) {
-                        System.out.println("123");
-                        JSONArray ans = server.dbController.getScheduleForUser((String) ent.getValue());
-                        Headers resph = httpExchange.getResponseHeaders();
-                        resph.set("Content-Type", "application/json");
-                        System.out.println("456");
-//                        OutputStream answ = httpExchange.getResponseBody();
-//                        OutputStreamWriter out = new OutputStreamWriter(answ);
-                        String ansStr = ans.toJSONString();
-                        out.write(ansStr);
-                        System.out.println("789");
-                        int len = ansStr.length();
-                        System.out.println(len);
-                        httpExchange.sendResponseHeaders(200,len);
-                        System.out.println("222");
-//                        out.flush();
-
-                    }
+        Headers headers = httpExchange.getRequestHeaders();
+        String tock = headers.getFirst("Authorization");
+        if (tock == null) {
+            httpExchange.sendResponseHeaders(401, 0);
+        }
+        synchronized (server.tockens) {
+            Iterator itr = server.tockens.entrySet().iterator();
+            while (itr.hasNext()) {
+                Map.Entry ent = (Map.Entry) itr.next();
+                String t = (String) ent.getKey();
+                if (t.equals(tock)) {
+                    JSONArray ans = server.dbController.getScheduleForUser((String) ent.getValue());
+                    Headers resph = httpExchange.getResponseHeaders();
+                    resph.set("Content-Type", "application/json");
+                    String ansStr = ans.toJSONString();
+                    out.write(ansStr);
+                    int len = ansStr.length();
+                    httpExchange.sendResponseHeaders(200, len);
                 }
-
             }
-
-
-        } catch (Exception e){
-
         }
     out.close();
     }
