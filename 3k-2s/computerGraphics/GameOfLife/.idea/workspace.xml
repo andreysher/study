@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Interface.java" line="35" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c18c00a0-dd1c-45a8-b280-46f79c2a679b" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -12,119 +15,138 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/GameOfLife$Interface.coverage" NAME="Interface Coverage Results" MODIFIED="1519809281429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/GameOfLife$Interface.coverage" NAME="Interface Coverage Results" MODIFIED="1521078423015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Interface.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Interface.java">
+      <file leaf-file-name="Interface.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Interface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="233" column="21" lean-forward="false" selection-start-line="233" selection-start-column="21" selection-end-line="233" selection-end-column="21" />
+            <state relative-caret-position="104">
+              <caret line="343" column="0" lean-forward="true" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1412#1668#0" expanded="true" />
-                <element signature="e#1667#1668#0" expanded="true" />
-                <element signature="e#1733#1989#0" expanded="true" />
-                <element signature="e#1988#1989#0" expanded="true" />
-                <marker date="1520827825801" expanded="false" signature="2333:2463" ph="(adjustmentEvent) → {" />
-                <marker date="1520827825801" expanded="false" signature="2574:2589" ph="}" />
-                <marker date="1520827825801" expanded="false" signature="2654:2784" ph="(adjustmentEvent) → {" />
-                <marker date="1520827825801" expanded="false" signature="2895:2910" ph="}" />
-                <marker date="1520827825801" expanded="false" signature="3096:3440" ph="/**...*/" />
-                <marker date="1520827825801" expanded="false" signature="3871:3982" ph="(actionEvent) → {" />
-                <marker date="1520827825801" expanded="false" signature="4203:4218" ph="}" />
-                <marker date="1520827825801" expanded="false" signature="4253:4420" ph="/**...*/" />
-                <marker date="1520827825801" expanded="false" signature="4541:4611" ph="{...}" />
-                <marker date="1520827825801" expanded="false" signature="4659:4726" ph="{...}" />
-                <marker date="1520827825801" expanded="false" signature="4791:5400" ph="{...}" />
-                <marker date="1520827825801" expanded="false" signature="5562:6070" ph="{...}" />
-                <marker date="1520827825801" expanded="false" signature="6203:6696" ph="{...}" />
-                <marker date="1520827825801" expanded="false" signature="6754:7004" ph="{...}" />
-                <marker date="1520827825801" expanded="false" signature="7073:7335" ph="{...}" />
-                <marker date="1520827825801" expanded="false" signature="7389:7404" ph=" { " />
-                <marker date="1520827825801" expanded="false" signature="7447:7453" ph=" }" />
-                <marker date="1520827825801" expanded="false" signature="7492:7507" ph=" { " />
-                <marker date="1520827825801" expanded="false" signature="7530:7536" ph=" }" />
-                <marker date="1520827825801" expanded="false" signature="8005:8341" ph="{...}" />
-                <marker date="1520827825801" expanded="false" signature="8641:8785" ph="{...}" />
-                <marker date="1520827825801" expanded="false" signature="8810:8954" ph="{...}" />
-                <marker date="1520827825801" expanded="false" signature="10992:11163" ph="{...}" />
+                <element signature="e#1763#2019#0" expanded="true" />
+                <element signature="e#2018#2019#0" expanded="true" />
+                <element signature="e#2084#2340#0" expanded="true" />
+                <element signature="e#2339#2340#0" expanded="true" />
+                <element signature="e#3123#3379#0" expanded="true" />
+                <element signature="e#3378#3379#0" expanded="true" />
+                <element signature="e#3444#3700#0" expanded="true" />
+                <element signature="e#3699#3700#0" expanded="true" />
+                <element signature="e#4782#5129#0" expanded="true" />
+                <element signature="e#5128#5129#0" expanded="true" />
+                <element signature="e#8272#8273#0" expanded="true" />
+                <element signature="e#8330#8331#0" expanded="true" />
+                <element signature="e#8414#8415#0" expanded="true" />
+                <element signature="e#8472#8473#0" expanded="true" />
+                <element signature="e#9295#9296#0" expanded="true" />
+                <element signature="e#9353#9354#0" expanded="true" />
+                <element signature="e#9437#9438#0" expanded="true" />
+                <element signature="e#9495#9496#0" expanded="true" />
+                <element signature="e#9596#9597#0" expanded="true" />
+                <element signature="e#9654#9655#0" expanded="true" />
+                <element signature="e#9699#9700#0" expanded="true" />
+                <element signature="e#9737#9738#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="MyPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/MyPanel.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="48" column="37" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+            <state relative-caret-position="-76">
+              <caret line="258" column="41" lean-forward="false" selection-start-line="258" selection-start-column="41" selection-end-line="258" selection-end-column="41" />
               <folding>
-                <element signature="e#1424#3260#0" expanded="true" />
-                <element signature="e#3259#3260#0" expanded="true" />
-                <element signature="method#drawFatHexGreed#0;class#MyPanel#0" expanded="false" />
-                <element signature="method#drawHexGread#0;class#MyPanel#0" expanded="false" />
-                <element signature="method#paintFatModel#0;class#MyPanel#0" expanded="false" />
-                <element signature="method#paintModel#0;class#MyPanel#0" expanded="false" />
-                <element signature="method#fillingFatCell#0;class#MyPanel#0" expanded="false" />
-                <element signature="method#fillingCell#0;class#MyPanel#0" expanded="false" />
-                <marker date="1520827825757" expanded="false" signature="15858:16066" ph="//..." />
-                <marker date="1520827825757" expanded="false" signature="16495:17570" ph="{...}" />
-                <marker date="1520827825757" expanded="false" signature="17594:17655" ph="{...}" />
-                <marker date="1520827825757" expanded="false" signature="17771:18523" ph="{...}" />
-                <marker date="1520827825757" expanded="false" signature="18641:19388" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyMouseListener.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/MyMouseListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="31" column="18" lean-forward="true" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
-              <folding>
-                <element signature="e#223#224#0" expanded="true" />
-                <element signature="e#253#254#0" expanded="true" />
+                <element signature="method#drawHexagon#0;class#MyPanel#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Params.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Params.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Params.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="27" column="39" lean-forward="false" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+            <state relative-caret-position="262">
+              <caret line="24" column="48" lean-forward="true" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1520827825837" expanded="false" signature="1498:1509" ph=" { " />
-                <marker date="1520827825837" expanded="false" signature="1532:1538" ph=" }" />
-                <marker date="1520827825837" expanded="false" signature="2194:2205" ph=" { " />
-                <marker date="1520827825837" expanded="false" signature="2228:2234" ph=" }" />
-                <marker date="1520827825837" expanded="false" signature="2284:2295" ph=" { " />
-                <marker date="1520827825837" expanded="false" signature="2322:2328" ph=" }" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="MyOptionsDialog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/MyOptionsDialog.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyOptionsDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2223">
-              <caret line="105" column="80" lean-forward="false" selection-start-line="105" selection-start-column="80" selection-end-line="105" selection-end-column="80" />
+            <state relative-caret-position="-4104">
+              <caret line="32" column="33" lean-forward="false" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1211#1638#0" expanded="true" />
+                <element signature="e#1637#1638#0" expanded="true" />
+                <element signature="e#1679#1883#0" expanded="true" />
+                <element signature="e#1882#1883#0" expanded="true" />
+                <element signature="e#2190#2622#0" expanded="true" />
+                <element signature="e#2621#2622#0" expanded="true" />
+                <element signature="e#2664#2871#0" expanded="true" />
+                <element signature="e#2870#2871#0" expanded="true" />
+                <element signature="e#3185#3627#0" expanded="true" />
+                <element signature="e#3626#3627#0" expanded="true" />
+                <element signature="e#3671#3882#0" expanded="true" />
+                <element signature="e#3881#3882#0" expanded="true" />
+                <element signature="e#4232#4695#0" expanded="true" />
+                <element signature="e#4694#4695#0" expanded="true" />
+                <element signature="e#4740#4957#0" expanded="true" />
+                <element signature="e#4956#4957#0" expanded="true" />
+                <element signature="e#6847#10889#0" expanded="true" />
+                <element signature="e#10888#10889#0" expanded="true" />
+                <marker date="1521084856766" expanded="false" signature="10990:11118" ph="(actionEvent) → { " />
+                <marker date="1521084856766" expanded="false" signature="11128:11152" ph=" }" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParseException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/ParseException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="FileUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/FileUtils.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/FileUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1782">
-              <caret line="101" column="50" lean-forward="false" selection-start-line="101" selection-start-column="50" selection-end-line="101" selection-end-column="50" />
+            <state relative-caret-position="176">
+              <caret line="83" column="71" lean-forward="false" selection-start-line="83" selection-start-column="71" selection-end-line="83" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Model.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-912">
+              <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+              <folding>
+                <element signature="e#125#126#0" expanded="true" />
+                <element signature="e#176#177#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FIT_15206_Shcherbin_Life_Data/test.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -141,36 +163,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>scroll</find>
-      <find>open</find>
-      <find>add.*Listener</find>
-      <find>Params.centres</find>
-      <find>cords</find>
-      <find>getCe</find>
-      <find>drawI</find>
-      <find>Params.impacts</find>
-      <find>mouseLi</find>
-      <find>impact</find>
-      <find>onIm</find>
-      <find>refra</find>
-      <find>drawImpac</find>
-      <find>paintMo</find>
-      <find>impacts</find>
-      <find>paintModel</find>
-      <find>listener</find>
-      <find>MyPanel(</find>
-      <find>onImpa</find>
-      <find>spanFi</find>
-      <find>FatHex</find>
-      <find>out.println</find>
-      <find>drawHe</find>
-      <find>onIni</find>
+      <find>model.</find>
+      <find>Params.model</find>
+      <find>new Model</find>
+      <find>ij</find>
+      <find>= Params.modelWidth</find>
+      <find>drawS</find>
       <find>drawImpa</find>
+      <find>drawStr</find>
+      <find>Params.impacts</find>
+      <find>onNex</find>
+      <find>class</find>
+      <find>onn</find>
+      <find>paint</find>
+      <find>= -1</find>
+      <find>ze == 1</find>
+      <find>this.getG</find>
+      <find>changeV</find>
+      <find>Params.impDr</find>
+      <find>field =</find>
       <find>drawImpacts</find>
-      <find>list &quot;</find>
-      <find>onEx</find>
-      <find>dragg</find>
-      <find>onRun</find>
+      <find>drawIm</find>
+      <find>println</find>
+      <find>onInit</find>
+      <find>clearM</find>
+      <find>onO</find>
+      <find>onOpen</find>
+      <find>drawFatI</find>
+      <find>Params.impacts =</find>
+      <find>255,255,255,255</find>
+      <find>paintModel</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -202,11 +224,21 @@
         <option value="$PROJECT_DIR$/src/main/java/MyTimerTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/FileUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MyOptionsDialog.java" />
         <option value="$PROJECT_DIR$/src/main/java/Params.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Interface.java" />
         <option value="$PROJECT_DIR$/src/main/java/MyPanel.java" />
         <option value="$PROJECT_DIR$/src/main/java/MyMouseListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Interface.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MyOptionsDialog.java" />
+        <option value="$PROJECT_DIR$/FIT_15206_Shcherbin_Life_About.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/ParseException.java" />
+        <option value="$PROJECT_DIR$/FIT_15206_Shcherbin_Life_Data/abc.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Model.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyMouseListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyOptionsDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/FileUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Params.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Interface.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyPanel.java" />
       </list>
     </option>
   </component>
@@ -232,13 +264,18 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="GameOfLife" type="b2602c69:ProjectViewProjectNode" />
               <item name="GameOfLife" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GameOfLife" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GameOfLife" type="462c0819:PsiDirectoryNode" />
+              <item name="FIT_15206_Shcherbin_Life_Data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GameOfLife" type="b2602c69:ProjectViewProjectNode" />
@@ -258,11 +295,26 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="GameOfLife" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GameOfLife" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Shcherbin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GameOfLife" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GameOfLife" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -275,10 +327,14 @@
     <property name="settings.editor.selected.configurable" value="preferences.updates" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/FIT_15206_Shcherbin_Life_Data" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
@@ -316,7 +372,7 @@
     </configuration>
     <configuration name="FileUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="FileUtils" />
+      <option name="MAIN_CLASS_NAME" value="ru.nsu.fit.g15206.Shcherbin.FileUtils" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -330,7 +386,7 @@
     </configuration>
     <configuration name="Interface" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="Interface" />
+      <option name="MAIN_CLASS_NAME" value="ru.nsu.fit.g15206.Shcherbin.Interface" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -471,7 +527,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
+    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -482,25 +538,25 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31586826" sideWeight="0.5057648" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29341316" sideWeight="0.49423522" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29341316" sideWeight="0.49423522" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289777" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16218294" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24980783" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31586826" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997006" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289777" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -508,224 +564,149 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="34" />
+      <option name="time" value="38" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/FileUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1422">
-          <caret line="81" column="21" lean-forward="true" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Params.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="35" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1520827825837" expanded="false" signature="1498:1509" ph=" { " />
-            <marker date="1520827825837" expanded="false" signature="1532:1538" ph=" }" />
-            <marker date="1520827825837" expanded="false" signature="2194:2205" ph=" { " />
-            <marker date="1520827825837" expanded="false" signature="2228:2234" ph=" }" />
-            <marker date="1520827825837" expanded="false" signature="2284:2295" ph=" { " />
-            <marker date="1520827825837" expanded="false" signature="2322:2328" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MyMouseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="24" column="45" lean-forward="false" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
-          <folding>
-            <element signature="e#223#224#0" expanded="true" />
-            <element signature="e#253#254#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MyPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="11" column="111" lean-forward="false" selection-start-line="11" selection-start-column="111" selection-end-line="11" selection-end-column="111" />
           <folding>
-            <element signature="e#1424#3260#0" expanded="true" />
-            <element signature="e#3259#3260#0" expanded="true" />
-            <element signature="method#drawFatHexGreed#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#drawHexGread#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#paintFatModel#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#paintModel#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#fillingFatCell#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#fillingCell#0;class#MyPanel#0" expanded="false" />
-            <marker date="1520827825757" expanded="false" signature="15858:16066" ph="//..." />
-            <marker date="1520827825757" expanded="false" signature="16495:17570" ph="{...}" />
-            <marker date="1520827825757" expanded="false" signature="17594:17655" ph="{...}" />
-            <marker date="1520827825757" expanded="false" signature="17771:18523" ph="{...}" />
-            <marker date="1520827825757" expanded="false" signature="18641:19388" ph="{...}" />
+            <element signature="method#drawHexagon#0;class#MyPanel#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MyMouseListener.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyMouseListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="19" column="39" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
           <folding>
-            <element signature="e#223#224#0" expanded="true" />
-            <element signature="e#253#254#0" expanded="true" />
+            <element signature="e#242#243#0" expanded="true" />
+            <element signature="e#272#273#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="98" column="29" lean-forward="false" selection-start-line="98" selection-start-column="29" selection-end-line="98" selection-end-column="29" />
-          <folding />
+          <folding>
+            <element signature="e#125#126#0" expanded="true" />
+            <element signature="e#176#177#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Interface.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Interface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="17" column="39" lean-forward="false" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1412#1668#0" expanded="true" />
-            <element signature="e#1667#1668#0" expanded="true" />
-            <element signature="e#1733#1989#0" expanded="true" />
-            <element signature="e#1988#1989#0" expanded="true" />
-            <marker date="1520827825801" expanded="false" signature="2333:2463" ph="(adjustmentEvent) → {" />
-            <marker date="1520827825801" expanded="false" signature="2574:2589" ph="}" />
-            <marker date="1520827825801" expanded="false" signature="2654:2784" ph="(adjustmentEvent) → {" />
-            <marker date="1520827825801" expanded="false" signature="2895:2910" ph="}" />
-            <marker date="1520827825801" expanded="false" signature="3096:3440" ph="/**...*/" />
-            <marker date="1520827825801" expanded="false" signature="3871:3982" ph="(actionEvent) → {" />
-            <marker date="1520827825801" expanded="false" signature="4203:4218" ph="}" />
-            <marker date="1520827825801" expanded="false" signature="4253:4420" ph="/**...*/" />
-            <marker date="1520827825801" expanded="false" signature="4541:4611" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="4659:4726" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="4791:5400" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="5562:6070" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="6203:6696" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="6754:7004" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="7073:7335" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="7389:7404" ph=" { " />
-            <marker date="1520827825801" expanded="false" signature="7447:7453" ph=" }" />
-            <marker date="1520827825801" expanded="false" signature="7492:7507" ph=" { " />
-            <marker date="1520827825801" expanded="false" signature="7530:7536" ph=" }" />
-            <marker date="1520827825801" expanded="false" signature="8005:8341" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="8641:8785" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="8810:8954" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="10992:11163" ph="{...}" />
+            <element signature="e#1763#2019#0" expanded="true" />
+            <element signature="e#2018#2019#0" expanded="true" />
+            <element signature="e#2084#2340#0" expanded="true" />
+            <element signature="e#2339#2340#0" expanded="true" />
+            <element signature="e#3123#3379#0" expanded="true" />
+            <element signature="e#3378#3379#0" expanded="true" />
+            <element signature="e#3444#3700#0" expanded="true" />
+            <element signature="e#3699#3700#0" expanded="true" />
+            <element signature="e#4782#5129#0" expanded="true" />
+            <element signature="e#5128#5129#0" expanded="true" />
+            <element signature="e#8272#8273#0" expanded="true" />
+            <element signature="e#8330#8331#0" expanded="true" />
+            <element signature="e#8414#8415#0" expanded="true" />
+            <element signature="e#8472#8473#0" expanded="true" />
+            <element signature="e#9295#9296#0" expanded="true" />
+            <element signature="e#9353#9354#0" expanded="true" />
+            <element signature="e#9437#9438#0" expanded="true" />
+            <element signature="e#9495#9496#0" expanded="true" />
+            <element signature="e#9596#9597#0" expanded="true" />
+            <element signature="e#9654#9655#0" expanded="true" />
+            <element signature="e#9699#9700#0" expanded="true" />
+            <element signature="e#9737#9738#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Params.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Params.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1520827825837" expanded="false" signature="1498:1509" ph=" { " />
-            <marker date="1520827825837" expanded="false" signature="1532:1538" ph=" }" />
-            <marker date="1520827825837" expanded="false" signature="2194:2205" ph=" { " />
-            <marker date="1520827825837" expanded="false" signature="2228:2234" ph=" }" />
-            <marker date="1520827825837" expanded="false" signature="2284:2295" ph=" { " />
-            <marker date="1520827825837" expanded="false" signature="2322:2328" ph=" }" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MyPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1424#3260#0" expanded="true" />
-            <element signature="e#3259#3260#0" expanded="true" />
-            <element signature="method#drawFatHexGreed#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#drawHexGread#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#paintFatModel#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#paintModel#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#fillingFatCell#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#fillingCell#0;class#MyPanel#0" expanded="false" />
-            <marker date="1520827825757" expanded="false" signature="15858:16066" ph="//..." />
-            <marker date="1520827825757" expanded="false" signature="16495:17570" ph="{...}" />
-            <marker date="1520827825757" expanded="false" signature="17594:17655" ph="{...}" />
-            <marker date="1520827825757" expanded="false" signature="17771:18523" ph="{...}" />
-            <marker date="1520827825757" expanded="false" signature="18641:19388" ph="{...}" />
+            <element signature="method#drawHexagon#0;class#MyPanel#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Interface.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Interface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4680">
           <caret line="260" column="5" lean-forward="false" selection-start-line="260" selection-start-column="5" selection-end-line="260" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1412#1668#0" expanded="true" />
-            <element signature="e#1667#1668#0" expanded="true" />
-            <element signature="e#1733#1989#0" expanded="true" />
-            <element signature="e#1988#1989#0" expanded="true" />
-            <marker date="1520827825801" expanded="false" signature="2333:2463" ph="(adjustmentEvent) → {" />
-            <marker date="1520827825801" expanded="false" signature="2574:2589" ph="}" />
-            <marker date="1520827825801" expanded="false" signature="2654:2784" ph="(adjustmentEvent) → {" />
-            <marker date="1520827825801" expanded="false" signature="2895:2910" ph="}" />
-            <marker date="1520827825801" expanded="false" signature="3096:3440" ph="/**...*/" />
-            <marker date="1520827825801" expanded="false" signature="3871:3982" ph="(actionEvent) → {" />
-            <marker date="1520827825801" expanded="false" signature="4203:4218" ph="}" />
-            <marker date="1520827825801" expanded="false" signature="4253:4420" ph="/**...*/" />
-            <marker date="1520827825801" expanded="false" signature="4541:4611" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="4659:4726" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="4791:5400" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="5562:6070" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="6203:6696" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="6754:7004" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="7073:7335" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="7389:7404" ph=" { " />
-            <marker date="1520827825801" expanded="false" signature="7447:7453" ph=" }" />
-            <marker date="1520827825801" expanded="false" signature="7492:7507" ph=" { " />
-            <marker date="1520827825801" expanded="false" signature="7530:7536" ph=" }" />
-            <marker date="1520827825801" expanded="false" signature="8005:8341" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="8641:8785" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="8810:8954" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="10992:11163" ph="{...}" />
+            <element signature="e#1763#2019#0" expanded="true" />
+            <element signature="e#2018#2019#0" expanded="true" />
+            <element signature="e#2084#2340#0" expanded="true" />
+            <element signature="e#2339#2340#0" expanded="true" />
+            <element signature="e#3123#3379#0" expanded="true" />
+            <element signature="e#3378#3379#0" expanded="true" />
+            <element signature="e#3444#3700#0" expanded="true" />
+            <element signature="e#3699#3700#0" expanded="true" />
+            <element signature="e#4782#5129#0" expanded="true" />
+            <element signature="e#5128#5129#0" expanded="true" />
+            <element signature="e#8272#8273#0" expanded="true" />
+            <element signature="e#8330#8331#0" expanded="true" />
+            <element signature="e#8414#8415#0" expanded="true" />
+            <element signature="e#8472#8473#0" expanded="true" />
+            <element signature="e#9295#9296#0" expanded="true" />
+            <element signature="e#9353#9354#0" expanded="true" />
+            <element signature="e#9437#9438#0" expanded="true" />
+            <element signature="e#9495#9496#0" expanded="true" />
+            <element signature="e#9596#9597#0" expanded="true" />
+            <element signature="e#9654#9655#0" expanded="true" />
+            <element signature="e#9699#9700#0" expanded="true" />
+            <element signature="e#9737#9738#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="98" column="29" lean-forward="true" selection-start-line="98" selection-start-column="29" selection-end-line="98" selection-end-column="29" />
-          <folding />
+          <folding>
+            <element signature="e#125#126#0" expanded="true" />
+            <element signature="e#176#177#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Params.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Params.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="954">
           <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1520827825837" expanded="false" signature="1498:1509" ph=" { " />
-            <marker date="1520827825837" expanded="false" signature="1532:1538" ph=" }" />
-            <marker date="1520827825837" expanded="false" signature="2194:2205" ph=" { " />
-            <marker date="1520827825837" expanded="false" signature="2228:2234" ph=" }" />
-            <marker date="1520827825837" expanded="false" signature="2284:2295" ph=" { " />
-            <marker date="1520827825837" expanded="false" signature="2322:2328" ph=" }" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/FileUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/FileUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2070">
           <caret line="115" column="5" lean-forward="false" selection-start-line="115" selection-start-column="5" selection-end-line="115" selection-end-column="5" />
@@ -733,14 +714,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.txt">
+    <entry file="file://$PROJECT_DIR$/FIT_15206_Shcherbin_Life_Data/test.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ParseException.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/ParseException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -748,7 +729,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/View/MyAlgoritms.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/FileUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/FileUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
@@ -756,7 +737,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ParseException.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/ParseException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="8" column="35" lean-forward="false" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
@@ -765,7 +746,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/View/MainScreen.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/View/MyAlgoritms.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/ParseException.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/ParseException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="8" column="35" lean-forward="false" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
@@ -774,7 +755,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/Field.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/View/MainScreen.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/FileUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/FileUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
@@ -785,14 +766,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/Field.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/View/MyAlgoritms.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/Field.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/View/MainScreen.form" />
     <entry file="file://$PROJECT_DIR$/src/main/java/View/Menu.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/Cell.java" />
@@ -801,13 +774,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/View/MainScreen.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/MyScroll.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/MyOptionsDialog.form" />
-    <entry file="file://$PROJECT_DIR$/test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MyTimerTask.java" />
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -816,33 +782,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ParseException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/util/TimerThread.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
           <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/FileUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1782">
-          <caret line="101" column="50" lean-forward="false" selection-start-line="101" selection-start-column="50" selection-end-line="101" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="103" column="45" lean-forward="true" selection-start-line="103" selection-start-column="45" selection-end-line="103" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -864,103 +807,165 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
           <caret line="76" column="25" lean-forward="false" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
-          <folding>
-            <element signature="e#1979#1980#0" expanded="true" />
-            <element signature="e#2023#2024#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MyOptionsDialog.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2223">
-          <caret line="105" column="80" lean-forward="false" selection-start-line="105" selection-start-column="80" selection-end-line="105" selection-end-column="80" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Interface.java">
+    <entry file="file://$PROJECT_DIR$/FIT_15206_Shcherbin_Life_About.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="233" column="21" lean-forward="false" selection-start-line="233" selection-start-column="21" selection-end-line="233" selection-end-column="21" />
+        <state relative-caret-position="72">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FIT_15206_Shcherbin_Life_Data/test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FIT_15206_Shcherbin_Life_Data/abc.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="3" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/javax/swing/JOptionPane.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="132" column="41" lean-forward="false" selection-start-line="132" selection-start-column="41" selection-end-line="132" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/ParseException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyMouseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="29" column="10" lean-forward="true" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+          <folding>
+            <element signature="e#242#243#0" expanded="true" />
+            <element signature="e#272#273#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-912">
+          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="e#125#126#0" expanded="true" />
+            <element signature="e#176#177#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/FileUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="83" column="71" lean-forward="false" selection-start-line="83" selection-start-column="71" selection-end-line="83" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Params.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="24" column="48" lean-forward="true" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1412#1668#0" expanded="true" />
-            <element signature="e#1667#1668#0" expanded="true" />
-            <element signature="e#1733#1989#0" expanded="true" />
-            <element signature="e#1988#1989#0" expanded="true" />
-            <marker date="1520827825801" expanded="false" signature="2333:2463" ph="(adjustmentEvent) → {" />
-            <marker date="1520827825801" expanded="false" signature="2574:2589" ph="}" />
-            <marker date="1520827825801" expanded="false" signature="2654:2784" ph="(adjustmentEvent) → {" />
-            <marker date="1520827825801" expanded="false" signature="2895:2910" ph="}" />
-            <marker date="1520827825801" expanded="false" signature="3096:3440" ph="/**...*/" />
-            <marker date="1520827825801" expanded="false" signature="3871:3982" ph="(actionEvent) → {" />
-            <marker date="1520827825801" expanded="false" signature="4203:4218" ph="}" />
-            <marker date="1520827825801" expanded="false" signature="4253:4420" ph="/**...*/" />
-            <marker date="1520827825801" expanded="false" signature="4541:4611" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="4659:4726" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="4791:5400" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="5562:6070" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="6203:6696" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="6754:7004" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="7073:7335" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="7389:7404" ph=" { " />
-            <marker date="1520827825801" expanded="false" signature="7447:7453" ph=" }" />
-            <marker date="1520827825801" expanded="false" signature="7492:7507" ph=" { " />
-            <marker date="1520827825801" expanded="false" signature="7530:7536" ph=" }" />
-            <marker date="1520827825801" expanded="false" signature="8005:8341" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="8641:8785" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="8810:8954" ph="{...}" />
-            <marker date="1520827825801" expanded="false" signature="10992:11163" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MyPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="48" column="37" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+        <state relative-caret-position="-76">
+          <caret line="258" column="41" lean-forward="false" selection-start-line="258" selection-start-column="41" selection-end-line="258" selection-end-column="41" />
           <folding>
-            <element signature="e#1424#3260#0" expanded="true" />
-            <element signature="e#3259#3260#0" expanded="true" />
-            <element signature="method#drawFatHexGreed#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#drawHexGread#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#paintFatModel#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#paintModel#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#fillingFatCell#0;class#MyPanel#0" expanded="false" />
-            <element signature="method#fillingCell#0;class#MyPanel#0" expanded="false" />
-            <marker date="1520827825757" expanded="false" signature="15858:16066" ph="//..." />
-            <marker date="1520827825757" expanded="false" signature="16495:17570" ph="{...}" />
-            <marker date="1520827825757" expanded="false" signature="17594:17655" ph="{...}" />
-            <marker date="1520827825757" expanded="false" signature="17771:18523" ph="{...}" />
-            <marker date="1520827825757" expanded="false" signature="18641:19388" ph="{...}" />
+            <element signature="method#drawHexagon#0;class#MyPanel#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Params.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyOptionsDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="27" column="39" lean-forward="false" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+        <state relative-caret-position="-4104">
+          <caret line="32" column="33" lean-forward="false" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1520827825837" expanded="false" signature="1498:1509" ph=" { " />
-            <marker date="1520827825837" expanded="false" signature="1532:1538" ph=" }" />
-            <marker date="1520827825837" expanded="false" signature="2194:2205" ph=" { " />
-            <marker date="1520827825837" expanded="false" signature="2228:2234" ph=" }" />
-            <marker date="1520827825837" expanded="false" signature="2284:2295" ph=" { " />
-            <marker date="1520827825837" expanded="false" signature="2322:2328" ph=" }" />
+            <element signature="e#1211#1638#0" expanded="true" />
+            <element signature="e#1637#1638#0" expanded="true" />
+            <element signature="e#1679#1883#0" expanded="true" />
+            <element signature="e#1882#1883#0" expanded="true" />
+            <element signature="e#2190#2622#0" expanded="true" />
+            <element signature="e#2621#2622#0" expanded="true" />
+            <element signature="e#2664#2871#0" expanded="true" />
+            <element signature="e#2870#2871#0" expanded="true" />
+            <element signature="e#3185#3627#0" expanded="true" />
+            <element signature="e#3626#3627#0" expanded="true" />
+            <element signature="e#3671#3882#0" expanded="true" />
+            <element signature="e#3881#3882#0" expanded="true" />
+            <element signature="e#4232#4695#0" expanded="true" />
+            <element signature="e#4694#4695#0" expanded="true" />
+            <element signature="e#4740#4957#0" expanded="true" />
+            <element signature="e#4956#4957#0" expanded="true" />
+            <element signature="e#6847#10889#0" expanded="true" />
+            <element signature="e#10888#10889#0" expanded="true" />
+            <marker date="1521084856766" expanded="false" signature="10990:11118" ph="(actionEvent) → { " />
+            <marker date="1521084856766" expanded="false" signature="11128:11152" ph=" }" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MyMouseListener.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Interface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="31" column="18" lean-forward="true" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        <state relative-caret-position="104">
+          <caret line="343" column="0" lean-forward="true" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
           <folding>
-            <element signature="e#223#224#0" expanded="true" />
-            <element signature="e#253#254#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1763#2019#0" expanded="true" />
+            <element signature="e#2018#2019#0" expanded="true" />
+            <element signature="e#2084#2340#0" expanded="true" />
+            <element signature="e#2339#2340#0" expanded="true" />
+            <element signature="e#3123#3379#0" expanded="true" />
+            <element signature="e#3378#3379#0" expanded="true" />
+            <element signature="e#3444#3700#0" expanded="true" />
+            <element signature="e#3699#3700#0" expanded="true" />
+            <element signature="e#4782#5129#0" expanded="true" />
+            <element signature="e#5128#5129#0" expanded="true" />
+            <element signature="e#8272#8273#0" expanded="true" />
+            <element signature="e#8330#8331#0" expanded="true" />
+            <element signature="e#8414#8415#0" expanded="true" />
+            <element signature="e#8472#8473#0" expanded="true" />
+            <element signature="e#9295#9296#0" expanded="true" />
+            <element signature="e#9353#9354#0" expanded="true" />
+            <element signature="e#9437#9438#0" expanded="true" />
+            <element signature="e#9495#9496#0" expanded="true" />
+            <element signature="e#9596#9597#0" expanded="true" />
+            <element signature="e#9654#9655#0" expanded="true" />
+            <element signature="e#9699#9700#0" expanded="true" />
+            <element signature="e#9737#9738#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1022,7 +1027,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
