@@ -27,8 +27,8 @@ public class FileUtils {
             String noComents = cutComments(curStr);
             if(noComents.matches("^([0-9]+)([ ])([0-9]+)([ ]*)$")){
                 strSc = new Scanner(noComents);
-                vertical = strSc.nextInt();
                 horisontal = strSc.nextInt();
+                vertical = strSc.nextInt();
             }
             else {
                 throw new ParseException("field size incorrect");
@@ -80,7 +80,7 @@ public class FileUtils {
                         throw new ParseException("invalid cell number");
                     }
                     System.out.println(x+" fileUtils "+y);
-                    model.field[x][y] = 1;
+                    model.field[y][x] = 1;
                 } else {
                     throw new ParseException("cords string incorrect");
                 }
