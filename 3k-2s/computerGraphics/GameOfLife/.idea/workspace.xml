@@ -19,47 +19,45 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Interface.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Interface.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Interface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="343" column="0" lean-forward="true" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
+            <state relative-caret-position="219">
+              <caret line="70" column="25" lean-forward="true" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1763#2019#0" expanded="true" />
                 <element signature="e#2018#2019#0" expanded="true" />
                 <element signature="e#2084#2340#0" expanded="true" />
                 <element signature="e#2339#2340#0" expanded="true" />
-                <element signature="e#3123#3379#0" expanded="true" />
-                <element signature="e#3378#3379#0" expanded="true" />
-                <element signature="e#3444#3700#0" expanded="true" />
-                <element signature="e#3699#3700#0" expanded="true" />
-                <element signature="e#4782#5129#0" expanded="true" />
-                <element signature="e#5128#5129#0" expanded="true" />
-                <element signature="e#8272#8273#0" expanded="true" />
-                <element signature="e#8330#8331#0" expanded="true" />
-                <element signature="e#8414#8415#0" expanded="true" />
-                <element signature="e#8472#8473#0" expanded="true" />
-                <element signature="e#9295#9296#0" expanded="true" />
-                <element signature="e#9353#9354#0" expanded="true" />
-                <element signature="e#9437#9438#0" expanded="true" />
-                <element signature="e#9495#9496#0" expanded="true" />
-                <element signature="e#9596#9597#0" expanded="true" />
-                <element signature="e#9654#9655#0" expanded="true" />
-                <element signature="e#9699#9700#0" expanded="true" />
-                <element signature="e#9737#9738#0" expanded="true" />
+                <element signature="e#4862#5209#0" expanded="true" />
+                <element signature="e#5208#5209#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyPanel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MyPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-76">
-              <caret line="258" column="41" lean-forward="false" selection-start-line="258" selection-start-column="41" selection-end-line="258" selection-end-column="41" />
+            <state relative-caret-position="90">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding>
                 <element signature="method#drawHexagon#0;class#MyPanel#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyMouseAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyMouseAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="900">
+              <caret line="50" column="1" lean-forward="false" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#247#248#0" expanded="true" />
+                <element signature="e#281#282#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,8 +66,8 @@
       <file leaf-file-name="Params.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Params.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="24" column="48" lean-forward="true" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+            <state relative-caret-position="378">
+              <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,7 +78,7 @@
       <file leaf-file-name="MyOptionsDialog.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyOptionsDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4104">
+            <state relative-caret-position="414">
               <caret line="32" column="33" lean-forward="false" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -102,8 +100,6 @@
                 <element signature="e#4956#4957#0" expanded="true" />
                 <element signature="e#6847#10889#0" expanded="true" />
                 <element signature="e#10888#10889#0" expanded="true" />
-                <marker date="1521084856766" expanded="false" signature="10990:11118" ph="(actionEvent) → { " />
-                <marker date="1521084856766" expanded="false" signature="11128:11152" ph=" }" />
               </folding>
             </state>
           </provider>
@@ -122,8 +118,8 @@
       <file leaf-file-name="FileUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/FileUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="83" column="71" lean-forward="false" selection-start-line="83" selection-start-column="71" selection-end-line="83" selection-end-column="71" />
+            <state relative-caret-position="144">
+              <caret line="79" column="56" lean-forward="true" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -132,12 +128,9 @@
       <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-912">
-              <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-              <folding>
-                <element signature="e#125#126#0" expanded="true" />
-                <element signature="e#176#177#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="140">
+              <caret line="92" column="23" lean-forward="false" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -163,20 +156,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>model.</find>
-      <find>Params.model</find>
-      <find>new Model</find>
-      <find>ij</find>
-      <find>= Params.modelWidth</find>
-      <find>drawS</find>
-      <find>drawImpa</find>
-      <find>drawStr</find>
-      <find>Params.impacts</find>
-      <find>onNex</find>
-      <find>class</find>
-      <find>onn</find>
-      <find>paint</find>
-      <find>= -1</find>
       <find>ze == 1</find>
       <find>this.getG</find>
       <find>changeV</find>
@@ -187,12 +166,26 @@
       <find>println</find>
       <find>onInit</find>
       <find>clearM</find>
-      <find>onO</find>
-      <find>onOpen</find>
       <find>drawFatI</find>
       <find>Params.impacts =</find>
       <find>255,255,255,255</find>
       <find>paintModel</find>
+      <find>refra</find>
+      <find>gr2d.se</find>
+      <find>j &lt; currY</find>
+      <find>setF</find>
+      <find>new F</find>
+      <find>ij</find>
+      <find>String imp =</find>
+      <find>getCell</find>
+      <find>onOpen</find>
+      <find>refre</find>
+      <find>fileU</find>
+      <find>fillingF</find>
+      <find>live</find>
+      <find>!!!</find>
+      <find>onO</find>
+      <find>refr</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -200,6 +193,7 @@
     <dirStrings>
       <dir>$PROJECT_DIR$/src/main/java/View</dir>
       <dir>$PROJECT_DIR$/src/main/resources</dir>
+      <dir>$PROJECT_DIR$/FIT_15206_Shcherbin_Life_Data</dir>
       <dir>$PROJECT_DIR$/src/main/java</dir>
     </dirStrings>
   </component>
@@ -232,17 +226,18 @@
         <option value="$PROJECT_DIR$/FIT_15206_Shcherbin_Life_About.txt" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/ParseException.java" />
         <option value="$PROJECT_DIR$/FIT_15206_Shcherbin_Life_Data/abc.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Model.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyMouseListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyOptionsDialog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/FileUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Params.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Model.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/FileUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Interface.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyMouseAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyPanel.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="44" />
     <option name="y" value="24" />
     <option name="width" value="1281" />
@@ -263,7 +258,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -314,8 +310,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -527,7 +522,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1301" height="772" extended-state="7" />
+    <frame x="44" y="24" width="1301" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -538,9 +533,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31586826" sideWeight="0.5057648" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29341316" sideWeight="0.49423522" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289777" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29341316" sideWeight="0.49423522" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -550,13 +544,14 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997006" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997006" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289777" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -569,24 +564,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="11" column="111" lean-forward="false" selection-start-line="11" selection-start-column="111" selection-end-line="11" selection-end-column="111" />
-          <folding>
-            <element signature="method#drawHexagon#0;class#MyPanel#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyMouseListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="19" column="39" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
-          <folding>
-            <element signature="e#242#243#0" expanded="true" />
-            <element signature="e#272#273#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -594,10 +576,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="98" column="29" lean-forward="false" selection-start-line="98" selection-start-column="29" selection-end-line="98" selection-end-column="29" />
-          <folding>
-            <element signature="e#125#126#0" expanded="true" />
-            <element signature="e#176#177#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -611,24 +590,8 @@
             <element signature="e#2018#2019#0" expanded="true" />
             <element signature="e#2084#2340#0" expanded="true" />
             <element signature="e#2339#2340#0" expanded="true" />
-            <element signature="e#3123#3379#0" expanded="true" />
-            <element signature="e#3378#3379#0" expanded="true" />
-            <element signature="e#3444#3700#0" expanded="true" />
-            <element signature="e#3699#3700#0" expanded="true" />
-            <element signature="e#4782#5129#0" expanded="true" />
-            <element signature="e#5128#5129#0" expanded="true" />
-            <element signature="e#8272#8273#0" expanded="true" />
-            <element signature="e#8330#8331#0" expanded="true" />
-            <element signature="e#8414#8415#0" expanded="true" />
-            <element signature="e#8472#8473#0" expanded="true" />
-            <element signature="e#9295#9296#0" expanded="true" />
-            <element signature="e#9353#9354#0" expanded="true" />
-            <element signature="e#9437#9438#0" expanded="true" />
-            <element signature="e#9495#9496#0" expanded="true" />
-            <element signature="e#9596#9597#0" expanded="true" />
-            <element signature="e#9654#9655#0" expanded="true" />
-            <element signature="e#9699#9700#0" expanded="true" />
-            <element signature="e#9737#9738#0" expanded="true" />
+            <element signature="e#4862#5209#0" expanded="true" />
+            <element signature="e#5208#5209#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -663,24 +626,8 @@
             <element signature="e#2018#2019#0" expanded="true" />
             <element signature="e#2084#2340#0" expanded="true" />
             <element signature="e#2339#2340#0" expanded="true" />
-            <element signature="e#3123#3379#0" expanded="true" />
-            <element signature="e#3378#3379#0" expanded="true" />
-            <element signature="e#3444#3700#0" expanded="true" />
-            <element signature="e#3699#3700#0" expanded="true" />
-            <element signature="e#4782#5129#0" expanded="true" />
-            <element signature="e#5128#5129#0" expanded="true" />
-            <element signature="e#8272#8273#0" expanded="true" />
-            <element signature="e#8330#8331#0" expanded="true" />
-            <element signature="e#8414#8415#0" expanded="true" />
-            <element signature="e#8472#8473#0" expanded="true" />
-            <element signature="e#9295#9296#0" expanded="true" />
-            <element signature="e#9353#9354#0" expanded="true" />
-            <element signature="e#9437#9438#0" expanded="true" />
-            <element signature="e#9495#9496#0" expanded="true" />
-            <element signature="e#9596#9597#0" expanded="true" />
-            <element signature="e#9654#9655#0" expanded="true" />
-            <element signature="e#9699#9700#0" expanded="true" />
-            <element signature="e#9737#9738#0" expanded="true" />
+            <element signature="e#4862#5209#0" expanded="true" />
+            <element signature="e#5208#5209#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -689,10 +636,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="98" column="29" lean-forward="true" selection-start-line="98" selection-start-column="29" selection-end-line="98" selection-end-column="29" />
-          <folding>
-            <element signature="e#125#126#0" expanded="true" />
-            <element signature="e#176#177#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -846,7 +790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
           <caret line="132" column="41" lean-forward="false" selection-start-line="132" selection-start-column="41" selection-end-line="132" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -858,59 +801,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyMouseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="29" column="10" lean-forward="true" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
-          <folding>
-            <element signature="e#242#243#0" expanded="true" />
-            <element signature="e#272#273#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-912">
-          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="e#125#126#0" expanded="true" />
-            <element signature="e#176#177#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/FileUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="83" column="71" lean-forward="false" selection-start-line="83" selection-start-column="71" selection-end-line="83" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Params.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="24" column="48" lean-forward="true" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+        <state relative-caret-position="378">
+          <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76">
-          <caret line="258" column="41" lean-forward="false" selection-start-line="258" selection-start-column="41" selection-end-line="258" selection-end-column="41" />
-          <folding>
-            <element signature="method#drawHexagon#0;class#MyPanel#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyOptionsDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4104">
+        <state relative-caret-position="414">
           <caret line="32" column="33" lean-forward="false" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -932,40 +835,68 @@
             <element signature="e#4956#4957#0" expanded="true" />
             <element signature="e#6847#10889#0" expanded="true" />
             <element signature="e#10888#10889#0" expanded="true" />
-            <marker date="1521084856766" expanded="false" signature="10990:11118" ph="(actionEvent) → { " />
-            <marker date="1521084856766" expanded="false" signature="11128:11152" ph=" }" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="92" column="23" lean-forward="false" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyMouseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="27" column="27" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/FileUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="79" column="56" lean-forward="true" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/Interface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="343" column="0" lean-forward="true" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
+        <state relative-caret-position="219">
+          <caret line="70" column="25" lean-forward="true" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1763#2019#0" expanded="true" />
             <element signature="e#2018#2019#0" expanded="true" />
             <element signature="e#2084#2340#0" expanded="true" />
             <element signature="e#2339#2340#0" expanded="true" />
-            <element signature="e#3123#3379#0" expanded="true" />
-            <element signature="e#3378#3379#0" expanded="true" />
-            <element signature="e#3444#3700#0" expanded="true" />
-            <element signature="e#3699#3700#0" expanded="true" />
-            <element signature="e#4782#5129#0" expanded="true" />
-            <element signature="e#5128#5129#0" expanded="true" />
-            <element signature="e#8272#8273#0" expanded="true" />
-            <element signature="e#8330#8331#0" expanded="true" />
-            <element signature="e#8414#8415#0" expanded="true" />
-            <element signature="e#8472#8473#0" expanded="true" />
-            <element signature="e#9295#9296#0" expanded="true" />
-            <element signature="e#9353#9354#0" expanded="true" />
-            <element signature="e#9437#9438#0" expanded="true" />
-            <element signature="e#9495#9496#0" expanded="true" />
-            <element signature="e#9596#9597#0" expanded="true" />
-            <element signature="e#9654#9655#0" expanded="true" />
-            <element signature="e#9699#9700#0" expanded="true" />
-            <element signature="e#9737#9738#0" expanded="true" />
+            <element signature="e#4862#5209#0" expanded="true" />
+            <element signature="e#5208#5209#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyMouseAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="50" column="1" lean-forward="false" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#247#248#0" expanded="true" />
+            <element signature="e#281#282#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/g15206/Shcherbin/MyPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="method#drawHexagon#0;class#MyPanel#0" expanded="false" />
           </folding>
         </state>
       </provider>

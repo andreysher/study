@@ -79,6 +79,7 @@ public class FileUtils {
                     if(x%2 == 1 && y == horisontal-1){
                         throw new ParseException("invalid cell number");
                     }
+                    System.out.println(x+" fileUtils "+y);
                     model.field[x][y] = 1;
                 } else {
                     throw new ParseException("cords string incorrect");

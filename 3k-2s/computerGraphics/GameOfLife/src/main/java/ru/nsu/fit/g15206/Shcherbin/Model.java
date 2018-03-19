@@ -90,7 +90,7 @@ public class Model {
         return impact;
     }
 
-    public void refrash(){
+    public void refresh(){
         int[][] newField = new int[Params.modelHeight][Params.modelWidth];
         for (int i = 0; i < Params.modelHeight; i++) {
             for (int j = 0; j < Params.modelWidth; j++) {

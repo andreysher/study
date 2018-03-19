@@ -66,34 +66,35 @@ public class Interface extends JFrame {
 //        Отладочных принтов много. Для того чтобы потом проще было фиксить баги которые могу появиться при изменениях
     }
 
-    public void refrash(){
-        remove(scroll);
-        remove(panel);
-        panel = new MyPanel(model);
+    public void refresh(){
+        panel.refresh(model);
+//        remove(scroll);
+//        remove(panel);
+//        panel = new MyPanel(model);
         Params.impacts = new BufferedImage((Params.modelWidth * 3 * (Params.cellSize + Params.crossLineSize)),
                 (Params.modelHeight) * 2 * Params.cellSize + (3 * Params.crossLineSize * Params.modelHeight), BufferedImage.TYPE_INT_ARGB);
-        scroll = new JScrollPane(panel);
-//        scroll.setDoubleBuffered(true);
-        scroll.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-            @Override
-            public void adjustmentValueChanged(AdjustmentEvent adjustmentEvent) {
-                scroll.paint(scroll.getGraphics());
-                panel.paint(panel.getGraphics());
-            }
-        });
-        scroll.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-            @Override
-            public void adjustmentValueChanged(AdjustmentEvent adjustmentEvent) {
-                scroll.paint(scroll.getGraphics());
-                panel.paint(panel.getGraphics());
-            }
-        });
-        add(scroll, BorderLayout.CENTER);
-        pack();
-        setVisible(true);
-        panel.paint(panel.getGraphics());
-        scroll.paint(scroll.getGraphics());
-//        System.out.println(getWidth() + " size " + getHeight());
+//        scroll = new JScrollPane(panel);
+////        scroll.setDoubleBuffered(true);
+//        scroll.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+//            @Override
+//            public void adjustmentValueChanged(AdjustmentEvent adjustmentEvent) {
+//                scroll.paint(scroll.getGraphics());
+//                panel.paint(panel.getGraphics());
+//            }
+//        });
+//        scroll.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+//            @Override
+//            public void adjustmentValueChanged(AdjustmentEvent adjustmentEvent) {
+//                scroll.paint(scroll.getGraphics());
+//                panel.paint(panel.getGraphics());
+//            }
+//        });
+//        add(scroll, BorderLayout.CENTER);
+//        pack();
+//        setVisible(true);
+//        panel.paint(panel.getGraphics());
+//        scroll.paint(scroll.getGraphics());
+////        System.out.println(getWidth() + " size " + getHeight());
     }
 
 //дальше почти копи-паста с инита
@@ -273,7 +274,7 @@ public class Interface extends JFrame {
             File f = fileOpen.getSelectedFile();
             try {
                 model = FileUtils.readFromFile(f);
-                refrash();
+                refresh();
             } catch (ParseException e) {
                 JOptionPane.showMessageDialog(this,"Файл поврежден!\n" + e.reason, "Warning!", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -343,7 +344,7 @@ public class Interface extends JFrame {
     }
 
     public void changeView(){
-        refrash();
+        refresh();
         panel.repaint();
         scroll.repaint();
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -363,7 +364,7 @@ public class Interface extends JFrame {
         try {
             Params.impacts = new BufferedImage((Params.modelWidth * 3 * (Params.cellSize + Params.crossLineSize)),
                     (Params.modelHeight) * 2 * Params.cellSize + (3 * Params.crossLineSize * Params.modelHeight), BufferedImage.TYPE_INT_ARGB);
-            refrash();
+            refresh();
         } catch (OutOfMemoryError err){
             JOptionPane.showMessageDialog(this,"Не достаточно памяти!", "Warning!", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -382,7 +383,7 @@ public class Interface extends JFrame {
 //от этого метода почему-то зависит рисование impact'ов, пытался вставить в main то что написано выше
 // (if который выше 347-354 строки) не заработало
     public void onNext(){
-        panel.model.refrash();
+        panel.model.refresh();
         if(Params.crossLineSize == 1) {
             panel.paintModel();
         }

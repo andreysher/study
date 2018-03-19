@@ -18,77 +18,46 @@ public class MyPanel extends JPanel {
         paint(g);
     }
 
-    public MyPanel(final Model model){
+    public MyPanel(Model model) {
 //        setDoubleBuffered(true);
         try {
-            fieldView = new BufferedImage((Params.modelWidth * 3 * (Params.cellSize + Params.crossLineSize)),
-                    (Params.modelHeight) * 2 * Params.cellSize + (3 * Params.crossLineSize * Params.modelHeight), BufferedImage.TYPE_INT_ARGB);
-        } catch (OutOfMemoryError err){
-            JOptionPane.showMessageDialog(this,"Не достаточно памяти!", "Warning!", JOptionPane.INFORMATION_MESSAGE);
+            int fieldWidth = Params.modelWidth * 3 * (Params.cellSize + Params.crossLineSize);
+            int fieldHeight = Params.modelHeight * 2 * Params.cellSize + (3 * Params.crossLineSize * Params.modelHeight);
+            fieldView = new BufferedImage(fieldWidth, fieldHeight, BufferedImage.TYPE_INT_ARGB);
+            clearFieldView();
+        } catch (OutOfMemoryError err) {
+            JOptionPane.showMessageDialog(this, "Не достаточно памяти!", "Warning!", JOptionPane.INFORMATION_MESSAGE);
         }
         setPreferredSize(new Dimension(fieldView.getWidth(), fieldView.getHeight()));
         this.model = model;
-        if(Params.crossLineSize == 1) {
+        if (Params.crossLineSize == 1) {
             drawHexGread();
-        }
-        else {
+        } else {
             drawFatHexGreed();
         }
-        System.out.println("width"+ Params.modelWidth);
-        System.out.println("height" + Params.modelHeight);
+
         for (int i = 0; i < Params.modelHeight; i++) {
             int curj = Params.modelWidth;
-            if(i%2 != 0){
+            if (i % 2 != 0) {
                 curj -= 1;
             }
             for (int j = 0; j < curj; j++) {
                 System.out.println(i + " " + j);
-                if(model.field[i][j] == 1){
-                    fillingCell(i,j, Params.fillingColor);
+                if (model.field[i][j] == 1) {
+                    fillingCell(i, j, Params.fillingColor);
                 }
             }
         }
 
         addMouseListener(new MyMouseListener(this));
-        addMouseMotionListener(new MouseAdapter() {
-            @Override
-            public void mouseDragged(MouseEvent mouseEvent) {
-                Params.saved = false;
-                int newX = mouseEvent.getX();
-                int newY = mouseEvent.getY();
-                if(fieldView.getRGB(newX,newY) == Params.borderColor){
-                    return;
-                }
-                int[] cell = getCell(newX,newY);
-                if(cell != null){
-                    if(Arrays.equals(cell,Params.curPoint)){
-                        return;
-                    }
-                    else {
-                        Params.curPoint = cell;
-                    }
-                    if(Params.clickMode == 0) {
-                        model.field[cell[0]][cell[1]] = 1;
-                        spanFilling(newX, newY, fieldView, Params.fillingColor);
-                        paint(MyPanel.super.getGraphics());
-                    }
-                    if(Params.clickMode == 1){
-                        if(model.field[cell[0]][cell[1]] == 0){
-                            model.field[cell[0]][cell[1]] = 1;
-                            spanFilling(newX, newY, fieldView, Params.fillingColor);
-                            paint(MyPanel.super.getGraphics());
-                            return;
-                        }
-                        if(model.field[cell[0]][cell[1]] == 1){
-                            model.field[cell[0]][cell[1]] = 0;
-                            spanFilling(newX, newY, fieldView, getBackground().getRGB());
-                            paint(MyPanel.super.getGraphics());
-                            return;
-                        }
-                    }
-                }
-            }
-        });
+        addMouseMotionListener(new MyMouseAdapter(this));
+
+    }
+
+    private void clearFieldView() {
+        Graphics2D graph = (Graphics2D) fieldView.getGraphics();
+        graph.setBackground(this.getBackground());
+        graph.clearRect(0,0,fieldView.getWidth(),fieldView.getHeight());
     }
 
     public void drawFatHexGreed(){
@@ -193,7 +162,9 @@ public class MyPanel extends JPanel {
         gr2d.clearRect(0,0,Params.impacts.getWidth(),Params.impacts.getHeight());
 
         gr2d.setColor(Color.red);
-        gr2d.setFont(new Font("TimesRoman", Font.PLAIN, Params.cellSize - (Params.cellSize/5)));
+        int fontSize = Params.cellSize/2;
+//        int fontSize = Params.cellSize - (Params.cellSize/5);
+        gr2d.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
         for (int i = 0; i < Params.modelHeight; i++) {
             int currY;
             if (i % 2 != 0) {
@@ -207,7 +178,7 @@ public class MyPanel extends JPanel {
                 int[] cords = getPixelCords(i, j);
                 System.out.println(cords[0]+" cords "+cords[1]);
                 double impact = model.getImpact(i,j);
-                String imp = String.format("%(.1f",impact);
+                String imp = String.format("%.1f",impact);
                 if(Math.floor(impact) == impact) {
                     imp = Integer.toString((int) impact);
                 }
@@ -226,7 +197,9 @@ public class MyPanel extends JPanel {
         gr2d.clearRect(0,0,Params.impacts.getWidth(),Params.impacts.getHeight());
 
         gr2d.setColor(Color.red);
-        gr2d.setFont(new Font("TimesRoman", Font.PLAIN, Params.cellSize - (Params.cellSize/5)));
+//      int fontSize = Params.cellSize/2;
+        int fontSize = Params.cellSize - (Params.cellSize/5);
+        gr2d.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
         for (int i = 0; i < Params.modelHeight; i++) {
             int currY = Params.modelWidth;
             double xdef = 0;
@@ -236,10 +209,12 @@ public class MyPanel extends JPanel {
             }
             for (int j = 0; j < currY; j++) {
                 int[] cords = new int[2];
-                cords[0] = (int)Math.ceil(Math.sqrt(3)*Params.cellSize*j + xdef);
-                cords[1] = (int)Math.round(Params.cellSize + 1.5*Params.cellSize*i);
+//                cords[0] = (int)Math.ceil(Math.sqrt(3)*Params.cellSize*j + xdef);
+//                cords[1] = (int)Math.round(Params.cellSize + 1.5*Params.cellSize*i);
+                cords[0] = (int)Math.ceil(Math.sqrt(3)*Params.cellSize*j + xdef + Params.cellSize * Math.sqrt(3) / 2 - fontSize / 2);
+                cords[1] = (int)Math.round(1.5*Params.cellSize + 1.5*Params.cellSize*i - fontSize / 2);
                 double impact = model.getImpact(i,j);
-                String imp = String.format("%(.1f",impact);
+                String imp = String.format("%.1f",impact);
                 if(Math.floor(impact) == impact) {
                     imp = Integer.toString((int) impact);
                 }
@@ -282,7 +257,7 @@ public class MyPanel extends JPanel {
                 curY = Params.modelWidth;
             }
             for (int j = 0; j < curY; j++) {
-                System.out.println(i+" ij "+j);
+//                System.out.println(i+" ij "+j);
                 if(model.field[i][j] == 1){
                     fillingCell(i,j,Params.fillingColor);
                 }
@@ -481,6 +456,28 @@ public class MyPanel extends JPanel {
                 }
                 img.setRGB(x,y,Params.borderColor);
             }
+        }
+    }
+
+    public void refresh(Model model) {
+        try {
+            int fieldWidth = Params.modelWidth * 3 * (Params.cellSize + Params.crossLineSize);
+            int fieldHeight = Params.modelHeight * 2 * Params.cellSize + (3 * Params.crossLineSize * Params.modelHeight);
+            fieldView = new BufferedImage(fieldWidth,fieldHeight    , BufferedImage.TYPE_INT_ARGB);
+            clearFieldView();
+        } catch (OutOfMemoryError err){
+            JOptionPane.showMessageDialog(this,"Не достаточно памяти!", "Warning!", JOptionPane.INFORMATION_MESSAGE);
+        }
+        setPreferredSize(new Dimension(fieldView.getWidth(), fieldView.getHeight()));
+        this.model = model;
+        System.out.println("!!!"+model.field[2].length);
+        if(Params.crossLineSize == 1) {
+            drawHexGread();
+            paintModel();
+        }
+        else {
+            drawFatHexGreed();
+            paintFatModel();
         }
     }
 
