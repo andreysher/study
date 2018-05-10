@@ -1,80 +1,56 @@
 # -*- coding: utf-8 -*-
-import config
-import telebot
-import dataBase
 
-"""
-0 - Начальное состояние
-1) Добавление дела
-1 - Придумывает название дела
-2 - Устанавливает DeadLine
-3 - Устанавливает приоритет
-4 - Подтверждает добавление дела
-"""
+import requests
 
-bot = telebot.TeleBot(config.token)
-activeUsers = {}
+import vk_api
+from vk_api import VkUpload
+from vk_api.longpoll import VkLongPoll, VkEventType
+from dataBase import DBDriver
+import re
 
-dbController = dataBase.DBDriver()
+def main():
+    session = requests.Session()
 
+    # Авторизация пользователя:
+    """
+    login, password = 'python@vk.com', 'mypassword'
+    vk_session = vk_api.VkApi(login, password)
+    try:
+        vk_session.auth()
+    except vk_api.AuthError as error_msg:
+        print(error_msg)
+        return
+    """
 
-@bot.message_handler(commands=['help', 'start'])
-def send_welcome(message):
-    bot.reply_to(message, """\
-    Привет. Я твой помошник в планировании дел.
-    Умею добавлять дело в базу(команда "Добавить дело"),
-    показывать состояние твоих запланированых дел(команда "Дела"),
-    отмечать выполнение дела(команда "Выполнено <Название дела>"),
-    показывать твою продуктивность(команда "Продуктивность"),
-    ...
-    Скоро научусь еще кое-чему;)
-    \
-""")
-    activeUsers[message.chat.id] = {"state": 0}
+    # Авторизация группы:
+    # при передаче token вызывать vk_session.auth не нужно
+    vk_session = vk_api.VkApi(token='токен с доступом к сообщениям и фото')
 
+    vk = vk_session.get_api()
 
-@bot.message_handler(commands=['addTask'])
-@bot.message_handler(func=lambda message: message.text == "Добавить дело")
-def add_task(message):
-    chat_id = message.chat.id
-    bot.send_message(chat_id, "Как назвать дело?")
-    activeUsers[chat_id]["state"] = 1
-    activeUsers[chat_id]["task"] = dataBase.Task()
+    upload = VkUpload(vk_session)  # Для загрузки изображений
+    longpoll = VkLongPoll(vk_session)
+    dbDriver = DBDriver()
+    for event in longpoll.listen():
+        if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:
+            print('id{}: "{}"'.format(event.user_id, event.text), end=' ')
 
+            if event.text == "Добавить дело":
+                vk.messages.send(user_id=event.user_id,
+                                 message="Введите название дела,"
+                                         +" Дедлайн в формате ГГГГ-ММ-ДД,"
+                                          +" Важность дела от 1 до 10, "
+                                           +" Описание дела")
+            if re.match(r"\w*;[ \t]*\d\d\d\d-\d\d-\d\d;[ \t]*;\d\d?;[ \t]*.*", event.text):
+                argsList = event.text.split(';')
+                dbDriver.addTask(event.user_id, argsList[0], argsList[1], argsList[2], argsList[3])
 
-@bot.message_handler(func=lambda message: activeUsers[message.chat.id]["state"] == 1)
-def parseTaskName(message):
-    """добавить проверку корректности имени(вообще запилить отдельную функцию или класс)"""
-    name = message.text
-    chat_id = message.chat_id
-    activeUsers[chat_id]["task"].setName(name)
-    activeUsers[chat_id]["state"] = 2
-
-
-@bot.message_handler(func=lambda message: activeUsers[message.chat_id]["state"] == 2)
-def parseDeadLine(message):
-    deadline = int(message.text)
-    chat_id = message.chat_id
-    activeUsers[chat_id]["task"].setDeadline(deadline)
-    activeUsers[chat_id]["state"] = 3
+        # vk.messages.send(
+        #     user_id=event.user_id,
+        #     message=text
+        # )
+        # print('ok')
 
 
-@bot.message_handler(func=lambda message: activeUsers[message.chat_id]["state"] == 3)
-def parseImportance(message):
-    """добавить проверку корректности имени(вообще запилить отдельную функцию или класс)"""
-    importance = float(message.text)
-    chat_id = message.chat_id
-    activeUsers[chat_id]["task"].setImportance(importance)
-    activeUsers[chat_id]["state"] = 4
-
-
-@bot.message_handler(func=lambda message: activeUsers[message.chat_id]["state"] == 4)
-def parseValidate(message):
-    answer = message.text
-    chat_id = message.chat_id
-    if answer == "Да":
-        dbController.addTask()
-    activeUsers[chat_id]["state"] = 0
-
-
-bot.polling()
+if __name__ == '__main__':
+    main()
