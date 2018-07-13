@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+from datetime import datetime
+
 from sqlalchemy import Column, REAL, DATE, TEXT, INTEGER, ForeignKey, \
     func, PrimaryKeyConstraint
 from sqlalchemy.orm import relationship, backref, sessionmaker
@@ -29,8 +33,8 @@ class Tasks(Base):
     name = Column(TEXT, nullable=False)
     deadline = Column(DATE, nullable=False)
     importance = Column(REAL, nullable=False)
-    startTime = Column(DATE, default=func.now(), nullable=False)
-    endTime = Column(DATE, nullable=True)
+    startTime = Column(DATE, default=datetime.now(), nullable=False)
+    endTime = Column(DATE, default=datetime.now(), nullable=True)
     actual = Column(INTEGER, nullable=False, default=1)
     description = Column(TEXT, nullable=True)
 
@@ -48,6 +52,7 @@ class Tasks(Base):
 
     def setDescription(self, description):
         self.description = description
+
 
 class Task_Category(Base):
     __tablename__ = 'Task_Category'
@@ -144,7 +149,7 @@ class DBDriver:
         sesion = self.sessionMaker()
         if categoryName is None:
             query = sesion.query(Task_User, Tasks).filter(Task_User.userID == userID)
-            query = query.join(Tasks, Tasks.id == Task_User.taskID).\
+            query = query.join(Tasks, Tasks.id == Task_User.taskID). \
                 filter(Tasks.name == taskName)
             task = query.first()
             if task is None:
@@ -183,7 +188,7 @@ class DBDriver:
             sesion.add(tc)
             sesion.commit()
 
-    def changeTaskDescription(self, userID, taskName, categoryName, description):
+    def changeTaskDescription(self, userID, taskName, description="", categoryName=None):
         sesion = self.sessionMaker()
         task = self.findTask(userID, taskName, categoryName=categoryName)
         if task is None:
@@ -219,10 +224,9 @@ class DBDriver:
     def getTasksInCategory(self, userID, categoryName):
         sesion = self.sessionMaker()
         query = sesion.query(Categories, Tasks, Task_Category). \
-            filter(Categories.userID == userID and \
-                   Categories.name == categoryName)
+            filter(Categories.userID == userID)
         query = query.join(Task_Category, Task_Category.categoryID == Categories.id)
-        query = query.join(Tasks, Task_Category.taskID == Tasks.id)
+        query = query.join(Tasks, Task_Category.taskID == Tasks.id).filter(Categories.name == categoryName)
         res = query.all()
         if res is None:
             raise MyDataBaseException("No tasks in category")
@@ -246,15 +250,6 @@ class DBDriver:
     # TODO:Переписать все под имена сущностей всех, создание сущностей тоже под набор их атрибутов
 
 
-driver = DBDriver()
-# driver.addTask(1, taskName="myTask", deadline="2018-11-30", importance=1, description="123456")
-tasks = driver.showActiveTasks(1)
-# driver.deleteTask(1, "myTask")
-# driver.changeTask(1, 27, name="newName")
-# driver.createCategory(1, "myCategory")
-driver.addTaskToCategory("myTask", "myCategory", 1)
-# driver.changeTaskDescription(1, "myTask", "myCategory", "bla-bla-bla")
-# driver.deleteCategory(1, "myCategory")
-# driver.deleteTaskFromCategory(1, "myTask", "myCategory")
-tasksList = driver.getTasksInCategory(1, "myCategory")
-driver.endTask(1, "myTask")
+bd = DBDriver()
+l = bd.getTasksInCategory(1,"myCategory")
+print(l[0].name)
