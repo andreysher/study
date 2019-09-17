@@ -1,0 +1,4 @@
+for run docker:
+
+docker build path_to_dir_with_dockerfile --tag=foo .
+docker run  -it --rm foo
