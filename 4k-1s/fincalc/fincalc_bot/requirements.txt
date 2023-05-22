@@ -1,6 +1,6 @@
 pytest
 sqlalchemy
-requests==2.18.4
+requests==2.31.0
 six==1.11.0
 sjson==2.0.3
 vk_api==11.2.1
